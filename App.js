@@ -13,7 +13,7 @@ function DetailsScreen() {
   );
 }
 
-function TrailPreviewScreen(props) {
+function TrailPreviewScreen(props, { navigation}) {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>Trail Preview!</Text>
@@ -25,7 +25,7 @@ function TrailPreviewScreen(props) {
   );
 }
 
-function MapStartScreen({navigation}) {
+function MapStartScreen(props, {navigation}) {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>Map Start!</Text>
@@ -101,20 +101,21 @@ function ExploreStackScreen() {
     <ExploreStack.Navigator>
       <ExploreStack.Screen name="Explore" component={ExploreScreen} />
       <ExploreStack.Screen name="Preview" component={TrailPreviewScreen} />
+      <ExploreStack.Screen name="MapStart" component={MapStartScreen}/>
     </ExploreStack.Navigator>
   );
 }
 
-const TrailPreviewStack = createStackNavigator();
+// const TrailPreviewStack = createStackNavigator();
 
-function TrailPreviewStackScreen() {
-  return (                                  
-    <TrailPreviewStack.Navigator>
-      <TrailPreviewStack.Screen name="Preview" component={TrailPreviewScreen} />
-      <TrailPreviewStack.Screen name="MapStart" component={MapStartScreen} />
-    </TrailPreviewStack.Navigator>
-  );                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
-}
+// function TrailPreviewStackScreen() {
+//   return (                                  
+//     <TrailPreviewStack.Navigator>
+//       <TrailPreviewStack.Screen name="Preview" component={TrailPreviewScreen} />
+//       {/* <TrailPreviewStack.Screen name="MapStart" component={MapStartScreen} /> */}
+//     </TrailPreviewStack.Navigator>
+//   );                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+// }
 
 
 const FeedStack = createStackNavigator();
