@@ -3,6 +3,7 @@ import { Button, Text, View, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import MapView from 'react-native-maps';
 //testing commit
 //testing commit 2
 
@@ -29,8 +30,17 @@ function TrailPreviewScreen(props, { navigation}) {
 function MapStartScreen(props, {navigation}) {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Map Start!</Text>
+      <MapView
+      style={styles.map}
+    initialRegion={{
+      latitude: 37.78825,
+      longitude: -122.4324,
+      latitudeDelta: 0.0922,
+      longitudeDelta: 0.0421,
+    }}
+    />
     </View>
+    
   );
 }
 
@@ -184,5 +194,8 @@ const styles = StyleSheet.create({
     flex: 2,
     backgroundColor: "lightblue",
     //alignItems: "center",
+  },
+  map: {
+    ...StyleSheet.absoluteFillObject,
   },
 });
