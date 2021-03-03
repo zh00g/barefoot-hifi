@@ -30,6 +30,7 @@ function TrailPreviewScreen(props, { navigation}) {
 function MapStartScreen(props, {navigation}) {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+
       <MapView
       style={styles.map}
     initialRegion={{
@@ -39,6 +40,7 @@ function MapStartScreen(props, {navigation}) {
       longitudeDelta: 0.0421,
     }}
     />
+    
     </View>
     
   );
