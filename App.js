@@ -1,5 +1,6 @@
-import * as React from 'react';
-import { Button, Text, View, StyleSheet, PickerIOSComponent, TouchableOpacity, Icon } from 'react-native';
+import React, {useState} from 'react';
+import { Button, Text, View, StyleSheet, PickerIOSComponent, TouchableOpacity, Icon} from 'react-native';
+import { Overlay } from 'react-native-elements';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -46,13 +47,25 @@ function MapStartScreen(props, {navigation}) {
 }
 
 function MapMidScreen(props, {navigation}) {
+  const [visible, setVisible] = useState(false);
+
+  const toggleOverlay = () => {
+    setVisible(!visible);
+  };
   return (
     <View style={styles.container_mapstart}>
       <View style={styles.map}> 
       <MapComponent />
       </View>
       <View style = {styles.recordingbar}> 
-    <TouchableOpacity activeOpacity={0.5} onPress = {() => props.navigation.navigate('MapEndConfirm')}>
+    <TouchableOpacity activeOpacity={0.5} onPress = {toggleOverlay}>
+      
+    <Overlay style = {styles.endtrailconfirm} isVisible={visible} onBackdropPress={toggleOverlay}>
+    <View style = {styles.endtrailconfirm}>
+        <Text>Hello from Overlay!</Text>
+        </View>
+    </Overlay>
+    
       <MaterialCommunityIcons style = {styles.recordButton} name="stop" size={60} color="red"/>
     </TouchableOpacity>
     </View>
@@ -61,19 +74,28 @@ function MapMidScreen(props, {navigation}) {
   );
 }
 
-function MapEndConfirmScreen(props, {navigation}) {
-  return (
-    <View style={styles.container_mapstart}>
-      <View style={styles.map}> 
-      <MapComponent />
-      </View>
-      <View style = {styles.popup}> 
-    <Text> Are you sure ur done?</Text>
-    </View>
-    </View>
+// function MapEndConfirmScreen(props, {navigation}) {
+//   const [visible, setVisible] = useState(false);
+
+//   const toggleOverlay = () => {
+//     setVisible(!visible);
+//   };
+//   return (
+//     <View style={styles.container_mapstart}>
+//       <View style={styles.map}> 
+//       <MapComponent />
+//       </View>
+//       <View style = {styles.popup}> 
+//       <Button title="Open Overlay" onPress={toggleOverlay} />
+
+//       <Overlay isVisible={visible} onBackdropPress={toggleOverlay}>
+//         <Text>Hello from Overlay!</Text>
+//       </Overlay>
+//     </View>
+//     </View>
     
-  );
-}
+//   );
+// }
 
 
 function CameraScreen() {
@@ -145,7 +167,7 @@ function ExploreStackScreen() {
       <ExploreStack.Screen name="Preview" component={TrailPreviewScreen} />
       <ExploreStack.Screen name="MapStart" component={MapStartScreen}/>
       <ExploreStack.Screen name="MapMid" component={MapMidScreen}/>
-      <ExploreStack.Screen name="MapEndConfirm" component={MapEndConfirmScreen}/>
+      {/* <ExploreStack.Screen name="MapEndConfirm" component={MapEndConfirmScreen}/> */}
     </ExploreStack.Navigator>
   );
 }
@@ -244,7 +266,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "pink",
   },
-
+  endtrailconfirm: {
+    backgroundColor: "lightyellow",
+    width: 200,
+    height: 200,
+    justifyContent: "center",
+    alignItems: "center",
+  },
   recordingbar: {
     flex:0.1,
     justifyContent: "center",
