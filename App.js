@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MapView from 'react-native-maps';
+import MapComponent from './components/mapComponent.js'
 //testing commit
 //testing commit 2
 
@@ -31,16 +32,8 @@ function MapStartScreen(props, {navigation}) {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
 
-      <MapView
-      style={styles.map}
-    initialRegion={{
-      latitude: 37.78825,
-      longitude: -122.4324,
-      latitudeDelta: 0.0922,
-      longitudeDelta: 0.0421,
-    }}
-    />
-    
+      <MapComponent />
+
     </View>
     
   );
