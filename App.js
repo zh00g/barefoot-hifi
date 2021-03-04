@@ -36,13 +36,40 @@ function MapStartScreen(props, {navigation}) {
       <MapComponent />
       </View>
       <View style = {styles.recordingbar}> 
-    <TouchableOpacity activeOpacity={0.5}>
+    <TouchableOpacity activeOpacity={0.5} onPress = {() => props.navigation.navigate('MapMid')}>
       <MaterialCommunityIcons style = {styles.recordButton} name="record-rec" size={60} color="red"/>
     </TouchableOpacity>
     </View>
+    </View>
+    
+  );
+}
 
-      
+function MapMidScreen(props, {navigation}) {
+  return (
+    <View style={styles.container_mapstart}>
+      <View style={styles.map}> 
+      <MapComponent />
+      </View>
+      <View style = {styles.recordingbar}> 
+    <TouchableOpacity activeOpacity={0.5} onPress = {() => props.navigation.navigate('MapEndConfirm')}>
+      <MaterialCommunityIcons style = {styles.recordButton} name="stop" size={60} color="red"/>
+    </TouchableOpacity>
+    </View>
+    </View>
+    
+  );
+}
 
+function MapEndConfirmScreen(props, {navigation}) {
+  return (
+    <View style={styles.container_mapstart}>
+      <View style={styles.map}> 
+      <MapComponent />
+      </View>
+      <View style = {styles.popup}> 
+    <Text> Are you sure ur done?</Text>
+    </View>
     </View>
     
   );
@@ -117,6 +144,8 @@ function ExploreStackScreen() {
       <ExploreStack.Screen name="Explore" component={ExploreScreen} />
       <ExploreStack.Screen name="Preview" component={TrailPreviewScreen} />
       <ExploreStack.Screen name="MapStart" component={MapStartScreen}/>
+      <ExploreStack.Screen name="MapMid" component={MapMidScreen}/>
+      <ExploreStack.Screen name="MapEndConfirm" component={MapEndConfirmScreen}/>
     </ExploreStack.Navigator>
   );
 }
@@ -208,6 +237,12 @@ const styles = StyleSheet.create({
   map: {
     flex:1,
     ...StyleSheet.absoluteFillObject,
+  },
+  popup: {
+    flex: 0.1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "pink",
   },
 
   recordingbar: {
