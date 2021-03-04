@@ -31,9 +31,17 @@ function TrailPreviewScreen(props, { navigation}) {
 
 function MapStartScreen(props, {navigation}) {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-
+    <View style={styles.container_mapstart}>
+      <View style={styles.map}> 
       <MapComponent />
+      </View>
+      <View style = {styles.recordingbar}> 
+    <TouchableOpacity activeOpacity={0.5}>
+      <MaterialCommunityIcons style = {styles.recordButton} name="record-rec" size={60} color="red"/>
+    </TouchableOpacity>
+    </View>
+
+      
 
     </View>
     
