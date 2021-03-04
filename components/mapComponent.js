@@ -36,7 +36,6 @@ class MapComponent extends React.Component {
       return (
         <MapView
         style = {styles.map}
-        region={this.state.region}
         onRegionChange={this.onRegionChange}
         />
       );
