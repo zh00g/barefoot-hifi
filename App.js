@@ -1,14 +1,15 @@
-import React, {useState} from 'react';
-import { Button, 
-        Text, 
-        View, 
-        StyleSheet, 
-        PickerIOSComponent, 
-        TouchableOpacity, 
-        TextInput,
-        Icon,
-        FlatList,
-      } from 'react-native';
+import React, { useState } from 'react';
+import {
+  Button,
+  Text,
+  View,
+  StyleSheet,
+  PickerIOSComponent,
+  TouchableOpacity,
+  TextInput,
+  Icon,
+  FlatList,
+} from 'react-native';
 import { Overlay } from 'react-native-elements';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -28,7 +29,7 @@ function DetailsScreen() {
   );
 }
 
-function TrailPreviewScreen(props, { navigation}) {
+function TrailPreviewScreen(props, { navigation }) {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>Trail Preview!</Text>
@@ -40,23 +41,23 @@ function TrailPreviewScreen(props, { navigation}) {
   );
 }
 
-function MapStartScreen(props, {navigation}) {
+function MapStartScreen(props, { navigation }) {
   return (
     <View style={styles.container_mapstart}>
-      <View style={styles.map}> 
-      <MapComponent />
+      <View style={styles.map}>
+        <MapComponent />
       </View>
-      <View style = {styles.recordingbar}> 
-    <TouchableOpacity activeOpacity={0.5} onPress = {() => props.navigation.navigate('MapMid')}>
-      <MaterialCommunityIcons style = {styles.recordButton} name="record-rec" size={60} color="red"/>
-    </TouchableOpacity>
+      <View style={styles.recordingbar}>
+        <TouchableOpacity activeOpacity={0.5} onPress={() => props.navigation.navigate('MapMid')}>
+          <MaterialCommunityIcons style={styles.recordButton} name="record-rec" size={60} color="red" />
+        </TouchableOpacity>
+      </View>
     </View>
-    </View>
-    
+
   );
 }
 
-function MapMidScreen(props, {navigation}) {
+function MapMidScreen(props, { navigation }) {
   const [visible, setVisible] = useState(false);
 
   const toggleOverlay = () => {
@@ -64,44 +65,44 @@ function MapMidScreen(props, {navigation}) {
   };
   return (
     <View style={styles.container_mapstart}>
-      <View style={styles.map}> 
-      <MapComponent />
+      <View style={styles.map}>
+        <MapComponent />
       </View>
-      <View style = {styles.recordingbar}> 
-    <TouchableOpacity activeOpacity={0.5} onPress = {toggleOverlay}>
-      
-    <Overlay overlayStyle = {styles.endtrailconfirm} isVisible={visible} onBackdropPress={toggleOverlay}>
-        <Text>Would you like to save your recording?</Text>
-        <View style = {styles.yesnobar}>
-              <Button title = "Yes" onPress = {() => 
-                props.navigation.navigate('Congrats')}/>
-              <Button title = "No" onPress = {() => props.navigation.navigate('Explore')}/>
-          </View>
-    </Overlay>
-    
-      <MaterialCommunityIcons style = {styles.recordButton} name="stop" size={60} color="red"/>
-    </TouchableOpacity>
+      <View style={styles.recordingbar}>
+        <TouchableOpacity activeOpacity={0.5} onPress={toggleOverlay}>
+
+          <Overlay overlayStyle={styles.endtrailconfirm} isVisible={visible} onBackdropPress={toggleOverlay}>
+            <Text>Would you like to save your recording?</Text>
+            <View style={styles.yesnobar}>
+              <Button title="Yes" onPress={() =>
+                props.navigation.navigate('Congrats')} />
+              <Button title="No" onPress={() => props.navigation.navigate('Explore')} />
+            </View>
+          </Overlay>
+
+          <MaterialCommunityIcons style={styles.recordButton} name="stop" size={60} color="red" />
+        </TouchableOpacity>
+      </View>
     </View>
-    </View>
-    
+
   );
 }
 
-function CongratsScreen(props, {navigation}) {
+function CongratsScreen(props, { navigation }) {
   return (
     <View style={styles.congratscontainer}>
-     <Text> Finished Trail!! </Text>
-     <View style = {styles.sharesendbar}>
-     <TouchableOpacity activeOpacity={0.5} onPress = {() => props.navigation.navigate('Friends')}>
-      <FontAwesome style = {styles.recordButton} name="send-o" size={60} color="#376171"/>
-    </TouchableOpacity>
-    <TouchableOpacity activeOpacity={0.5} onPress = {() => props.navigation.navigate('Explore')}>
-      <AntDesign style = {styles.recordButton} name="arrowright" size={60} color="#376171"/>
-    </TouchableOpacity>
-     </View>
-    
+      <Text> Finished Trail!! </Text>
+      <View style={styles.sharesendbar}>
+        <TouchableOpacity activeOpacity={0.5} onPress={() => props.navigation.navigate('Friends')}>
+          <FontAwesome style={styles.recordButton} name="send-o" size={60} color="#376171" />
+        </TouchableOpacity>
+        <TouchableOpacity activeOpacity={0.5} onPress={() => props.navigation.navigate('Explore')}>
+          <AntDesign style={styles.recordButton} name="arrowright" size={60} color="#376171" />
+        </TouchableOpacity>
+      </View>
+
     </View>
-    
+
   );
 }
 
@@ -135,38 +136,65 @@ function FriendsListScreen(props) {
   const renderItem = ({ item }) => (
     <Item title={item.title} />
   );
-  
 
-  
+  const [visible, setVisible] = useState(false);
+
+  const toggleOverlay = () => {
+    setVisible(!visible);
+  };
+
+
+
   return (
-    <View style = {styles.container}>
-      <View style = {{justifyContent: "center", alignItems: "center"}}>
-      <Text style = {styles.friendslistpageheader}> Send </Text>
+    <View style={styles.friendscontainer}>
+
+      <View style={{ justifyContent: "center", alignItems: "center" }}>
+        <Text style={styles.friendslistpageheader}> Send </Text>
       </View>
+
+
       <View style={styles.searchSection}>
         <TouchableOpacity activeOpacity={0.5}>
-            <FontAwesome style={styles.searchIcon} name="search" size={20} color="#A6D2AE"/>
+          <FontAwesome style={styles.searchIcon} name="search" size={20} color="#A6D2AE" />
         </TouchableOpacity>
         <TextInput
-          placeholder="Search!" 
+          placeholder="Search!"
           //onChangeText={(text) => setText(text)}
           //onSubmitEditing = {onSubmitEditing}
           style={styles.textInput}
-          //value={text}
+        //value={text}
         />
       </View>
+
+
       <FlatList
         data={friends}
         renderItem={renderItem}
         keyExtractor={item => item.id}
       />
+
+
+      <View style={styles.friendsbutton}>
+        <TouchableOpacity activeOpacity={0.5} onPress={toggleOverlay}>
+          <FontAwesome style={styles.recordButton} name="send-o" size={60} color="#376171" />
+          <Overlay overlayStyle={styles.endtrailconfirm} isVisible={visible} onBackdropPress={toggleOverlay}>
+            <Text>Sent!</Text>
+            <View style={styles.yesnobar}>
+              <TouchableOpacity activeOpacity={0.5} onPress={() => props.navigation.navigate('Explore')}>
+                <AntDesign style={styles.recordButton} name="checkcircleo" size={60} color="#376171" />
+              </TouchableOpacity>
+            </View>
+          </Overlay>
+
+        </TouchableOpacity>
+      </View>
     </View>
   )
 }
 
 function CameraScreen() {
   return (
-    <View style = {styles.placeholder}>
+    <View style={styles.placeholder}>
       <Text>Camera screen</Text>
     </View>
   );
@@ -174,23 +202,23 @@ function CameraScreen() {
 
 function ExploreScreen({ navigation }) {
   return (
-    <View style = {styles.container} >
-    <View style = {styles.mapbox}>
-    <Text>map picture</Text>
-    </View>
-    <View style={styles.trailpics}>
-      <Text>Explore screen</Text>
-      <Button
-        title="Go to Trail Preview"
-        onPress={() => navigation.navigate('Preview')}
-      />
-    </View>
+    <View style={styles.container} >
+      <View style={styles.mapbox}>
+        <Text>map picture</Text>
+      </View>
+      <View style={styles.trailpics}>
+        <Text>Explore screen</Text>
+        <Button
+          title="Go to Trail Preview"
+          onPress={() => navigation.navigate('Preview')}
+        />
+      </View>
     </View>
   );
 }
 function FeedScreen({ navigation }) {
   return (
-    <View style = {styles.placeholder}>
+    <View style={styles.placeholder}>
       <Text>Feed screen</Text>
       <Button
         title="Go to Details"
@@ -202,7 +230,7 @@ function FeedScreen({ navigation }) {
 
 function CreateScreen({ navigation }) {
   return (
-    <View style = {styles.placeholder}>
+    <View style={styles.placeholder}>
       <Text>Create screen</Text>
       <Button
         title="Go to Details"
@@ -214,7 +242,7 @@ function CreateScreen({ navigation }) {
 
 function ProfileScreen({ navigation }) {
   return (
-    <View style = {styles.placeholder}>
+    <View style={styles.placeholder}>
       <Text>Profile screen</Text>
       <Button
         title="Go to Details"
@@ -231,10 +259,10 @@ function ExploreStackScreen() {
     <ExploreStack.Navigator>
       <ExploreStack.Screen name="Explore" component={ExploreScreen} />
       <ExploreStack.Screen name="Preview" component={TrailPreviewScreen} />
-      <ExploreStack.Screen name="MapStart" component={MapStartScreen}/>
-      <ExploreStack.Screen name="MapMid" component={MapMidScreen}/>
-      <ExploreStack.Screen name="Congrats" component={CongratsScreen}/>
-      <ExploreStack.Screen name="Friends" component={FriendsListScreen}/>
+      <ExploreStack.Screen name="MapStart" component={MapStartScreen} />
+      <ExploreStack.Screen name="MapMid" component={MapMidScreen} />
+      <ExploreStack.Screen name="Congrats" component={CongratsScreen} />
+      <ExploreStack.Screen name="Friends" component={FriendsListScreen} />
     </ExploreStack.Navigator>
   );
 }
@@ -293,11 +321,11 @@ function MyTabs() {
       initialRouteName="Explore"
       activeColor="#376171"
       labelStyle={{ fontSize: 16 }}
-      barStyle={{ 
+      barStyle={{
         backgroundColor: '#F5F0EC',
         borderColor: '#376171',
         borderTopWidth: 2,
-     }}
+      }}
     >
       <Tab.Screen
         name="Cam"
@@ -329,7 +357,7 @@ function MyTabs() {
           ),
         }}
       />
-       <Tab.Screen
+      <Tab.Screen
         name="Create"
         component={CreateStackScreen}
         options={{
@@ -339,7 +367,7 @@ function MyTabs() {
           ),
         }}
       />
-       <Tab.Screen
+      <Tab.Screen
         name="Profile"
         component={ProfileStackScreen}
         options={{
@@ -355,7 +383,7 @@ function MyTabs() {
 export default function App() {
   return (
     <NavigationContainer>
-       <MyTabs />
+      <MyTabs />
       {/* <Tab.Navigator>
         <Tab.Screen name="Cam" component={CameraScreen} />
         <Tab.Screen name="Feed" component={FeedStackScreen} />
@@ -371,8 +399,20 @@ const styles = StyleSheet.create({
   friendslistpageheader: {
     fontSize: 30,
   },
+  friendsbutton: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    //backgroundColor: 'pink',
+    marginTop: 50,
+  },
+  friendscontainer: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    padding: 10,
+  },
   searchSection: {
-    margin:10,
+    margin: 10,
     //width: Metrics.screenWidth - 20,
     flexDirection: 'row',
     //justifyContent: 'center',
@@ -381,10 +421,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ccc',
     borderRadius: 10,
-},
-searchIcon: {
+  },
+  searchIcon: {
     padding: 5,
-},
+  },
   item: {
     display: "flex",
     flexDirection: "row",
@@ -443,7 +483,7 @@ searchIcon: {
     //alignItems: "center",
   },
   map: {
-    flex:1,
+    flex: 1,
     ...StyleSheet.absoluteFillObject,
   },
   popup: {
@@ -461,7 +501,7 @@ searchIcon: {
     alignItems: "center",
   },
   recordingbar: {
-    flex:0.1,
+    flex: 0.1,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "pink",
@@ -470,5 +510,5 @@ searchIcon: {
     display: "flex",
     flexDirection: "row",
   }
-  
+
 });
