@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { Button, Text, View, StyleSheet } from 'react-native';
+import { Button, Text, View, StyleSheet, PickerIOSComponent, TouchableOpacity, Icon } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MapView from 'react-native-maps';
+import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 //testing commit
 //testing commit 2
 
@@ -29,16 +30,24 @@ function TrailPreviewScreen(props, { navigation}) {
 
 function MapStartScreen(props, {navigation}) {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <MapView
+    <View style={styles.container_mapstart}>
+      <View style={styles.map}>
+      <MapView 
       style={styles.map}
-    initialRegion={{
+      initialRegion={{
       latitude: 37.78825,
       longitude: -122.4324,
       latitudeDelta: 0.0922,
       longitudeDelta: 0.0421,
     }}
     />
+      </View>
+      
+    <View style = {styles.recordingbar}> 
+    <TouchableOpacity activeOpacity={0.5}>
+      <MaterialCommunityIcons style = {styles.recordButton} name="record-rec" size={60} color="red"/>
+    </TouchableOpacity>
+    </View>
     </View>
     
   );
@@ -182,7 +191,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    justifyContent: "center",
+    // justifyContent: "center",
+    //alignItems: "center",
+  },
+  container_mapstart: {
+    flex: 1,
+    backgroundColor: "#fff",
+    justifyContent: "flex-end",
     //alignItems: "center",
   },
   mapbox: {
@@ -196,6 +211,15 @@ const styles = StyleSheet.create({
     //alignItems: "center",
   },
   map: {
+    flex:1,
     ...StyleSheet.absoluteFillObject,
   },
+
+  recordingbar: {
+    flex:0.1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "pink",
+  },
+  
 });
