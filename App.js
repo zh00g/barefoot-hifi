@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MapView from 'react-native-maps';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import MapComponent from './components/mapComponent.js'
 //testing commit
 //testing commit 2
 
@@ -30,24 +31,10 @@ function TrailPreviewScreen(props, { navigation}) {
 
 function MapStartScreen(props, {navigation}) {
   return (
-    <View style={styles.container_mapstart}>
-      <View style={styles.map}>
-      <MapView 
-      style={styles.map}
-      initialRegion={{
-      latitude: 37.78825,
-      longitude: -122.4324,
-      latitudeDelta: 0.0922,
-      longitudeDelta: 0.0421,
-    }}
-    />
-      </View>
-      
-    <View style = {styles.recordingbar}> 
-    <TouchableOpacity activeOpacity={0.5}>
-      <MaterialCommunityIcons style = {styles.recordButton} name="record-rec" size={60} color="red"/>
-    </TouchableOpacity>
-    </View>
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+
+      <MapComponent />
+
     </View>
     
   );
