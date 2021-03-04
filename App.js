@@ -4,8 +4,9 @@ import { Overlay } from 'react-native-elements';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import MapView from 'react-native-maps';
-import { AntDesign, MaterialCommunityIcons, FontAwesome } from '@expo/vector-icons';
+import { Ionicons, AntDesign, MaterialCommunityIcons, FontAwesome } from '@expo/vector-icons';
 import MapComponent from './components/mapComponent.js'
 //testing commit
 //testing commit 2
@@ -105,7 +106,7 @@ function FriendsListScreen(props) {
 
 function CameraScreen() {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    <View style = {styles.placeholder}>
       <Text>Camera screen</Text>
     </View>
   );
@@ -129,7 +130,7 @@ function ExploreScreen({ navigation }) {
 }
 function FeedScreen({ navigation }) {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    <View style = {styles.placeholder}>
       <Text>Feed screen</Text>
       <Button
         title="Go to Details"
@@ -141,7 +142,7 @@ function FeedScreen({ navigation }) {
 
 function CreateScreen({ navigation }) {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    <View style = {styles.placeholder}>
       <Text>Create screen</Text>
       <Button
         title="Go to Details"
@@ -153,7 +154,7 @@ function CreateScreen({ navigation }) {
 
 function ProfileScreen({ navigation }) {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    <View style = {styles.placeholder}>
       <Text>Profile screen</Text>
       <Button
         title="Go to Details"
@@ -223,23 +224,93 @@ function CreateStackScreen() {
   );
 }
 
-const Tab = createBottomTabNavigator();
+// const Tab = createBottomTabNavigator();
+const Tab = createMaterialBottomTabNavigator();
 
+function MyTabs() {
+  return (
+    <Tab.Navigator
+      initialRouteName="Explore"
+      activeColor="#376171"
+      labelStyle={{ fontSize: 16 }}
+      barStyle={{ 
+        backgroundColor: '#F5F0EC',
+        borderColor: '#376171',
+        borderTopWidth: 2,
+     }}
+    >
+      <Tab.Screen
+        name="Cam"
+        component={CameraScreen}
+        options={{
+          tabBarLabel: 'Cam',
+          tabBarIcon: ({ color }) => (
+            <AntDesign name="camerao" color={"#376171"} size={26} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Feed"
+        component={FeedStackScreen}
+        options={{
+          tabBarLabel: 'Feed',
+          tabBarIcon: ({ color }) => (
+            <AntDesign name="home" color={"#376171"} size={26} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Explore"
+        component={ExploreStackScreen}
+        options={{
+          tabBarLabel: 'Explore',
+          tabBarIcon: ({ color }) => (
+            <AntDesign name="search1" color={"#376171"} size={26} />
+          ),
+        }}
+      />
+       <Tab.Screen
+        name="Create"
+        component={CreateStackScreen}
+        options={{
+          tabBarLabel: 'Create',
+          tabBarIcon: ({ color }) => (
+            <AntDesign name="pluscircleo" color={"#376171"} size={24} />
+          ),
+        }}
+      />
+       <Tab.Screen
+        name="Profile"
+        component={ProfileStackScreen}
+        options={{
+          tabBarLabel: 'Profile',
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="person-circle-outline" color={"#376171"} size={25} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+}
 export default function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
+       <MyTabs />
+      {/* <Tab.Navigator>
         <Tab.Screen name="Cam" component={CameraScreen} />
         <Tab.Screen name="Feed" component={FeedStackScreen} />
         <Tab.Screen name="Explore" component={ExploreStackScreen} />
         <Tab.Screen name="Create" component={CreateStackScreen} />
         <Tab.Screen name="Profile" component={ProfileStackScreen} />
-      </Tab.Navigator>
+      </Tab.Navigator> */}
     </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({
+  tabstyle: {
+    backgroundColor: "white",
+  },
   placeholder: {
     flex: 1,
     display: "flex",
