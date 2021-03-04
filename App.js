@@ -1,5 +1,14 @@
 import React, {useState} from 'react';
-import { Button, Text, View, StyleSheet, PickerIOSComponent, TouchableOpacity, Icon} from 'react-native';
+import { Button, 
+        Text, 
+        View, 
+        StyleSheet, 
+        PickerIOSComponent, 
+        TouchableOpacity, 
+        TextInput,
+        Icon,
+        FlatList,
+      } from 'react-native';
 import { Overlay } from 'react-native-elements';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -97,9 +106,60 @@ function CongratsScreen(props, {navigation}) {
 }
 
 function FriendsListScreen(props) {
+  const friends = [
+    {
+      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+      title: 'Grace!',
+    },
+    {
+      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+      title: 'Rachel!',
+    },
+    {
+      id: '58694a0f-3da1-471f-bd96-145571e29d72',
+      title: 'Katrina!',
+    },
+    {
+      id: '58694a0f-3da1-471f-bd96-145571e29d73',
+      title: 'Anthony!',
+    },
+  ];
+
+  const Item = ({ title }) => (
+    <TouchableOpacity activeOpacity={0.5} style={styles.item}>
+      <Ionicons name="person-circle-outline" color={"#A6D2AE"} size={60} />
+      <Text style={styles.title}>{title}</Text>
+    </TouchableOpacity>
+  );
+
+  const renderItem = ({ item }) => (
+    <Item title={item.title} />
+  );
+  
+
+  
   return (
-    <View style = {styles.placeholder}>
-      <Text> friends list lol </Text>
+    <View style = {styles.container}>
+      <View style = {{justifyContent: "center", alignItems: "center"}}>
+      <Text style = {styles.friendslistpageheader}> Send </Text>
+      </View>
+      <View style={styles.searchSection}>
+        <TouchableOpacity activeOpacity={0.5}>
+            <FontAwesome style={styles.searchIcon} name="search" size={20} color="#A6D2AE"/>
+        </TouchableOpacity>
+        <TextInput
+          placeholder="Search!" 
+          //onChangeText={(text) => setText(text)}
+          //onSubmitEditing = {onSubmitEditing}
+          style={styles.textInput}
+          //value={text}
+        />
+      </View>
+      <FlatList
+        data={friends}
+        renderItem={renderItem}
+        keyExtractor={item => item.id}
+      />
     </View>
   )
 }
@@ -308,6 +368,35 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
+  friendslistpageheader: {
+    fontSize: 30,
+  },
+  searchSection: {
+    margin:10,
+    //width: Metrics.screenWidth - 20,
+    flexDirection: 'row',
+    //justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#E5E5E5',
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 10,
+},
+searchIcon: {
+    padding: 5,
+},
+  item: {
+    display: "flex",
+    flexDirection: "row",
+    //justifyContent: 'center',
+    alignItems: 'center',
+    //backgroundColor: '#F5F0EC',
+    // borderWidth: 1,
+    // borderColor: '#376171',
+    padding: 10,
+    // marginVertical: 8,
+    // marginHorizontal: 16,
+  },
   tabstyle: {
     backgroundColor: "white",
   },
@@ -316,7 +405,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    backgroundColor: "#F5F0EC",
+    backgroundColor: "white",
     alignItems: "center",
   },
   container: {
@@ -324,7 +413,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    backgroundColor: "#F5F0EC",
+    backgroundColor: "white",
     // alignItems: "center",
   },
   congratscontainer: {
