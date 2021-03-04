@@ -5,7 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MapView from 'react-native-maps';
-import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { AntDesign, MaterialCommunityIcons, FontAwesome } from '@expo/vector-icons';
 import MapComponent from './components/mapComponent.js'
 //testing commit
 //testing commit 2
@@ -60,10 +60,13 @@ function MapMidScreen(props, {navigation}) {
       <View style = {styles.recordingbar}> 
     <TouchableOpacity activeOpacity={0.5} onPress = {toggleOverlay}>
       
-    <Overlay style = {styles.endtrailconfirm} isVisible={visible} onBackdropPress={toggleOverlay}>
-    <View style = {styles.endtrailconfirm}>
-        <Text>Hello from Overlay!</Text>
-        </View>
+    <Overlay overlayStyle = {styles.endtrailconfirm} isVisible={visible} onBackdropPress={toggleOverlay}>
+        <Text>Would you like to save your recording?</Text>
+        <View style = {styles.yesnobar}>
+              <Button title = "Yes" onPress = {() => 
+                props.navigation.navigate('Congrats')}/>
+              <Button title = "No" onPress = {() => props.navigation.navigate('Explore')}/>
+          </View>
     </Overlay>
     
       <MaterialCommunityIcons style = {styles.recordButton} name="stop" size={60} color="red"/>
@@ -74,29 +77,31 @@ function MapMidScreen(props, {navigation}) {
   );
 }
 
-// function MapEndConfirmScreen(props, {navigation}) {
-//   const [visible, setVisible] = useState(false);
-
-//   const toggleOverlay = () => {
-//     setVisible(!visible);
-//   };
-//   return (
-//     <View style={styles.container_mapstart}>
-//       <View style={styles.map}> 
-//       <MapComponent />
-//       </View>
-//       <View style = {styles.popup}> 
-//       <Button title="Open Overlay" onPress={toggleOverlay} />
-
-//       <Overlay isVisible={visible} onBackdropPress={toggleOverlay}>
-//         <Text>Hello from Overlay!</Text>
-//       </Overlay>
-//     </View>
-//     </View>
+function CongratsScreen(props, {navigation}) {
+  return (
+    <View style={styles.congratscontainer}>
+     <Text> Finished Trail!! </Text>
+     <View style = {styles.sharesendbar}>
+     <TouchableOpacity activeOpacity={0.5} onPress = {() => props.navigation.navigate('Friends')}>
+      <FontAwesome style = {styles.recordButton} name="send-o" size={60} color="#376171"/>
+    </TouchableOpacity>
+    <TouchableOpacity activeOpacity={0.5} onPress = {() => props.navigation.navigate('Explore')}>
+      <AntDesign style = {styles.recordButton} name="arrowright" size={60} color="#376171"/>
+    </TouchableOpacity>
+     </View>
     
-//   );
-// }
+    </View>
+    
+  );
+}
 
+function FriendsListScreen(props) {
+  return (
+    <View style = {styles.placeholder}>
+      <Text> friends list lol </Text>
+    </View>
+  )
+}
 
 function CameraScreen() {
   return (
@@ -167,7 +172,8 @@ function ExploreStackScreen() {
       <ExploreStack.Screen name="Preview" component={TrailPreviewScreen} />
       <ExploreStack.Screen name="MapStart" component={MapStartScreen}/>
       <ExploreStack.Screen name="MapMid" component={MapMidScreen}/>
-      {/* <ExploreStack.Screen name="MapEndConfirm" component={MapEndConfirmScreen}/> */}
+      <ExploreStack.Screen name="Congrats" component={CongratsScreen}/>
+      <ExploreStack.Screen name="Friends" component={FriendsListScreen}/>
     </ExploreStack.Navigator>
   );
 }
@@ -234,15 +240,35 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
+  placeholder: {
+    flex: 1,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    backgroundColor: "#F5F0EC",
+    alignItems: "center",
+  },
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    // justifyContent: "center",
-    //alignItems: "center",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    backgroundColor: "#F5F0EC",
+    // alignItems: "center",
+  },
+  congratscontainer: {
+    flex: 1,
+    display: "flex",
+    justifyContent: "space-around",
+    alignItems: "center",
+  },
+  sharesendbar: {
+    display: "flex",
+    flexDirection: "row",
   },
   container_mapstart: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#F5F0EC",
     justifyContent: "flex-end",
     //alignItems: "center",
   },
@@ -267,9 +293,10 @@ const styles = StyleSheet.create({
     backgroundColor: "pink",
   },
   endtrailconfirm: {
-    backgroundColor: "lightyellow",
+    backgroundColor: "#F5F0EC",
     width: 200,
     height: 200,
+    borderRadius: 50,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -279,5 +306,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "pink",
   },
+  yesnobar: {
+    display: "flex",
+    flexDirection: "row",
+  }
   
 });
