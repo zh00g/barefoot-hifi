@@ -84,7 +84,7 @@ class MapComponent extends React.Component {
           }}
           animatetoRegion = {this.state.region}>
 
-            <MapView.Marker key = 'key' title = 'Start' image = {require("../Images/origin.png")} anchor = {0.5, 0.5} coordinate = {origin} />
+            <MapView.Marker key = 'key' title = 'Start' image = {require("../Images/origin.png")} coordinate = {origin} />
             <MapView.Marker key = 'key2' title = 'End' coordinate = {destination}/>
             <MapViewDirections
               origin = {origin}
