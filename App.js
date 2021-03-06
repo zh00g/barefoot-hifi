@@ -122,8 +122,14 @@ function MapStartScreen(props, { navigation }) {
         <MapComponent />
       </View>
       <View style={styles.recordingbar}>
-        <TouchableOpacity activeOpacity={0.5} onPress={() => props.navigation.navigate('MapMid')}>
-          <MaterialCommunityIcons style={styles.recordButton} name="record-rec" size={60} color="red" />
+        <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
+          <Image style={styles.recordButtonIcon} source= {require('./Images/learnicon.png')}/>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={() => props.navigation.navigate('MapMid')}>
+          <Image style={styles.recordButtonIcon} source= {require('./Images/startfollow.png')}/>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
+          <Image style={styles.recordButtonIcon} source= {require('./Images/addlandmark.png')}/>
         </TouchableOpacity>
       </View>
     </View>
@@ -641,6 +647,18 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
+  recordButton:{
+    width: 100,
+    height: 100,
+    display: 'flex',
+    justifyContent:'center',
+    alignItems: 'center',
+    //backgroundColor: 'pink',
+  },
+  recordButtonIcon:{
+    flex: 1,
+    resizeMode: 'contain',
+  },
   profileimg: {
     flex:1,
     width: Metrics.screenWidth,
@@ -648,7 +666,6 @@ const styles = StyleSheet.create({
   },
   profilepage: {
     flex:1,
-    
     width: Metrics.screenWidth,
     // height: Metrics.screenHeight * 2,
     //resizeMode: 'contain',
@@ -826,10 +843,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   recordingbar: {
-    flex: 0.1,
-    justifyContent: "center",
+    flex: 0.14,
+    flexDirection: 'row',
+    justifyContent: "space-evenly",
     alignItems: "center",
     backgroundColor: "#F5F0EC",
+    borderRadius: 20,
   },
   yesnobar: {
     display: "flex",
