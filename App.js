@@ -67,7 +67,7 @@ function MapMidScreen(props, { navigation }) {
   return (
     <View style={styles.container_mapstart}>
       <View style={styles.map}>
-        <MapComponent />
+        <MapComponent navigation = {navigation} flag = {false}/>
       </View>
       <View style={styles.recordingbar}>
         <TouchableOpacity activeOpacity={0.5} onPress={toggleOverlay}>
@@ -213,7 +213,7 @@ function ExploreScreen({ navigation }) {
   return (
     <View style={styles.container} >
       <View style={styles.mapbox}>
-        <Text>map picture</Text>
+        <MapComponent navigation = {navigation} flag = {true}/>
       </View>
       <View style={styles.trailpics}>
         <Text>Explore screen</Text>
@@ -225,6 +225,7 @@ function ExploreScreen({ navigation }) {
     </View>
   );
 }
+
 function FeedScreen({ navigation }) {
   const stories = [
     {
