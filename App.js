@@ -22,6 +22,7 @@ import MapView from 'react-native-maps';
 import { Ionicons, AntDesign, MaterialCommunityIcons, FontAwesome } from '@expo/vector-icons';
 import MapComponent from './components/mapComponent.js'
 import { Metrics } from './Themes/index.js';
+import metrics from './Themes/Metrics.js';
 //testing commit
 //testing commit 2
 
@@ -392,11 +393,16 @@ function CreateScreen(props, { navigation }) {
 function ProfileScreen({ navigation }) {
   return (
     <View style={styles.placeholder}>
-      <Text>Profile screen</Text>
-      <Button
+      <ScrollView style = {styles.profilepage}>
+      <View>
+        <Image source = {require('./Images/profile.png')} style = {styles.profileimg} />
+      </View>
+      </ScrollView>
+     
+      {/* <Button
         title="Go to Details"
         onPress={() => navigation.navigate('Details')}
-      />
+      /> */}
     </View>
   );
 }
@@ -554,6 +560,17 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
+  profileimg: {
+    flex:1,
+    width: Metrics.screenWidth,
+    height: Metrics.screenHeight,
+  },
+  profilepage: {
+    flex:1,
+    width: Metrics.screenWidth,
+    // height: Metrics.screenHeight * 2,
+    //resizeMode: 'contain',
+  },
   previewscreen: {
     flex: 1,
     //backgroundColor: 'lightblue',
