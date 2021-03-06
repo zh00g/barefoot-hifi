@@ -658,6 +658,7 @@ const styles = StyleSheet.create({
   recordButtonIcon:{
     flex: 1,
     resizeMode: 'contain',
+    margin:7,
   },
   profileimg: {
     flex:1,
