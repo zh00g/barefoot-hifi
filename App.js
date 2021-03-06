@@ -322,6 +322,21 @@ const [hasPermission, setHasPermission] = useState(null);
 }
 
 function ExploreScreen({ navigation }) {
+  const tags = [
+    {
+      id: "1",
+      image: require("./Images/tagbar.png"),
+    }, 
+  ]
+  const Pics = ({ image }) => (
+    <View >
+      <Image style={{resizeMode: 'contain', margin:10}} source = {image}/>
+    </View>
+  );
+  const renderItem = ({ item }) => (
+    <Pics style = {{resizeMode: 'contain'}} image={item.image} />
+  );
+
   const Post = ({ image }) => (
     <TouchableOpacity 
           activeOpacity = {0.9} 
@@ -336,8 +351,15 @@ function ExploreScreen({ navigation }) {
         <MapComponent navigation = {navigation} flag = {true}/>
       </View>
 
+
       <View style={styles.trailpics}>
-        <Text>FILTERERERS</Text>
+
+      <FlatList
+        horizontal = {true}
+        data={tags}
+        renderItem={renderItem}
+        keyExtractor={item => item.id}
+      /> 
       <ScrollView style={styles.scroll}>
         <View style={styles.rowsplit}>
           <View style={styles.exploreimage}>
@@ -767,12 +789,12 @@ const styles = StyleSheet.create({
   mapbox: {
     width: '100%',
     height: 270,
-    backgroundColor: "lightgreen",
+    //backgroundColor: "lightgreen",
     //alignItems: "center",
   },
   trailpics: {
     flex:2,
-    backgroundColor: "lightblue",
+    //backgroundColor: "lightblue",
     //alignItems: "center",
   },
   map: {
