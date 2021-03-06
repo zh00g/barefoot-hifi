@@ -116,14 +116,18 @@ function TrailPreviewScreen(props, { navigation }) {
 }
 
 function MapStartScreen(props, { navigation }) {
-  const [record, setRecord] = useState(false);
+  const [visible, setVisible] = useState(false);
+
+  const toggleBar = () => {
+    setVisible(!visible);
+  };
 
   const recordbarstart =  
   <View style={styles.recordingbarstart}>
   <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
     <Image style={styles.recordButtonIcon} source= {require('./Images/learnicon.png')}/>
   </TouchableOpacity>
-  <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={() => props.navigation.navigate('MapMid')}>
+  <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={toggleBar}>
     <Image style={styles.recordButtonIcon} source= {require('./Images/startfollow.png')}/>
   </TouchableOpacity>
   <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
@@ -136,10 +140,10 @@ const recordbarend =
   <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
     <Image style={styles.recordButtonIcon} source= {require('./Images/learnicon.png')}/>
   </TouchableOpacity>
-  <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={() => props.navigation.navigate('MapMid')}>
+  <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
     <Image style={styles.recordButtonIcon} source= {require('./Images/pauseicon.png')}/>
   </TouchableOpacity>
-  <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={() => props.navigation.navigate('MapMid')}>
+  <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={() => props.navigation.navigate('Congrats')}>
     <Image style={styles.recordButtonIcon} source= {require('./Images/stopicon.png')}/>
   </TouchableOpacity>
   <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
@@ -147,13 +151,20 @@ const recordbarend =
   </TouchableOpacity>
 </View>
 
+var recordbar;
+if (visible) {
+  recordbar = recordbarend;
+}
+else {
+  recordbar = recordbarstart;
+}
   
   return (
     <View style={styles.container_mapstart}>
       <View style={styles.map}>
         <MapComponent />
       </View>
-        {recordbarstart}
+        {recordbar}
     </View>
 
   );
