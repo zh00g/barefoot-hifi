@@ -294,17 +294,38 @@ const [hasPermission, setHasPermission] = useState(null);
 }
 
 function ExploreScreen({ navigation }) {
+  const Post = ({ image }) => (
+    <TouchableOpacity 
+          activeOpacity = {0.9} 
+          style={styles.item}
+          onPress={() => navigation.navigate('Preview')}>
+      <Image style={styles.img} source = {image}/>
+    </TouchableOpacity>
+  );
   return (
-    <View style={styles.container} >
+    <View style = {styles.container}>
       <View style={styles.mapbox}>
         <MapComponent navigation = {navigation} flag = {true}/>
       </View>
+
       <View style={styles.trailpics}>
-        <Text>Explore screen</Text>
-        <Button
-          title="Go to Trail Preview"
-          onPress={() => navigation.navigate('Preview')}
-        />
+        <Text>FILTERERERS</Text>
+      <ScrollView style={styles.scroll}>
+        <View style={styles.rowsplit}>
+          <View style={styles.exploreimage}>
+            <Post image={require('./Images/R27.png')} />
+            <Post image={require('./Images/R29.png')} />
+            <Post image={require('./Images/R31.png')} />
+          </View>
+          <View style={styles.exploreimage2}>
+            <Post image={require('./Images/R28.png')} />
+            <Post image={require('./Images/R30.png')} />
+            <Post image={require('./Images/R32.png')} />
+          </View>
+          <Post image={require('./Images/R33.png')} />
+        </View>
+        
+      </ScrollView>
       </View>
     </View>
   );
@@ -698,12 +719,13 @@ const styles = StyleSheet.create({
     //alignItems: "center",
   },
   mapbox: {
-    flex: 1,
+    width: '100%',
+    height: 270,
     backgroundColor: "lightgreen",
     //alignItems: "center",
   },
   trailpics: {
-    flex: 2,
+    flex:2,
     backgroundColor: "lightblue",
     //alignItems: "center",
   },
@@ -734,6 +756,28 @@ const styles = StyleSheet.create({
   yesnobar: {
     display: "flex",
     flexDirection: "row",
-  }
+  },
+  exploreimage: {
+    width: '50%',
+    display: "flex",
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+  },
+  exploreimage2: {
+    width: '50%',
+    display: "flex",
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
 
+  },
+  img: {
+    display: 'flex',
+    width: '100%',
+    resizeMode: 'contain',
+
+  },
+  rowsplit: {
+    display: 'flex',
+    flexDirection: 'row',
+  }
 });
