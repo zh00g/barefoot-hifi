@@ -494,10 +494,10 @@ function FeedScreen({ navigation }) {
 }
 
 function CreateScreen(props, { navigation }) {
-  const [visible, setVisible] = useState(false);
+  const [visible1, setVisible] = useState(false);
 
   const toggleBar = () => {
-    setVisible(!visible);
+    setVisible(!visible1);
   };
 
   const recordbarstart =  
@@ -530,7 +530,7 @@ const recordbarend =
 </View>
 
 var recordbar;
-if (visible) {
+if (visible1) {
   recordbar = recordbarend;
 }
 else {
