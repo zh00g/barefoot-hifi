@@ -9,6 +9,7 @@ import {
   TextInput,
   Icon,
   FlatList,
+  Image,
 } from 'react-native';
 import { Overlay } from 'react-native-elements';
 import { NavigationContainer } from '@react-navigation/native';
@@ -225,13 +226,64 @@ function ExploreScreen({ navigation }) {
   );
 }
 function FeedScreen({ navigation }) {
+  const stories = [
+    {
+      id: "1",
+      image: require("./Images/stories.png"),
+    }, 
+  ]
+  const posts = [
+    {
+      id: "1",
+      image: require("./Images/post1.png"),
+    }, 
+    {
+      id: "2",
+      image: require("./Images/post2.png")
+    },
+  ]
+  const Post = ({ image }) => (
+    <TouchableOpacity 
+          activeOpacity = {0.9} 
+          style={styles.item}
+          onPress={() => navigation.navigate('Preview')}>
+      <Image style={styles.img} source = {image}/>
+    </TouchableOpacity>
+  );
+  const Story = ({ image }) => (
+    <View 
+          activeOpacity = {0.9} 
+          style={styles.item}>
+      <Image style={styles.img} source = {image}/>
+    </View>
+  );
+  const renderItem = ({ item }) => (
+    <Post image={item.image} />
+  );
+  const renderItem2 = ({ item }) => (
+    <Story image={item.image} />
+  );
+
+
   return (
-    <View style={styles.placeholder}>
-      <Text>Feed screen</Text>
-      <Button
-        title="Go to Details"
-        onPress={() => navigation.navigate('Details')}
+    <View style={styles.container}>
+      {/* <Text>Feed screen</Text> */}
+      <View style = {styles.storybox}>
+      <FlatList
+      horizontal = {true}
+        data={stories}
+        renderItem={renderItem2}
+        keyExtractor={item => item.id}
       />
+      </View>
+      <View style = {styles.feedbox}>
+      {/* {type} */}
+      <FlatList
+        data={posts}
+        renderItem={renderItem}
+        keyExtractor={item => item.id}
+      />
+      </View>
     </View>
   );
 }
@@ -294,6 +346,11 @@ function FeedStackScreen() {
     <FeedStack.Navigator>
       <FeedStack.Screen name="Feed" component={FeedScreen} />
       <FeedStack.Screen name="Details" component={DetailsScreen} />
+      <FeedStack.Screen name="Preview" component={TrailPreviewScreen} />
+      <FeedStack.Screen name="MapStart" component={MapStartScreen} />
+      <FeedStack.Screen name="MapMid" component={MapMidScreen} />
+      <FeedStack.Screen name="Congrats" component={CongratsScreen} />
+      <FeedStack.Screen name="Friends" component={FriendsListScreen} />
     </FeedStack.Navigator>
   );
 }
@@ -404,6 +461,15 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
+  storybox:{
+    flex: 0.5,
+    paddingTop: 10,
+    // backgroundColor: "pink",
+  },
+  feedbox: {
+    flex: 3,
+    //backgroundColor: "lightgreen",
+  },
   friendslistpageheader: {
     fontSize: 30,
   },
@@ -460,7 +526,7 @@ const styles = StyleSheet.create({
     flex: 1,
     display: "flex",
     flexDirection: "column",
-    justifyContent: "center",
+    //justifyContent: "center",
     backgroundColor: "white",
     // alignItems: "center",
   },
