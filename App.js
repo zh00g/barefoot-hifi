@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import {
   Button,
   Text,
@@ -11,6 +11,7 @@ import {
   FlatList,
   Image,
 } from 'react-native';
+import { Camera } from 'expo-camera';
 import { Overlay } from 'react-native-elements';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -202,10 +203,48 @@ function FriendsListScreen(props) {
 }
 
 function CameraScreen() {
+//   return (
+//     <View style={styles.placeholder}>
+//       <Text>Camera screen</Text>
+//     </View>
+//   );
+// }
+const [hasPermission, setHasPermission] = useState(null);
+  const [type, setType] = useState(Camera.Constants.Type.back);
+
+  useEffect(() => {
+    (async () => {
+      const { status } = await Camera.requestPermissionsAsync();
+      setHasPermission(status === 'granted');
+    })();
+  }, []);
+
+  if (hasPermission === null) {
+    return <View />;
+  }
+  if (hasPermission === false) {
+    return <Text>No access to camera</Text>;
+  }
   return (
-    <View style={styles.placeholder}>
-      <Text>Camera screen</Text>
-    </View>
+    <View style={styles.camcontainer}>
+
+    
+      <Camera style={styles.camera} type={type}>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            style={styles.cambutton}
+            onPress={() => {
+              setType(
+                type === Camera.Constants.Type.back
+                  ? Camera.Constants.Type.front
+                  : Camera.Constants.Type.back
+              );
+            }}>
+            <Text style={styles.camtext}> Flip </Text>
+          </TouchableOpacity>
+        </View>
+      </Camera>
+      </View>
   );
 }
 
@@ -462,6 +501,28 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
+  camcontainer: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  camera: {
+    flex: 0.7,
+  },
+  buttonContainer: {
+    flex: 1,
+    backgroundColor: 'transparent',
+    flexDirection: 'row',
+    margin: 20,
+  },
+  cambutton: {
+    flex: 0.1,
+    alignSelf: 'flex-end',
+    alignItems: 'center',
+  },
+  camtext: {
+    fontSize: 18,
+    color: 'white',
+  },
   storybox:{
     flex: 0.5,
     paddingTop: 10,
