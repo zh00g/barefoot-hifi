@@ -10,8 +10,9 @@ import {
   Icon,
   FlatList,
   Image,
+  ScrollView,
 } from 'react-native';
-import { Camera } from 'expo-camera';
+import { Camera, requestPermissionsAsync } from 'expo-camera';
 import { Overlay } from 'react-native-elements';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -20,6 +21,7 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import MapView from 'react-native-maps';
 import { Ionicons, AntDesign, MaterialCommunityIcons, FontAwesome } from '@expo/vector-icons';
 import MapComponent from './components/mapComponent.js'
+import { Metrics } from './Themes/index.js';
 //testing commit
 //testing commit 2
 
@@ -32,13 +34,55 @@ function DetailsScreen() {
 }
 
 function TrailPreviewScreen(props, { navigation }) {
+  const trailpics = [
+    {
+      id: "1",
+      image: require("./Images/trailpreview.png"),
+    }, 
+  ]
+  const Pics = ({ image }) => (
+    <View >
+      <Image style={{resizeMode: 'contain'}} source = {image}/>
+    </View>
+  );
+  const renderItem = ({ item }) => (
+    <Pics style = {{resizeMode: 'contain'}} image={item.image} />
+  );
+
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Trail Preview!</Text>
-      <Button
-        title="Let's Go"
-        onPress={() => props.navigation.navigate('MapStart')}
-      />
+    <View style= {styles.previewscreen}>
+      <ScrollView>
+      <View style = {styles.trailinfopicbox}> 
+      
+      <FlatList
+        horizontal = {true}
+        data={trailpics}
+        renderItem={renderItem}
+        keyExtractor={item => item.id}
+      /> 
+      
+        
+      </View>
+      
+
+      <View style = {styles.trailinfo}>
+        <Image style = {styles.trailinfopic} source = {require("./Images/trailinfo.png")} />
+      </View>
+      
+      <View style = {styles.previewbuttonbox}> 
+      <TouchableOpacity  
+      activeOpcaity = {0.5} 
+      onPress={() => props.navigation.navigate('MapStart')}
+      style = {styles.previewbutton}>
+      <Text style = {{fontSize: 18,
+          color: "#fff",
+          fontWeight: "bold",
+          textTransform: "uppercase"}}> 
+          Let's Go! 
+          </Text>
+      </TouchableOpacity>
+      </View>
+      </ScrollView>
     </View>
   );
 }
@@ -227,8 +271,9 @@ const [hasPermission, setHasPermission] = useState(null);
   }
   return (
     <View style={styles.camcontainer}>
-
-    
+      <View style = {styles.camtitle}> 
+      <Text style = {{fontSize:20}}> Camera View! </Text>
+      </View>
       <Camera style={styles.camera} type={type}>
         <View style={styles.buttonContainer}>
           <TouchableOpacity
@@ -509,9 +554,45 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
+  previewscreen: {
+    flex: 1,
+    //backgroundColor: 'lightblue',
+    backgroundColor: 'white',
+    display: 'flex',
+  },
+  previewbuttonbox: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  previewbutton: {
+    backgroundColor: "#A6D2AE",
+    width:200,
+    height:50,
+    borderRadius: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  trailinfopicbox: {
+    paddingTop:10,
+    flex: 0.1,
+  },
+  trailinfo: {
+    flex: 1,
+    width: Metrics.screenWidth,
+  },
+  trailinfopic: {
+    resizeMode: 'contain',
+    width: Metrics.screenWidth,
+  },
   camcontainer: {
     flex: 1,
     justifyContent: 'center',
+  },
+  camtitle:{
+    // backgroundColor: 'pink',
+    alignItems:'center',
   },
   camera: {
     flex: 0.7,
