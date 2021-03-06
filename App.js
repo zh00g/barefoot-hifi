@@ -500,6 +500,11 @@ function CreateScreen(props, { navigation }) {
     setVisible(!visible1);
   };
 
+  const toggleBar2 = () => {
+    setVisible(!visible1);
+    props.navigation.navigate('Congrats');
+  };
+
   const recordbarstart =  
   <View style={styles.recordingbarstart}>
   <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
@@ -521,7 +526,7 @@ const recordbarend =
   <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
     <Image style={styles.recordButtonIcon} source= {require('./Images/pauseicon.png')}/>
   </TouchableOpacity>
-  <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={() => props.navigation.navigate('Congrats')}>
+  <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={toggleBar2}>
     <Image style={styles.recordButtonIcon} source= {require('./Images/stopicon.png')}/>
   </TouchableOpacity>
   <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
@@ -627,8 +632,7 @@ function CreateStackScreen() {
     <CreateStack.Navigator>
       <CreateStack.Screen name="Create" component={CreateScreen} />
       <CreateStack.Screen name="Details" component={DetailsScreen} />
-      <CreateStack.Screen name="MapStart" component={MapStartScreen} />
-      <CreateStack.Screen name="MapMid" component={MapMidScreen} />
+      {/* <CreateStack.Screen name="MapStart" component={MapStartScreen} /> */}
       <CreateStack.Screen name="Congrats" component={CongratsScreen} />
       <CreateStack.Screen name="Friends" component={FriendsListScreen} />
     </CreateStack.Navigator>
@@ -916,7 +920,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   recordingbarstart: {
-    flex: 0.14,
+    flex: 0.16,
     flexDirection: 'row',
     justifyContent: "space-evenly",
     alignItems: "center",
