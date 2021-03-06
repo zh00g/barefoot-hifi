@@ -338,12 +338,15 @@ function ExploreScreen({ navigation }) {
   );
 
   const Post = ({ image }) => (
+    <View> 
     <TouchableOpacity 
           activeOpacity = {0.9} 
           style={styles.item2}
           onPress={() => navigation.navigate('Preview')}>
       <Image style={styles.img1} source = {image}/>
     </TouchableOpacity>
+    <Text style = {{marginLeft:20, marginBottom:10, color: '#376171'}}> Owl Trail </Text> 
+    </View>
   );
   return (
     <View style = {styles.container}>
@@ -364,15 +367,22 @@ function ExploreScreen({ navigation }) {
         <View style={styles.rowsplit}>
           <View style={styles.exploreimage}>
             <Post image={require('./Images/R27.png')} />
+            {/* <Text> Owl Trail </Text> */}
             <Post image={require('./Images/R29.png')} />
+            {/* <Text> Owl Trail </Text> */}
             <Post image={require('./Images/R31.png')} />
+            {/* <Text> Owl Trail </Text> */}
           </View>
           <View style={styles.exploreimage2}>
             <Post image={require('./Images/R28.png')} />
+            {/* <Text> Owl Trail </Text> */}
             <Post image={require('./Images/R30.png')} />
+            {/* <Text> Owl Trail </Text> */}
             <Post image={require('./Images/R32.png')} />
+            {/* <Text> Owl Trail </Text> */}
           </View>
           <Post image={require('./Images/R33.png')} />
+          {/* <Text> Owl Trail </Text> */}
         </View>
         
       </ScrollView>
