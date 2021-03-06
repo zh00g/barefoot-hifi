@@ -116,22 +116,44 @@ function TrailPreviewScreen(props, { navigation }) {
 }
 
 function MapStartScreen(props, { navigation }) {
+  const [record, setRecord] = useState(false);
+
+  const recordbarstart =  
+  <View style={styles.recordingbarstart}>
+  <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
+    <Image style={styles.recordButtonIcon} source= {require('./Images/learnicon.png')}/>
+  </TouchableOpacity>
+  <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={() => props.navigation.navigate('MapMid')}>
+    <Image style={styles.recordButtonIcon} source= {require('./Images/startfollow.png')}/>
+  </TouchableOpacity>
+  <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
+    <Image style={styles.recordButtonIcon} source= {require('./Images/addlandmark.png')}/>
+  </TouchableOpacity>
+</View>
+
+const recordbarend =  
+  <View style={styles.recordingbarstart}>
+  <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
+    <Image style={styles.recordButtonIcon} source= {require('./Images/learnicon.png')}/>
+  </TouchableOpacity>
+  <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={() => props.navigation.navigate('MapMid')}>
+    <Image style={styles.recordButtonIcon} source= {require('./Images/pauseicon.png')}/>
+  </TouchableOpacity>
+  <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={() => props.navigation.navigate('MapMid')}>
+    <Image style={styles.recordButtonIcon} source= {require('./Images/stopicon.png')}/>
+  </TouchableOpacity>
+  <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
+    <Image style={styles.recordButtonIcon} source= {require('./Images/addlandmark.png')}/>
+  </TouchableOpacity>
+</View>
+
+  
   return (
     <View style={styles.container_mapstart}>
       <View style={styles.map}>
         <MapComponent />
       </View>
-      <View style={styles.recordingbar}>
-        <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
-          <Image style={styles.recordButtonIcon} source= {require('./Images/learnicon.png')}/>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={() => props.navigation.navigate('MapMid')}>
-          <Image style={styles.recordButtonIcon} source= {require('./Images/startfollow.png')}/>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
-          <Image style={styles.recordButtonIcon} source= {require('./Images/addlandmark.png')}/>
-        </TouchableOpacity>
-      </View>
+        {recordbarstart}
     </View>
 
   );
@@ -843,7 +865,15 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  recordingbar: {
+  recordingbarstart: {
+    flex: 0.14,
+    flexDirection: 'row',
+    justifyContent: "space-evenly",
+    alignItems: "center",
+    backgroundColor: "#F5F0EC",
+    borderRadius: 20,
+  },
+  recordingbarend: {
     flex: 0.14,
     flexDirection: 'row',
     justifyContent: "space-evenly",
