@@ -328,15 +328,19 @@ function FeedScreen({ navigation }) {
   );
 }
 
-function CreateScreen({ navigation }) {
+function CreateScreen(props, { navigation }) {
   return (
-    <View style={styles.placeholder}>
-      <Text>Create screen</Text>
-      <Button
-        title="Go to Details"
-        onPress={() => navigation.navigate('Details')}
-      />
+    <View style={styles.container_mapstart}>
+      <View style={styles.map}>
+        <MapComponent />
+      </View>
+      <View style={styles.recordingbar}>
+        <TouchableOpacity activeOpacity={0.5} onPress={() => props.navigation.navigate('MapMid')}>
+          <MaterialCommunityIcons style={styles.recordButton} name="record-rec" size={60} color="red" />
+        </TouchableOpacity>
+      </View>
     </View>
+
   );
 }
 
@@ -413,6 +417,10 @@ function CreateStackScreen() {
     <CreateStack.Navigator>
       <CreateStack.Screen name="Create" component={CreateScreen} />
       <CreateStack.Screen name="Details" component={DetailsScreen} />
+      <CreateStack.Screen name="MapStart" component={MapStartScreen} />
+      <CreateStack.Screen name="MapMid" component={MapMidScreen} />
+      <CreateStack.Screen name="Congrats" component={CongratsScreen} />
+      <CreateStack.Screen name="Friends" component={FriendsListScreen} />
     </CreateStack.Navigator>
   );
 }
@@ -640,7 +648,7 @@ const styles = StyleSheet.create({
     flex: 0.1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "pink",
+    backgroundColor: "#F5F0EC",
   },
   yesnobar: {
     display: "flex",
