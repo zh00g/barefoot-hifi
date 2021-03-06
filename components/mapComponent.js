@@ -48,14 +48,14 @@ class MapComponent extends React.Component {
             <MapView.Marker 
             key = 'key' 
             title = 'Owl Trail' 
-            image = {require("../Images/mtnmarker.png")}
+            image = {require("../Images/barefoot.png")}
             coordinate = {origin} 
             onCalloutPress={() => this.props.navigation.navigate('Preview')} />
 
             <MapView.Marker 
             key = 'key2' 
             title = 'Definitely not the owl trail' 
-            image = {require("../Images/mtnmarker.png")}
+            image = {require("../Images/barefoot.png")}
             coordinate = {destination} 
             onCalloutPress={() => this.props.navigation.navigate('Preview')}/>
             
@@ -76,7 +76,7 @@ class MapComponent extends React.Component {
           }}
           animatetoRegion = {this.state.region}>
 
-            <MapView.Marker key = 'key' title = 'Start' coordinate = {origin} />
+            <MapView.Marker key = 'key' title = 'Start'  coordinate = {origin} />
             <MapView.Marker key = 'key2' title = 'End' coordinate = {destination}/>
             <MapViewDirections
               origin = {origin}
