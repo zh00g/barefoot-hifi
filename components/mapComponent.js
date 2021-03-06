@@ -32,30 +32,53 @@ class MapComponent extends React.Component {
         this.setState({ region });
     }
   
-    render() {
-      return (
-        <MapView
-        style = {styles.map}
-        onRegionChange={this.onRegionChange}
-        initialRegion = {{           
-            latitude: 37.78825,
-            longitude: -122.4324,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
-        }}
-        animatetoRegion = {this.state.region}>
-          <MapView.Marker key = 'key' title = 'start' coordinate = {origin} />
-          <MapView.Marker key = 'key2' title = 'end' coordinate = {destination} />
-          <MapViewDirections
-            origin = {origin}
-            destination = {destination}
-            apikey = {GOOGLE_API_KEY}
-            strokeWidth = {3}
-          />
-          
+    render() { 
+      if (this.props.flag) {
+        return (
+          <MapView
+          style = {styles.map}
+          onRegionChange={this.onRegionChange}
+          initialRegion = {{           
+              latitude: 37.78825,
+              longitude: -122.4324,
+              latitudeDelta: 0.0922,
+              longitudeDelta: 0.0421,
+          }}
+          animatetoRegion = {this.state.region}>
+            <MapView.Marker key = 'key' title = 'Owl Trail' coordinate = {origin} onPress={() => this.props.navigation.navigate('Preview')} />
+            <MapView.Marker key = 'key2' title = 'Definitely not the owl trail' coordinate = {destination} onPress={() => this.props.navigation.navigate('Preview')}/>
+            
 
-        </MapView>
-      );
+          </MapView>
+        );
+      }
+      else {
+        return (
+          <MapView
+          style = {styles.map}
+          onRegionChange={this.onRegionChange}
+          initialRegion = {{           
+              latitude: 37.78825,
+              longitude: -122.4324,
+              latitudeDelta: 0.0922,
+              longitudeDelta: 0.0421,
+          }}
+          animatetoRegion = {this.state.region}>
+
+            <MapView.Marker key = 'key' title = 'Start' coordinate = {origin} />
+            <MapView.Marker key = 'key2' title = 'End' coordinate = {destination}/>
+            <MapViewDirections
+              origin = {origin}
+              destination = {destination}
+              apikey = {GOOGLE_API_KEY}
+              strokeWidth = {3}
+            />
+            
+
+          </MapView>
+
+        );
+      }
     }
 }
 
