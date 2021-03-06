@@ -39,8 +39,8 @@ class MapComponent extends React.Component {
           style = {styles.map}
           onRegionChange={this.onRegionChange}
           initialRegion = {{           
-              latitude: 37.78825,
-              longitude: -122.4324,
+              latitude: origin.latitude,
+              longitude: origin.longitude,
               latitudeDelta: 0.0922,
               longitudeDelta: 0.0421,
           }}
@@ -69,8 +69,8 @@ class MapComponent extends React.Component {
           style = {styles.map}
           onRegionChange={this.onRegionChange}
           initialRegion = {{           
-              latitude: 37.78825,
-              longitude: -122.4324,
+              latitude: origin.latitude,
+              longitude: origin.longitude,
               latitudeDelta: 0.0922,
               longitudeDelta: 0.0421,
           }}
