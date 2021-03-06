@@ -40,6 +40,14 @@ function TrailPreviewScreen(props, { navigation }) {
       id: "1",
       image: require("./Images/trailpreview.png"),
     }, 
+    
+  ]
+  const trailreviews = [
+    {
+      id: "1",
+      image: require("./Images/trailreview.png"),
+    }, 
+    
   ]
   const Pics = ({ image }) => (
     <View >
@@ -53,6 +61,7 @@ function TrailPreviewScreen(props, { navigation }) {
   return (
     <View style= {styles.previewscreen}>
       <ScrollView>
+        {/* <Text> Owl Trail!</Text> */}
       <View style = {styles.trailinfopicbox}> 
       
       <FlatList
@@ -62,7 +71,6 @@ function TrailPreviewScreen(props, { navigation }) {
         keyExtractor={item => item.id}
       /> 
       
-        
       </View>
       
 
@@ -82,6 +90,25 @@ function TrailPreviewScreen(props, { navigation }) {
           Let's Go! 
           </Text>
       </TouchableOpacity>
+      </View>
+
+      <View style = {{margin:10}}> 
+      </View>
+
+      <View style = {styles.trailinfo}>
+        <Image style = {styles.trailinfopic} source = {require("./Images/previewmap.png")} />
+      </View>
+
+      <View style = {{margin:20}}> 
+      </View>
+
+      <View style = {styles.trailinfo}>
+      <FlatList
+        horizontal = {true}
+        data={trailreviews}
+        renderItem={renderItem}
+        keyExtractor={item => item.id}
+      /> 
       </View>
       </ScrollView>
     </View>
@@ -393,7 +420,8 @@ function CreateScreen(props, { navigation }) {
 function ProfileScreen({ navigation }) {
   return (
     <View style={styles.placeholder}>
-      <ScrollView style = {styles.profilepage}>
+      <ScrollView 
+      contentContainerStyle={{alignItems: 'center'}}>
       <View>
         <Image source = {require('./Images/profile.png')} style = {styles.profileimg} />
       </View>
@@ -567,6 +595,7 @@ const styles = StyleSheet.create({
   },
   profilepage: {
     flex:1,
+    
     width: Metrics.screenWidth,
     // height: Metrics.screenHeight * 2,
     //resizeMode: 'contain',
@@ -583,7 +612,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   previewbutton: {
-    backgroundColor: "#A6D2AE",
+    backgroundColor: "#52ADA8",
     width:200,
     height:50,
     borderRadius: 50,
