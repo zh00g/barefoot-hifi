@@ -39,14 +39,25 @@ class MapComponent extends React.Component {
           style = {styles.map}
           onRegionChange={this.onRegionChange}
           initialRegion = {{           
-              latitude: 37.78825,
-              longitude: -122.4324,
+              latitude: origin.latitude,
+              longitude: origin.longitude,
               latitudeDelta: 0.0922,
               longitudeDelta: 0.0421,
           }}
           animatetoRegion = {this.state.region}>
-            <MapView.Marker key = 'key' title = 'Owl Trail' coordinate = {origin} onPress={() => this.props.navigation.navigate('Preview')} />
-            <MapView.Marker key = 'key2' title = 'Definitely not the owl trail' coordinate = {destination} onPress={() => this.props.navigation.navigate('Preview')}/>
+            <MapView.Marker 
+            key = 'key' 
+            title = 'Owl Trail' 
+            image = {require("../Images/mtnmarker.png")}
+            coordinate = {origin} 
+            onCalloutPress={() => this.props.navigation.navigate('Preview')} />
+
+            <MapView.Marker 
+            key = 'key2' 
+            title = 'Definitely not the owl trail' 
+            image = {require("../Images/mtnmarker.png")}
+            coordinate = {destination} 
+            onCalloutPress={() => this.props.navigation.navigate('Preview')}/>
             
 
           </MapView>
@@ -58,8 +69,8 @@ class MapComponent extends React.Component {
           style = {styles.map}
           onRegionChange={this.onRegionChange}
           initialRegion = {{           
-              latitude: 37.78825,
-              longitude: -122.4324,
+              latitude: origin.latitude,
+              longitude: origin.longitude,
               latitudeDelta: 0.0922,
               longitudeDelta: 0.0421,
           }}
