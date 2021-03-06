@@ -298,9 +298,9 @@ function ExploreScreen({ navigation }) {
   const Post = ({ image }) => (
     <TouchableOpacity 
           activeOpacity = {0.9} 
-          style={styles.item}
+          style={styles.item2}
           onPress={() => navigation.navigate('Preview')}>
-      <Image style={styles.img} source = {image}/>
+      <Image style={styles.img1} source = {image}/>
     </TouchableOpacity>
   );
   return (
@@ -787,14 +787,25 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
 
   },
-  img: {
+  img1: {
     display: 'flex',
     width: '100%',
     resizeMode: 'contain',
-
+    margin: 0,
   },
   rowsplit: {
     display: 'flex',
     flexDirection: 'row',
-  }
+  },
+  item2: {
+    display: "flex",
+    flexDirection: "row",
+    //justifyContent: 'center',
+    alignItems: 'center',
+    //backgroundColor: '#F5F0EC',
+    // borderWidth: 1,
+    // borderColor: '#376171',
+    // marginVertical: 8,
+    // marginHorizontal: 16,
+  },
 });
