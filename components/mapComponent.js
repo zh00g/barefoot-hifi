@@ -9,6 +9,7 @@ import MapViewDirections from 'react-native-maps-directions';
 const GOOGLE_API_KEY = 'AIzaSyBBUZTSrNRyshhKeOmNp5W9nWKM4-Irsgg';
 const destination = {latitude: 37.771707, longitude: -122.4053769};
 const origin = {latitude: 37.78825, longitude: -122.4324};
+const place = {latitude: 37.8, longitude: -122.4}
 
 class MapComponent extends React.Component {
   
@@ -48,8 +49,15 @@ class MapComponent extends React.Component {
             <MapView.Marker 
             key = 'key' 
             title = 'Owl Trail' 
-            image = {require("../Images/barefoot.png")}
+            image = {require("../Images/origin.png")}
             coordinate = {origin} 
+            onCalloutPress={() => this.props.navigation.navigate('Preview')} />
+
+            <MapView.Marker 
+            key = 'key1' 
+            title = 'Owl Trail' 
+            image = {require("../Images/barefoot.png")}
+            coordinate = {place} 
             onCalloutPress={() => this.props.navigation.navigate('Preview')} />
 
             <MapView.Marker 
