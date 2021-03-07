@@ -27,13 +27,6 @@ import { setStatusBarNetworkActivityIndicatorVisible } from 'expo-status-bar';
 //testing commit
 //testing commit 2
 
-function DetailsScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Details!</Text>
-    </View>
-  );
-}
 
 function TrailPreviewScreen(props, { navigation }) {
   const trailpics = [
@@ -199,37 +192,6 @@ else {
   );
 }
 
-function MapMidScreen(props, { navigation }) {
-  const [visible, setVisible] = useState(false);
-
-  const toggleOverlay = () => {
-    setVisible(!visible);
-  };
-  return (
-    <View style={styles.container_mapstart}>
-      <View style={styles.map}>
-        <MapComponent navigation = {navigation} flag = {false}/>
-      </View>
-      <View style={styles.recordingbar}>
-        <TouchableOpacity activeOpacity={0.5} onPress={toggleOverlay}>
-
-          <Overlay overlayStyle={styles.endtrailconfirm1} isVisible={visible} onBackdropPress={toggleOverlay}>
-            <Text style = {{fontSize: 40, color: '#376171'}}> Would you like to save your recording?</Text>
-            <View style={styles.yesnobar}>
-              <Button title="Yes" onPress={() =>
-                props.navigation.navigate('Congrats')} />
-              <Button title="No" onPress={() => props.navigation.navigate('Explore')} />
-            </View>
-          </Overlay>
-
-          <MaterialCommunityIcons style={styles.recordButton} name="stop" size={60} color="red" />
-        </TouchableOpacity>
-      </View>
-    </View>
-
-  );
-}
-
 function CongratsScreen(props, { navigation }) {
   const trailtips = [
     {
@@ -278,11 +240,17 @@ function CongratsScreen(props, { navigation }) {
             <Image style={styles.recordButtonIcon} source= {require('./Images/backtoexplore.png')}/>
           </TouchableOpacity>
       </View>
+      <View style = {{justifyContent: 'center', alignItems: 'center', 
+      width: Metrics.screenWidth, height: 100, paddingHorizontal:50, marginTop:10,
+      backgroundColor: '#F5F0EC', borderTopRightRadius: 50, borderTopLeftRadius: 50}}>
+      <Image style = {{resizeMode: 'contain',flex:1, width:'100%'}} source = {require("./Images/advsummary.png")}/>
+      </View>
+
       {/* #F5F0EC */}
       <FlatList
         style = {styles.horizontalflatlist}
         horizontal = {true}
-        backgroundColor = {'lightblue'}
+        backgroundColor = {'#F5F0EC'}
         data={photosfromadventure}
         renderItem={renderItem}
         keyExtractor={item => item.id}>
@@ -291,7 +259,7 @@ function CongratsScreen(props, { navigation }) {
         {/* <Image style={{resizeMode: 'contain'}} source = {require("./Images/trailtips.png")}/> */}
       <FlatList
         style = {styles.horizontalflatlist}
-        backgroundColor = {'pink'}
+        backgroundColor = {'#F5F0EC'}
         horizontal = {true}
         data={trailfacts}
         renderItem={renderItem}
@@ -301,21 +269,18 @@ function CongratsScreen(props, { navigation }) {
   
       <FlatList
         style = {styles.horizontalflatlist}
-        backgroundColor = {'lightblue'}
+        backgroundColor = {'#F5F0EC'}
         horizontal = {true}
         data={trailtips}
         renderItem={renderItem}
         keyExtractor={item => item.id}
       /> 
       {/* <Image source = {require("./Images/trailfacts.png")}/> */}
-      <View style = {{justifyContent: 'center', alignItems: 'center'}}>
+      <View style = {{justifyContent: 'center', alignItems: 'center', backgroundColor: '#F5F0EC'}}>
       <Image source = {require("./Images/leavereview.png")}/>
       </View>
       
       </ScrollView>
-      
-
-
 
     </View>
 
@@ -690,7 +655,6 @@ function ExploreStackScreen() {
       <ExploreStack.Screen name="Explore" component={ExploreScreen} />
       <ExploreStack.Screen name="Preview" component={TrailPreviewScreen} />
       <ExploreStack.Screen name="MapStart" component={MapStartScreen} />
-      <ExploreStack.Screen name="MapMid" component={MapMidScreen} />
       <ExploreStack.Screen name="Congrats" component={CongratsScreen} />
       <ExploreStack.Screen name="Friends" component={FriendsListScreen} />
     </ExploreStack.Navigator>
@@ -715,10 +679,8 @@ function FeedStackScreen() {
   return (
     <FeedStack.Navigator>
       <FeedStack.Screen name="Feed" component={FeedScreen} />
-      <FeedStack.Screen name="Details" component={DetailsScreen} />
       <FeedStack.Screen name="Preview" component={TrailPreviewScreen} />
       <FeedStack.Screen name="MapStart" component={MapStartScreen} />
-      <FeedStack.Screen name="MapMid" component={MapMidScreen} />
       <FeedStack.Screen name="Congrats" component={CongratsScreen} />
       <FeedStack.Screen name="Friends" component={FriendsListScreen} />
     </FeedStack.Navigator>
@@ -731,7 +693,6 @@ function ProfileStackScreen() {
   return (
     <ProfileStack.Navigator>
       <ProfileStack.Screen name="Profile" component={ProfileScreen} />
-      <ProfileStack.Screen name="Details" component={DetailsScreen} />
     </ProfileStack.Navigator>
   );
 }
@@ -742,7 +703,6 @@ function CreateStackScreen() {
   return (
     <CreateStack.Navigator initialRouteName="Create">
       <CreateStack.Screen name="Create" component={CreateScreen} />
-      <CreateStack.Screen name="Details" component={DetailsScreen} />
       {/* <CreateStack.Screen name="MapStart" component={MapStartScreen} /> */}
       <CreateStack.Screen name="Congrats" component={CongratsScreen} />
       <CreateStack.Screen name="Friends" component={FriendsListScreen} />
