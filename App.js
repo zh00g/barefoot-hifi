@@ -202,17 +202,68 @@ function MapMidScreen(props, { navigation }) {
 }
 
 function CongratsScreen(props, { navigation }) {
+  const trailtips = [
+    {
+      id: "1",
+      image: require("./Images/trailtips.png"),
+    }, 
+    
+  ]
+  const trailfacts = [
+    {
+      id: "1",
+      image: require("./Images/trailfacts.png"),
+    }, 
+    
+  ]
+  const Pics = ({ image }) => (
+
+      <Image style={{resizeMode: 'contain'}} source = {image}/>
+
+  );
+  const renderItem = ({ item }) => (
+    <View style={{flex:1,height:50}} >
+    <Pics style={{resizeMode: 'contain'}} image={item.image} />
+    </View>
+  );
+
   return (
-    <View style={styles.congratscontainer}>
+    <View style = {styles.congratspage}>
+      
+      <ScrollView>
       <Text> Finished Trail!! </Text>
-      <View style={styles.sharesendbar}>
-        <TouchableOpacity activeOpacity={0.5} onPress={() => props.navigation.navigate('Friends')}>
-          <FontAwesome style={styles.recordButton} name="send-o" size={60} color="#376171" />
-        </TouchableOpacity>
-        <TouchableOpacity activeOpacity={0.5} onPress={() => props.navigation.navigate('Explore')}>
-          <AntDesign style={styles.recordButton} name="arrowright" size={60} color="#376171" />
-        </TouchableOpacity>
+      <View style={styles.recordingbarend}>
+          <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={() => props.navigation.navigate('Friends')}>
+            <Image style={styles.recordButtonIcon} source= {require('./Images/sendicon.png')}/>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={() => props.navigation.navigate('Explore')}>
+            <Image style={styles.recordButtonIcon} source= {require('./Images/backtoexplore.png')}/>
+          </TouchableOpacity>
       </View>
+
+      <View style = {styles.trailfacts}>
+      <FlatList
+        style = {styles.horizontalflatlist}
+        horizontal = {true}
+        data={trailfacts}
+        renderItem={renderItem}
+        keyExtractor={item => item.id}
+        
+      /> 
+      </View> 
+      <View style = {styles.trailtips}>
+      <FlatList
+        style = {styles.horizontalflatlist}
+        horizontal = {true}
+        data={trailtips}
+        renderItem={renderItem}
+        keyExtractor={item => item.id}
+      /> 
+      </View> 
+      </ScrollView>
+      
+
+
 
     </View>
 
@@ -629,7 +680,7 @@ const CreateStack = createStackNavigator();
 
 function CreateStackScreen() {
   return (
-    <CreateStack.Navigator>
+    <CreateStack.Navigator initialRouteName="Create">
       <CreateStack.Screen name="Create" component={CreateScreen} />
       <CreateStack.Screen name="Details" component={DetailsScreen} />
       {/* <CreateStack.Screen name="MapStart" component={MapStartScreen} /> */}
@@ -723,6 +774,25 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
+  congratspage: {
+    display: 'flex',
+    flexDirection: 'column',
+    flex:1
+  },
+  trailtips: {
+    flex: 0.1,
+    backgroundColor: 'yellow',
+  },
+  trailfacts: {
+    flex:0.1,
+    backgroundColor: 'pink',
+  },
+  horizontalflatlist:{
+    height: 200,
+    display: 'flex',
+    flex:1,
+    //backgroundColor: 'pink',
+  },
   recordButton:{
     width: 100,
     height: 100,
@@ -928,7 +998,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   recordingbarend: {
-    flex: 0.14,
+    flex: 1,
     flexDirection: 'row',
     justifyContent: "space-evenly",
     alignItems: "center",
