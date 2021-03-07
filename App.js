@@ -116,11 +116,22 @@ function TrailPreviewScreen(props, { navigation }) {
   );
 }
 
-function MapStartScreen(props, { navigation }) {
+function MapStartScreen(props) {
+  const [overlayvisible, setOverlayVisible] = useState(false);
   const [visible, setVisible] = useState(false);
 
+  const toggleOverlay = () => {
+    setOverlayVisible(!overlayvisible);
+  };
+
+  
   const toggleBar = () => {
     setVisible(!visible);
+  };
+
+  const yesbutton = () => {
+    setOverlayVisible(!overlayvisible);
+    props.navigation.navigate('Congrats');
   };
 
   const recordbarstart =  
@@ -144,8 +155,25 @@ const recordbarend =
   <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
     <Image style={styles.recordButtonIcon} source= {require('./Images/pauseicon.png')}/>
   </TouchableOpacity>
-  <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={() => props.navigation.navigate('Congrats')}>
+  <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={toggleOverlay}>
     <Image style={styles.recordButtonIcon} source= {require('./Images/stopicon.png')}/>
+
+    <Overlay overlayStyle={styles.endtrailconfirm1} isVisible={overlayvisible} onBackdropPress={toggleOverlay}>
+            <Text style = {{fontSize: 30, color: '#376171'}}>Save Your Adventure?</Text>
+            <View style={styles.yesnobar}>
+              <TouchableOpacity style={styles.popupButton} onPress={yesbutton}>
+              <Image style={styles.popupButtonIcon} source= {require('./Images/yes.png')}/>
+              </TouchableOpacity>
+              {/* <Button title="Yes" onPress={() =>
+                props.navigation.navigate('Congrats')} /> */}
+                <TouchableOpacity style={styles.popupButton} onPress={() => props.navigation.navigate('Explore')}>
+              <Image style={styles.popupButtonIcon} source= {require('./Images/no.png')}/>
+              </TouchableOpacity>
+              {/* <Button title="No" onPress={() => props.navigation.navigate('Explore')} /> */}
+            </View>
+          </Overlay>
+
+
   </TouchableOpacity>
   <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
     <Image style={styles.recordButtonIcon} source= {require('./Images/addlandmark.png')}/>
@@ -185,8 +213,8 @@ function MapMidScreen(props, { navigation }) {
       <View style={styles.recordingbar}>
         <TouchableOpacity activeOpacity={0.5} onPress={toggleOverlay}>
 
-          <Overlay overlayStyle={styles.endtrailconfirm} isVisible={visible} onBackdropPress={toggleOverlay}>
-            <Text>Would you like to save your recording?</Text>
+          <Overlay overlayStyle={styles.endtrailconfirm1} isVisible={visible} onBackdropPress={toggleOverlay}>
+            <Text style = {{fontSize: 40, color: '#376171'}}> Would you like to save your recording?</Text>
             <View style={styles.yesnobar}>
               <Button title="Yes" onPress={() =>
                 props.navigation.navigate('Congrats')} />
@@ -383,7 +411,7 @@ const sendbutton = () => {
             <Image style={styles.recordButtonIcon} source= {require('./Images/sendicon.png')}/>
           <Overlay overlayStyle={styles.endtrailconfirm} isVisible={visible} onBackdropPress={toggleOverlay}>
             <Text style = {{fontSize: 40, color: '#376171', fontWeight: 'bold'}}>Sent!</Text>
-            <View style={styles.yesnobar}>
+            <View style={styles.yesnobar2}>
               <TouchableOpacity activeOpacity={0.5} onPress={sendbutton}>
                 <AntDesign name="checkcircleo" size={60} color="#52ADA8" />
               </TouchableOpacity>
@@ -839,6 +867,21 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     margin:7,
   },
+  popupButtonIcon:{
+    flex: 1,
+    width: '100%',
+    height: '100%',
+    resizeMode: 'contain',
+    //backgroundColor: 'yellow',
+  },
+  popupButton: {
+    width: 90,
+    height: 90,
+    //backgroundColor: 'pink',
+    display: 'flex',
+    justifyContent:'center',
+    alignItems: 'center',
+  },
   profileimg: {
     flex:1,
     width: Metrics.screenWidth,
@@ -1013,11 +1056,19 @@ const styles = StyleSheet.create({
     flex: 0.1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "pink",
+    //backgroundColor: "pink",
   },
   endtrailconfirm: {
     backgroundColor: "#A6D2AE",
     width: 200,
+    height: 200,
+    borderRadius: 50,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  endtrailconfirm1: {
+    backgroundColor: "#F5F0EC",
+    width: 300,
     height: 200,
     borderRadius: 50,
     justifyContent: "center",
@@ -1041,7 +1092,20 @@ const styles = StyleSheet.create({
   },
   yesnobar: {
     display: "flex",
+    width: 200,
+    //backgroundColor: 'green',
     flexDirection: "row",
+    justifyContent: 'space-between',
+    //marginTop:10,
+  },
+  yesnobar2: {
+    display: "flex",
+    width: 200,
+    //backgroundColor: 'green',
+    flexDirection: "row",
+    justifyContent: 'center',
+    alignItems: 'center',
+    //marginTop:10,
   },
   exploreimage: {
     width: '50%',
