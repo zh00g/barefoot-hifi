@@ -23,6 +23,7 @@ import { Ionicons, AntDesign, MaterialCommunityIcons, FontAwesome } from '@expo/
 import MapComponent from './components/mapComponent.js'
 import { Metrics } from './Themes/index.js';
 import metrics from './Themes/Metrics.js';
+import { setStatusBarNetworkActivityIndicatorVisible } from 'expo-status-bar';
 //testing commit
 //testing commit 2
 
@@ -206,15 +207,19 @@ function CongratsScreen(props, { navigation }) {
     {
       id: "1",
       image: require("./Images/trailtips.png"),
-    }, 
-    
+    },
+  ]
+  const photosfromadventure = [
+    {
+      id: "1",
+      image: require("./Images/photosfromadventure.png"),
+    },  
   ]
   const trailfacts = [
     {
       id: "1",
       image: require("./Images/trailfacts.png"),
-    }, 
-    
+    },   
   ]
   const Pics = ({ image }) => (
 
@@ -231,7 +236,12 @@ function CongratsScreen(props, { navigation }) {
     <View style = {styles.congratspage}>
       
       <ScrollView>
-      <Text> Finished Trail!! </Text>
+      <View style = {{justifyContent: 'center', alignItems: 'center', width: Metrics.screenWidth, height: 100, paddingHorizontal:50}}>
+      <Image style = {{resizeMode: 'contain',flex:1, width:'100%'}} source = {require("./Images/congrats.png")}/>
+      </View>
+      <View style = {{justifyContent: 'center', alignItems: 'center', width: Metrics.screenWidth, height: 50, paddingHorizontal:50}}>
+      <Image style = {{resizeMode: 'contain',flex:1, width:'100%'}} source = {require("./Images/completedtext.png")}/>
+      </View>
       <View style={styles.recordingbarend}>
           <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={() => props.navigation.navigate('Friends')}>
             <Image style={styles.recordButtonIcon} source= {require('./Images/sendicon.png')}/>
@@ -240,26 +250,40 @@ function CongratsScreen(props, { navigation }) {
             <Image style={styles.recordButtonIcon} source= {require('./Images/backtoexplore.png')}/>
           </TouchableOpacity>
       </View>
-
-      <View style = {styles.trailfacts}>
+      {/* #F5F0EC */}
       <FlatList
         style = {styles.horizontalflatlist}
         horizontal = {true}
-        data={trailfacts}
+        backgroundColor = {'lightblue'}
+        data={photosfromadventure}
         renderItem={renderItem}
-        keyExtractor={item => item.id}
-        
-      /> 
-      </View> 
-      <View style = {styles.trailtips}>
+        keyExtractor={item => item.id}>
+        </FlatList>
+
+        {/* <Image style={{resizeMode: 'contain'}} source = {require("./Images/trailtips.png")}/> */}
       <FlatList
         style = {styles.horizontalflatlist}
+        backgroundColor = {'pink'}
+        horizontal = {true}
+        data={trailfacts}
+        renderItem={renderItem}
+        keyExtractor={item => item.id}>
+        </FlatList>
+
+  
+      <FlatList
+        style = {styles.horizontalflatlist}
+        backgroundColor = {'lightblue'}
         horizontal = {true}
         data={trailtips}
         renderItem={renderItem}
         keyExtractor={item => item.id}
       /> 
-      </View> 
+      {/* <Image source = {require("./Images/trailfacts.png")}/> */}
+      <View style = {{justifyContent: 'center', alignItems: 'center'}}>
+      <Image source = {require("./Images/leavereview.png")}/>
+      </View>
+      
       </ScrollView>
       
 
@@ -271,6 +295,7 @@ function CongratsScreen(props, { navigation }) {
 }
 
 function FriendsListScreen(props) {
+  const [pressed, setPressed] = useState(false);
   const friends = [
     {
       id: '1',
@@ -297,9 +322,13 @@ function FriendsListScreen(props) {
       title: 'Dr. Landay!',
     },
   ];
+  
 
   const Item = ({ title }) => (
-    <TouchableOpacity activeOpacity={0.5} style={styles.item}>
+    <TouchableOpacity 
+    activeOpacity={0.2} 
+    style={
+      styles.item}>
       <Ionicons name="person-circle-outline" color={"#A6D2AE"} size={60} />
       <Text style={styles.title}>{title}</Text>
     </TouchableOpacity>
@@ -316,7 +345,10 @@ function FriendsListScreen(props) {
   };
 
 
-
+const sendbutton = () => {
+  setVisible(!visible);
+  props.navigation.navigate('Explore');
+}
   return (
     <View style={styles.friendscontainer}>
 
@@ -347,13 +379,13 @@ function FriendsListScreen(props) {
 
 
       <View style={styles.friendsbutton}>
-        <TouchableOpacity activeOpacity={0.5} onPress={toggleOverlay}>
-          <FontAwesome style={styles.recordButton} name="send-o" size={60} color="#376171" />
+        <TouchableOpacity style={styles.recordButton}  activeOpacity={0.5} onPress={toggleOverlay}>
+            <Image style={styles.recordButtonIcon} source= {require('./Images/sendicon.png')}/>
           <Overlay overlayStyle={styles.endtrailconfirm} isVisible={visible} onBackdropPress={toggleOverlay}>
-            <Text>Sent!</Text>
+            <Text style = {{fontSize: 40, color: '#376171', fontWeight: 'bold'}}>Sent!</Text>
             <View style={styles.yesnobar}>
-              <TouchableOpacity activeOpacity={0.5} onPress={() => props.navigation.navigate('Explore')}>
-                <AntDesign style={styles.recordButton} name="checkcircleo" size={60} color="#376171" />
+              <TouchableOpacity activeOpacity={0.5} onPress={sendbutton}>
+                <AntDesign name="checkcircleo" size={60} color="#52ADA8" />
               </TouchableOpacity>
             </View>
           </Overlay>
@@ -777,7 +809,8 @@ const styles = StyleSheet.create({
   congratspage: {
     display: 'flex',
     flexDirection: 'column',
-    flex:1
+    flex:1,
+    backgroundColor: 'white',
   },
   trailtips: {
     flex: 0.1,
@@ -898,6 +931,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "space-between",
     padding: 10,
+    backgroundColor:'white'
   },
   searchSection: {
     margin: 10,
@@ -919,8 +953,8 @@ const styles = StyleSheet.create({
     //justifyContent: 'center',
     alignItems: 'center',
     //backgroundColor: '#F5F0EC',
-    // borderWidth: 1,
-    // borderColor: '#376171',
+    borderBottomWidth: 1,
+    borderColor: 'lightgray',
     padding: 10,
     // marginVertical: 8,
     // marginHorizontal: 16,
@@ -982,7 +1016,7 @@ const styles = StyleSheet.create({
     backgroundColor: "pink",
   },
   endtrailconfirm: {
-    backgroundColor: "#F5F0EC",
+    backgroundColor: "#A6D2AE",
     width: 200,
     height: 200,
     borderRadius: 50,
@@ -1002,7 +1036,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: "space-evenly",
     alignItems: "center",
-    backgroundColor: "#F5F0EC",
+    //backgroundColor: "#F5F0EC",
     borderRadius: 20,
   },
   yesnobar: {
