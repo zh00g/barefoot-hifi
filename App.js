@@ -219,7 +219,7 @@ function CongratsScreen(props, { navigation }) {
   );
   const Pic = ({ image }) => (
 
-    <Image style={{marginLeft: 20, flex:1, height: 200, width: Metrics.screenWidth+200, resizeMode: 'contain'}} source = {image}/>
+    <Image style={{marginLeft: 20, flex:1, height: 150, width: Metrics.screenWidth+200, resizeMode: 'contain'}} source = {image}/>
 
 );
   const renderItem = ({ item }) => (
@@ -522,17 +522,21 @@ function FeedScreen({ navigation }) {
   const stories = [
     {
       id: "1",
-      image: require("./Images/stories.png"),
+      image: require("./Images/stories2.png"),
     }, 
   ]
   const posts = [
     {
       id: "1",
-      image: require("./Images/post1.png"),
+      image: require("./Images/post11.png"),
     }, 
     {
       id: "2",
-      image: require("./Images/post2.png")
+      image: require("./Images/post22.png")
+    },
+    {
+      id: "3",
+      image: require("./Images/post3.png")
     },
   ]
   const Post = ({ image }) => (
@@ -540,14 +544,14 @@ function FeedScreen({ navigation }) {
           activeOpacity = {0.9} 
           style={styles.item}
           onPress={() => navigation.navigate('Preview')}>
-      <Image style={styles.img} source = {image}/>
+      <Image style={{height:550, resizeMode:'contain', width:Metrics.screenWidth - 20}} source = {image}/>
     </TouchableOpacity>
   );
   const Story = ({ image }) => (
     <View 
           activeOpacity = {0.9} 
-          style={styles.item}>
-      <Image style={styles.img} source = {image}/>
+          >
+      <Image style={{height:100, resizeMode:'contain', width:Metrics.screenWidth + 100}} source = {image}/>
     </View>
   );
   const renderItem = ({ item }) => (
