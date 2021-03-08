@@ -40,23 +40,33 @@ function TrailPreviewScreen(props, { navigation }) {
   const trailreviews = [
     {
       id: "1",
-      image: require("./Images/trailreview.png"),
+      image: require("./Images/trailreviews.png"),
     }, 
     
   ]
   const Pics = ({ image }) => (
     <View >
-      <Image style={{resizeMode: 'contain'}} source = {image}/>
+      <Image style={{height: 250, resizeMode: 'contain', width: Metrics.screenWidth+150}} source = {image}/>
+    </View>
+  );
+  const Pic = ({ image }) => (
+    <View >
+      <Image style={{height: 200, resizeMode: 'contain', width: Metrics.screenWidth+300, marginLeft:20}} source = {image}/>
     </View>
   );
   const renderItem = ({ item }) => (
     <Pics style = {{resizeMode: 'contain'}} image={item.image} />
   );
+  const renderItem2 = ({ item }) => (
+    <Pic style = {{resizeMode: 'contain'}} image={item.image} />
+  );
 
   return (
     <View style= {styles.previewscreen}>
       <ScrollView>
-        {/* <Text> Owl Trail!</Text> */}
+      <View style = {{justifyContent: 'center', alignItems: 'center', width: Metrics.screenWidth, height: 40, paddingHorizontal:50, marginVertical:10,}}>
+      <Image style = {{resizeMode: 'contain',flex:1, width:'100%'}} source = {require("./Images/owltrail.png")}/>
+      </View>
       <View style = {styles.trailinfopicbox}> 
       
       <FlatList
@@ -101,7 +111,7 @@ function TrailPreviewScreen(props, { navigation }) {
       <FlatList
         horizontal = {true}
         data={trailreviews}
-        renderItem={renderItem}
+        renderItem={renderItem2}
         keyExtractor={item => item.id}
       /> 
       </View>
