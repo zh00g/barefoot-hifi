@@ -461,17 +461,32 @@ const [hasPermission, setHasPermission] = useState(null);
 function ExploreScreen({ navigation }) {
   const tags = [
     {
-      id: "1",
-      image: require("./Images/tagbar.png"),
-    }, 
+      id: "2",
+      image: require("./Images/nearby.png")
+    },
+    {
+      id: "3",
+      image: require("./Images/myfriends.png")
+    },
+    {
+      id: "4",
+      image: require("./Images/dogs.png")
+    },
+    {
+      id: "5",
+      image: require("./Images/historical.png")
+    },
   ]
   const Pics = ({ image }) => (
     <View >
-      <Image style={{resizeMode: 'contain', margin:10}} source = {image}/>
+      <TouchableOpacity activeOpacity={0.5}>
+      <Image style={{height:35, resizeMode: 'contain', width:140}} source = {image}/>
+      </TouchableOpacity>
+      
     </View>
   );
   const renderItem = ({ item }) => (
-    <Pics style = {{resizeMode: 'contain'}} image={item.image} />
+    <Pics image={item.image} />
   );
 
   const Post = ({ image }) => (
@@ -490,16 +505,20 @@ function ExploreScreen({ navigation }) {
       <View style={styles.mapbox}>
         <MapComponent navigation = {navigation} flag = {true}/>
       </View>
-
-
-      <View style={styles.trailpics}>
-
+      <View style = {{flex:0.23, marginTop:10,}}>
       <FlatList
         horizontal = {true}
         data={tags}
         renderItem={renderItem}
         keyExtractor={item => item.id}
       /> 
+
+      </View>
+      
+      <View style={styles.trailpics}>
+
+     
+     
       <ScrollView style={styles.scroll}>
         <View style={styles.rowsplit}>
           <View style={styles.exploreimage}>
