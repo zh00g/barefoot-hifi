@@ -1,12 +1,13 @@
 import * as React from 'react';
 
-import { Button, Text, View, StyleSheet, TouchableOpacity,} from 'react-native';
+import { Button, Text, View, StyleSheet, TouchableOpacity,Image} from 'react-native';
 import MapView from 'react-native-maps';
 import Marker from 'react-native-maps';
 import OverlayComponent from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 import { ToggleButton } from 'react-native-paper';
 import SwitchButton from 'switch-button-react-native';
+import { Metrics } from '../Themes';
 
 const GOOGLE_API_KEY = 'AIzaSyBBUZTSrNRyshhKeOmNp5W9nWKM4-Irsgg';
 const destination = {latitude: 37.771707, longitude: -122.4053769};
@@ -77,17 +78,24 @@ class MapComponent extends React.Component {
       }
       else  {
         var poggies;
+        var handsfreeview;
         var op;
         var mode;
         if (this.state.switch) {
           poggies = styles.nocover;
           op = styles.nocover;
           mode = 'FACTUAL MODE';
+          
         }
         else {
           poggies = styles.cover;
           op = styles.opaque;
           mode = 'NON-FACTUAL MODE';
+          handsfreeview = 
+          <View> 
+  
+             <Image style={{width:Metrics.screenWidth, height:Metrics.screenHeight}} source= {require('../handsfree.png')}/>
+            </View>
         }
         
         return (
@@ -103,8 +111,7 @@ class MapComponent extends React.Component {
           }}
           animatetoRegion = {this.state.region}>
             <View style = {poggies}>
-
-
+            {handsfreeview}
             </View>
 
             <View style = {styles.switch}> 
