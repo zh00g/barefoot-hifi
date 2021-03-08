@@ -30,7 +30,8 @@
     "react-native-safe-area-context": "3.1.9",
     "react-native-screens": "^2.18.0",
     "react-native-tab-view": "^2.15.1",
-    "react-native-web": "~0.13.12"
+    "react-native-web": "~0.13.12",
+    "switch-button-react-native": "^1.0.3"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0"

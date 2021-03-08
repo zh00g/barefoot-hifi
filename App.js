@@ -24,6 +24,7 @@ import MapComponent from './components/mapComponent.js'
 import { Metrics } from './Themes/index.js';
 import metrics from './Themes/Metrics.js';
 import { setStatusBarNetworkActivityIndicatorVisible } from 'expo-status-bar';
+import SwitchButton from 'switch-button-react-native';
 //testing commit
 //testing commit 2
 
