@@ -1,10 +1,12 @@
 import * as React from 'react';
 
-import { Button, Text, View, StyleSheet } from 'react-native';
+import { Button, Text, View, StyleSheet, TouchableOpacity,} from 'react-native';
 import MapView from 'react-native-maps';
 import Marker from 'react-native-maps';
 import OverlayComponent from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
+import { ToggleButton } from 'react-native-paper';
+import SwitchButton from 'switch-button-react-native';
 
 const GOOGLE_API_KEY = 'AIzaSyBBUZTSrNRyshhKeOmNp5W9nWKM4-Irsgg';
 const destination = {latitude: 37.771707, longitude: -122.4053769};
@@ -22,16 +24,18 @@ class MapComponent extends React.Component {
           longitude: -122.4324,
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
-        }
+        },
+        switch: true,
+
       }
     }
-
 
 
   
     onRegionChange(region) {
         this.setState({ region });
     }
+
   
     render() { 
       if (this.props.flag) {
@@ -71,8 +75,23 @@ class MapComponent extends React.Component {
           </MapView>
         );
       }
-      else {
+      else  {
+        var poggies;
+        var op;
+        var mode;
+        if (this.state.switch) {
+          poggies = styles.nocover;
+          op = styles.nocover;
+          mode = 'FACTUAL MODE';
+        }
+        else {
+          poggies = styles.cover;
+          op = styles.opaque;
+          mode = 'NON-FACTUAL MODE';
+        }
+        
         return (
+
           <MapView
           style = {styles.map}
           onRegionChange={this.onRegionChange}
@@ -83,6 +102,24 @@ class MapComponent extends React.Component {
               longitudeDelta: 0.0421,
           }}
           animatetoRegion = {this.state.region}>
+            <View style = {poggies}>
+
+
+            </View>
+
+            <View style = {styles.switch}> 
+              <TouchableOpacity  
+              activeOpacity = {0.5} 
+              onPress={() => this.setState({switch: !this.state.switch})}
+              style = {styles.previewbutton}>
+                <Text style = {{fontSize: 18,
+                  color: "#fff",
+                  fontWeight: "bold",
+                  textTransform: "uppercase"}}> 
+                  {mode} 
+                </Text>
+              </TouchableOpacity>
+            </View>
 
             <MapView.Marker key = 'key' title = 'Start' image = {require("../Images/origin.png")} coordinate = {origin} />
             <MapView.Marker key = 'key2' title = 'End' coordinate = {destination}/>
@@ -110,6 +147,32 @@ const styles = StyleSheet.create({
   map: {
     ...StyleSheet.absoluteFillObject,
   },
+  switch: {
+    position: 'absolute',
+    top: '5%',
+  },
+  cover: {
+    position: 'absolute',
+    backgroundColor: 'white',
+    width: '100%',
+    height: '100%'
+  },
+  nocover: {
+    opacity: 0,
+  },
+  opaque: {
+    opacity: 1,
+  },
+  previewbutton: {
+    backgroundColor: "#52ADA8",
+    width:200,
+    height:50,
+    borderRadius: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 10,
+  }
+
 });
 
 export default MapComponent;
