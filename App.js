@@ -680,7 +680,7 @@ function ProfileScreen({ navigation }) {
       <ScrollView 
       contentContainerStyle={{alignItems: 'center'}}>
       <View>
-        <Image source = {require('./Images/profile.png')} style = {styles.profileimg} />
+        <Image source = {require('./Images/profile.png')} style = {{width:Metrics.screenWidth, height: Metrics.screenHeight+400}} />
       </View>
       </ScrollView>
      
