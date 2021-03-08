@@ -93,7 +93,6 @@ class MapComponent extends React.Component {
           mode = 'NON-FACTUAL MODE';
           handsfreeview = 
           <View> 
-  
              <Image style={{width:Metrics.screenWidth, height:Metrics.screenHeight}} source= {require('../handsfree.png')}/>
             </View>
         }

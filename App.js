@@ -214,12 +214,22 @@ function CongratsScreen(props, { navigation }) {
   ]
   const Pics = ({ image }) => (
 
-      <Image style={{resizeMode: 'contain'}} source = {image}/>
+      <Image style={{flex:1, height: 300, width: Metrics.screenWidth+200, resizeMode: 'contain'}} source = {image}/>
 
   );
+  const Pic = ({ image }) => (
+
+    <Image style={{marginLeft: 20, flex:1, height: 200, width: Metrics.screenWidth+200, resizeMode: 'contain'}} source = {image}/>
+
+);
   const renderItem = ({ item }) => (
-    <View style={{flex:1,height:50}} >
-    <Pics style={{resizeMode: 'contain'}} image={item.image} />
+    <View>
+    <Pics image={item.image} />
+    </View>
+  );
+  const renderItem2 = ({ item }) => (
+    <View>
+    <Pic image={item.image} />
     </View>
   );
 
@@ -248,14 +258,15 @@ function CongratsScreen(props, { navigation }) {
       </View>
 
       {/* #F5F0EC */}
-      <FlatList
+
+        <FlatList
         style = {styles.horizontalflatlist}
         horizontal = {true}
         backgroundColor = {'#F5F0EC'}
         data={photosfromadventure}
         renderItem={renderItem}
         keyExtractor={item => item.id}>
-        </FlatList>
+        </FlatList>    
 
         {/* <Image style={{resizeMode: 'contain'}} source = {require("./Images/trailtips.png")}/> */}
       <FlatList
@@ -263,7 +274,7 @@ function CongratsScreen(props, { navigation }) {
         backgroundColor = {'#F5F0EC'}
         horizontal = {true}
         data={trailfacts}
-        renderItem={renderItem}
+        renderItem={renderItem2}
         keyExtractor={item => item.id}>
         </FlatList>
 
@@ -273,7 +284,7 @@ function CongratsScreen(props, { navigation }) {
         backgroundColor = {'#F5F0EC'}
         horizontal = {true}
         data={trailtips}
-        renderItem={renderItem}
+        renderItem={renderItem2}
         keyExtractor={item => item.id}
       /> 
       {/* <Image source = {require("./Images/trailfacts.png")}/> */}
@@ -810,9 +821,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'pink',
   },
   horizontalflatlist:{
-    height: 200,
-    display: 'flex',
-    flex:1,
+    //minHeight: 200,
+    //display: 'flex',
+    //flex:1,
+    //flexGrow:0,
     //backgroundColor: 'pink',
   },
   recordButton:{
