@@ -214,7 +214,7 @@ function CongratsScreen(props, { navigation }) {
   ]
   const Pics = ({ image }) => (
 
-      <Image style={{flex:1, height: 300, width: Metrics.screenWidth+200, resizeMode: 'contain'}} source = {image}/>
+      <Image style={{marginLeft: 15, flex:1, height: 350, width: Metrics.screenWidth+200, resizeMode: 'contain'}} source = {image}/>
 
   );
   const Pic = ({ image }) => (
