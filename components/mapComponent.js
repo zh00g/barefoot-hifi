@@ -77,43 +77,38 @@ class MapComponent extends React.Component {
         );
       }
       else  {
-        var poggies;
-        var handsfreeview;
-        var op;
+
         var mode;
         if (this.state.switch) {
-          poggies = styles.nocover;
-          op = styles.nocover;
-          mode = 'FACTUAL MODE';
-          
-        }
-        else {
-          poggies = styles.cover;
-          op = styles.opaque;
-          mode = 'NON-FACTUAL MODE';
-          handsfreeview = 
-          <View> 
-             <Image style={{width:Metrics.screenWidth, height:Metrics.screenHeight}} source= {require('../handsfree.png')}/>
-            </View>
-        }
-        
-        return (
+          mode = 'LEARN MODE';
+          return (
+          <View style = {styles.map}>
+            <MapView
+            style = {styles.map}
+            onRegionChange={this.onRegionChange}
+            initialRegion = {{           
+                latitude: origin.latitude,
+                longitude: origin.longitude,
+                latitudeDelta: 0.0922,
+                longitudeDelta: 0.0421,
+            }}
+            animatetoRegion = {this.state.region}>
+  
 
-          <MapView
-          style = {styles.map}
-          onRegionChange={this.onRegionChange}
-          initialRegion = {{           
-              latitude: origin.latitude,
-              longitude: origin.longitude,
-              latitudeDelta: 0.0922,
-              longitudeDelta: 0.0421,
-          }}
-          animatetoRegion = {this.state.region}>
-            <View style = {poggies}>
-            {handsfreeview}
-            </View>
+  
+              <MapView.Marker key = 'key' title = 'Start' image = {require("../Images/origin.png")} coordinate = {origin} />
+              <MapView.Marker key = 'key2' title = 'End' coordinate = {destination}/>
+              <MapViewDirections
+                origin = {origin}
+                destination = {destination}
+                apikey = {GOOGLE_API_KEY}
+                strokeWidth = {3}
+              />
+              
+  
+            </MapView>
 
-            <View style = {styles.switch}> 
+              <View style = {styles.switch}> 
               <TouchableOpacity  
               activeOpacity = {0.5} 
               onPress={() => this.setState({switch: !this.state.switch})}
@@ -125,21 +120,37 @@ class MapComponent extends React.Component {
                   {mode} 
                 </Text>
               </TouchableOpacity>
+              </View>
+          </View>  
+          );
+          
+        }
+        else {
+          mode = "MAP MODE";
+
+          return (
+            <View> 
+
+              <Image style={{width:'100%', height:'100%'}} source= {require('../handsfree.png')}/>
+              <View style={styles.switch}>
+              <TouchableOpacity  
+                activeOpacity = {0.5} 
+                onPress={() => this.setState({switch: !this.state.switch})}
+                style = {styles.previewbutton}>
+                  <Text style = {{fontSize: 18,
+                    color: "#fff",
+                    fontWeight: "bold",
+                    textTransform: "uppercase"}}> 
+                    {mode} 
+                  </Text>
+              </TouchableOpacity>
+              </View>
+
             </View>
-
-            <MapView.Marker key = 'key' title = 'Start' image = {require("../Images/origin.png")} coordinate = {origin} />
-            <MapView.Marker key = 'key2' title = 'End' coordinate = {destination}/>
-            <MapViewDirections
-              origin = {origin}
-              destination = {destination}
-              apikey = {GOOGLE_API_KEY}
-              strokeWidth = {3}
-            />
-            
-
-          </MapView>
-
-        );
+          )
+        }
+        
+       
       }
     }
 }
@@ -155,7 +166,8 @@ const styles = StyleSheet.create({
   },
   switch: {
     position: 'absolute',
-    top: '5%',
+    alignSelf: 'center',
+    top: 24,  
   },
   cover: {
     position: 'absolute',
@@ -171,12 +183,16 @@ const styles = StyleSheet.create({
   },
   previewbutton: {
     backgroundColor: "#52ADA8",
-    width:200,
+    width:180,
     height:50,
     borderRadius: 50,
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 10,
+  },
+  cont: {
+    width: '100%',
+    height: '100%',
   }
 
 });
