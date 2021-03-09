@@ -163,6 +163,7 @@ const recordbarend =
     <Image style={styles.recordButtonIcon} source= {require('./Images/stopicon.png')}/>
 
     <Overlay overlayStyle={styles.endtrailconfirm1} isVisible={overlayvisible} onBackdropPress={toggleOverlay}>
+            <View style = {{alignItems:'center'}}>
             <Text style = {{fontSize: 30, color: '#376171'}}>Save Your Adventure?</Text>
             <View style={styles.yesnobar}>
               <TouchableOpacity style={styles.popupButton} onPress={yesbutton}>
@@ -175,6 +176,7 @@ const recordbarend =
               </TouchableOpacity>
               {/* <Button title="No" onPress={() => props.navigation.navigate('Explore')} /> */}
             </View>
+              </View>
           </Overlay>
 
 
@@ -397,12 +399,14 @@ const sendbutton = () => {
         <TouchableOpacity style={styles.recordButton}  activeOpacity={0.5} onPress={toggleOverlay}>
             <Image style={styles.recordButtonIcon} source= {require('./Images/sendicon.png')}/>
           <Overlay overlayStyle={styles.endtrailconfirm} isVisible={visible} onBackdropPress={toggleOverlay}>
+            <View style = {{alignItems:'center'}}>
             <Text style = {{fontSize: 40, color: '#376171', fontWeight: 'bold'}}>Sent!</Text>
             <View style={styles.yesnobar2}>
               <TouchableOpacity activeOpacity={0.5} onPress={sendbutton}>
                 <AntDesign name="checkcircleo" size={60} color="#52ADA8" />
               </TouchableOpacity>
             </View>
+              </View>
           </Overlay>
 
         </TouchableOpacity>
