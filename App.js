@@ -138,6 +138,7 @@ function MapStartScreen(props) {
     props.navigation.navigate('Congrats');
   };
 
+
   const recordbarstart =  
   <View style={styles.recordingbarstart}>
   <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>

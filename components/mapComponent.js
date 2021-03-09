@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { Button, Text, View, StyleSheet, TouchableOpacity,Image} from 'react-native';
+import { Overlay } from 'react-native-elements';
 import MapView from 'react-native-maps';
 import Marker from 'react-native-maps';
 import OverlayComponent from 'react-native-maps';
@@ -13,6 +14,7 @@ const GOOGLE_API_KEY = 'AIzaSyBBUZTSrNRyshhKeOmNp5W9nWKM4-Irsgg';
 const destination = {latitude: 37.771707, longitude: -122.4053769};
 const origin = {latitude: 37.78825, longitude: -122.4324};
 const place = {latitude: 37.8, longitude: -122.4}
+
 
 class MapComponent extends React.Component {
   
@@ -27,6 +29,7 @@ class MapComponent extends React.Component {
           longitudeDelta: 0.0421,
         },
         switch: true,
+        overlay: false,
 
       }
     }
@@ -108,7 +111,7 @@ class MapComponent extends React.Component {
   
             </MapView>
 
-              <View style = {styles.switch}> 
+            <View style = {styles.switch}> 
               <TouchableOpacity  
               activeOpacity = {0.5} 
               onPress={() => this.setState({switch: !this.state.switch})}
@@ -120,7 +123,16 @@ class MapComponent extends React.Component {
                   {mode} 
                 </Text>
               </TouchableOpacity>
-              </View>
+            </View>
+            <View style={{position: 'absolute', right: '4.5%'}}>
+                <TouchableOpacity title = "" style={styles.smallbutton} onPress={() => this.setState({overlay: !this.state.overlay})}>
+                  <Image source = {require('../Question.png')} style={{resizeMode: 'contain'}} />
+                </TouchableOpacity>
+
+                <Overlay isVisible={this.state.overlay} onBackdropPress={() => this.setState({overlay: !this.state.overlay})}>
+                  <Text>Hello from Overlay!</Text>
+                </Overlay>
+            </View>
           </View>  
           );
           
@@ -133,17 +145,26 @@ class MapComponent extends React.Component {
 
               <Image style={{width:'100%', height:'100%'}} source= {require('../handsfree.png')}/>
               <View style={styles.switch}>
-              <TouchableOpacity  
-                activeOpacity = {0.5} 
-                onPress={() => this.setState({switch: !this.state.switch})}
-                style = {styles.previewbutton}>
-                  <Text style = {{fontSize: 18,
-                    color: "#fff",
-                    fontWeight: "bold",
-                    textTransform: "uppercase"}}> 
-                    {mode} 
-                  </Text>
-              </TouchableOpacity>
+                <TouchableOpacity  
+                  activeOpacity = {0.5} 
+                  onPress={() => this.setState({switch: !this.state.switch})}
+                  style = {styles.previewbutton}>
+                    <Text style = {{fontSize: 18,
+                      color: "#fff",
+                      fontWeight: "bold",
+                      textTransform: "uppercase"}}> 
+                      {mode} 
+                    </Text>
+                </TouchableOpacity>
+              </View>
+              <View style={{position: 'absolute',right: '4.5%'}}>
+                <TouchableOpacity style={styles.smallbutton} title = "" style={styles.smallbutton} onPress={() => this.setState({overlay: !this.state.overlay})}>
+                  <Image source = {require('../Question.png')} style={{resizeMode:'contain'}}/>
+                </TouchableOpacity>
+
+                <Overlay isVisible={this.state.overlay} onBackdropPress={() => this.setState({overlay: !this.state.overlay})}>
+                  <Text>Hello from Overlay!</Text>
+                </Overlay>
               </View>
 
             </View>
@@ -193,6 +214,10 @@ const styles = StyleSheet.create({
   cont: {
     width: '100%',
     height: '100%',
+  },
+  smallbutton: {
+    width: 35 ,
+    height:35,
   }
 
 });
