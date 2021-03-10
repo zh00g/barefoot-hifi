@@ -15,6 +15,7 @@ import {
 import { Camera, requestPermissionsAsync } from 'expo-camera';
 import { Overlay } from 'react-native-elements';
 import { NavigationContainer } from '@react-navigation/native';
+import { StackActions } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
@@ -729,10 +730,10 @@ function FeedStackScreen() {
   return (
     <FeedStack.Navigator>
       <FeedStack.Screen name="Feed" component={FeedScreen} />
-      <FeedStack.Screen name="Preview" component={TrailPreviewScreen} />
-      <FeedStack.Screen name="MapStart" component={MapStartScreen} />
+      {/* <FeedStack.Screen name="Preview" component={TrailPreviewScreen} /> */}
+      {/* <FeedStack.Screen name="MapStart" component={MapStartScreen} />
       <FeedStack.Screen name="Congrats" component={CongratsScreen} />
-      <FeedStack.Screen name="Friends" component={FriendsListScreen} />
+      <FeedStack.Screen name="Friends" component={FriendsListScreen} /> */}
     </FeedStack.Navigator>
   );
 }
@@ -808,6 +809,7 @@ function MyTabs() {
       <Tab.Screen
         name="Create"
         component={CreateStackScreen}
+        onPress={() => navigation.navigate('Create')}
         options={{
           tabBarLabel: 'Create',
           tabBarIcon: ({ color }) => (
