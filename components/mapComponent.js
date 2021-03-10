@@ -9,6 +9,8 @@ import MapViewDirections from 'react-native-maps-directions';
 import { ToggleButton } from 'react-native-paper';
 import SwitchButton from 'switch-button-react-native';
 import { Metrics } from '../Themes';
+import Swiper from 'react-native-swiper'
+
 
 const GOOGLE_API_KEY = 'AIzaSyBBUZTSrNRyshhKeOmNp5W9nWKM4-Irsgg';
 const destination = {latitude: 37.771707, longitude: -122.4053769};
@@ -128,11 +130,24 @@ class MapComponent extends React.Component {
                 <TouchableOpacity title = "" style={styles.smallbutton} onPress={() => this.setState({overlay: !this.state.overlay})}>
                   <Image source = {require('../Question.png')} style={{resizeMode: 'contain'}} />
                 </TouchableOpacity>
+            </View>
 
                 <Overlay isVisible={this.state.overlay} onBackdropPress={() => this.setState({overlay: !this.state.overlay})}>
-                  <Text>Hello from Overlay!</Text>
+                  <View style={styles.wrap}>
+                    <Swiper style={styles.wrapper} showsButtons={true}>
+                      <View style={styles.slide1}>
+                        <Text style={styles.text}>Follow the trail</Text>
+                      </View>
+                      <View style={styles.slide2}>
+                        <Text style={styles.text}>Look at the map</Text>
+                      </View>
+                      <View style={styles.slide3}>
+                        <Text style={styles.text}>lmao</Text>
+                      </View>
+                    </Swiper>
+                  </View>
                 </Overlay>
-            </View>
+
           </View>  
           );
           
@@ -161,11 +176,24 @@ class MapComponent extends React.Component {
                 <TouchableOpacity style={styles.smallbutton} title = "" style={styles.smallbutton} onPress={() => this.setState({overlay: !this.state.overlay})}>
                   <Image source = {require('../Question.png')} style={{resizeMode:'contain'}}/>
                 </TouchableOpacity>
-
-                <Overlay isVisible={this.state.overlay} onBackdropPress={() => this.setState({overlay: !this.state.overlay})}>
-                  <Text>Hello from Overlay!</Text>
-                </Overlay>
               </View>
+
+              <Overlay isVisible={this.state.overlay} onBackdropPress={() => this.setState({overlay: !this.state.overlay})}>
+                  <View style={styles.wrap}>
+                    <Swiper style={styles.wrapper} showsButtons={true}>
+                      <View style={styles.slide1}>
+                        <Text style={styles.text}>Display a fact</Text>
+                      </View>
+                      <View style={styles.slide2}>
+                        <Text style={styles.text}>Look at the fact</Text>
+                      </View>
+                      <View style={styles.slide3}>
+                        <Text style={styles.text}>Dumbass</Text>
+                      </View>
+                    </Swiper>
+                  </View>
+              </Overlay>
+
 
             </View>
           )
@@ -218,7 +246,37 @@ const styles = StyleSheet.create({
   smallbutton: {
     width: 35 ,
     height:35,
-  }
+  },
+  wrap: {
+    width: 200,
+    height: 200,
+  },
+  wrapper: {
+
+  },
+  slide1: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#9DD6EB'
+  },
+  slide2: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#97CAE5'
+  },
+  slide3: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#92BBD9'
+  },
+  text: {
+    color: '#fff',
+    fontSize: 20,
+    fontWeight: 'bold'
+  },
 
 });
 
