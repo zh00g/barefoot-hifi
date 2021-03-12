@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Button,
   Text,
@@ -35,87 +35,89 @@ function TrailPreviewScreen(props, { navigation }) {
     {
       id: "1",
       image: require("./Images/trailpreview.png"),
-    }, 
-    
+    },
+
   ]
   const trailreviews = [
     {
       id: "1",
       image: require("./Images/trailreviews.png"),
-    }, 
-    
+    },
+
   ]
   const Pics = ({ image }) => (
     <View >
-      <Image style={{height: 250, resizeMode: 'contain', width: Metrics.screenWidth+150}} source = {image}/>
+      <Image style={{ height: 250, resizeMode: 'contain', width: Metrics.screenWidth + 150 }} source={image} />
     </View>
   );
   const Pic = ({ image }) => (
     <View >
-      <Image style={{height: 200, resizeMode: 'contain', width: Metrics.screenWidth+300, marginLeft:20}} source = {image}/>
+      <Image style={{ height: 200, resizeMode: 'contain', width: Metrics.screenWidth + 300, marginLeft: 20 }} source={image} />
     </View>
   );
   const renderItem = ({ item }) => (
-    <Pics style = {{resizeMode: 'contain'}} image={item.image} />
+    <Pics style={{ resizeMode: 'contain' }} image={item.image} />
   );
   const renderItem2 = ({ item }) => (
-    <Pic style = {{resizeMode: 'contain'}} image={item.image} />
+    <Pic style={{ resizeMode: 'contain' }} image={item.image} />
   );
 
   return (
-    <View style= {styles.previewscreen}>
+    <View style={styles.previewscreen}>
       <ScrollView>
-      <View style = {{justifyContent: 'center', alignItems: 'center', width: Metrics.screenWidth, height: 40, paddingHorizontal:50, marginVertical:10,}}>
-      <Image style = {{resizeMode: 'contain',flex:1, width:'100%'}} source = {require("./Images/owltrail.png")}/>
-      </View>
-      <View style = {styles.trailinfopicbox}> 
-      
-      <FlatList
-        horizontal = {true}
-        data={trailpics}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-      /> 
-      
-      </View>
-      
+        <View style={{ justifyContent: 'center', alignItems: 'center', width: Metrics.screenWidth, height: 40, paddingHorizontal: 50, marginVertical: 10, }}>
+          <Image style={{ resizeMode: 'contain', flex: 1, width: '100%' }} source={require("./Images/owltrail.png")} />
+        </View>
+        <View style={styles.trailinfopicbox}>
 
-      <View style = {styles.trailinfo}>
-        <Image style = {styles.trailinfopic} source = {require("./Images/trailinfo.png")} />
-      </View>
-      
-      <View style = {styles.previewbuttonbox}> 
-      <TouchableOpacity  
-      activeOpcaity = {0.5} 
-      onPress={() => props.navigation.navigate('MapStart')}
-      style = {styles.previewbutton}>
-      <Text style = {{fontSize: 18,
-          color: "#fff",
-          fontWeight: "bold",
-          textTransform: "uppercase"}}> 
-          Let's Go! 
+          <FlatList
+            horizontal={true}
+            data={trailpics}
+            renderItem={renderItem}
+            keyExtractor={item => item.id}
+          />
+
+        </View>
+
+
+        <View style={styles.trailinfo}>
+          <Image style={styles.trailinfopic} source={require("./Images/trailinfo.png")} />
+        </View>
+
+        <View style={styles.previewbuttonbox}>
+          <TouchableOpacity
+            activeOpcaity={0.5}
+            onPress={() => props.navigation.navigate('MapStart')}
+            style={styles.previewbutton}>
+            <Text style={{
+              fontSize: 18,
+              color: "#fff",
+              fontWeight: "bold",
+              textTransform: "uppercase"
+            }}>
+              Let's Go!
           </Text>
-      </TouchableOpacity>
-      </View>
+          </TouchableOpacity>
+        </View>
 
-      <View style = {{margin:10}}> 
-      </View>
+        <View style={{ margin: 10 }}>
+        </View>
 
-      <View style = {styles.trailinfo}>
-        <Image style = {styles.trailinfopic} source = {require("./Images/previewmap.png")} />
-      </View>
+        <View style={styles.trailinfo}>
+          <Image style={styles.trailinfopic} source={require("./Images/previewmap.png")} />
+        </View>
 
-      <View style = {{margin:20}}> 
-      </View>
+        <View style={{ margin: 20 }}>
+        </View>
 
-      <View style = {styles.trailinfo}>
-      <FlatList
-        horizontal = {true}
-        data={trailreviews}
-        renderItem={renderItem2}
-        keyExtractor={item => item.id}
-      /> 
-      </View>
+        <View style={styles.trailinfo}>
+          <FlatList
+            horizontal={true}
+            data={trailreviews}
+            renderItem={renderItem2}
+            keyExtractor={item => item.id}
+          />
+        </View>
       </ScrollView>
     </View>
   );
@@ -129,7 +131,7 @@ function MapStartScreen(props) {
     setOverlayVisible(!overlayvisible);
   };
 
-  
+
   const toggleBar = () => {
     setVisible(!visible);
   };
@@ -140,74 +142,86 @@ function MapStartScreen(props) {
   };
 
 
-  const recordbarstart =  
-  <View style={styles.recordingbarstart}>
-  <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
-    <Image style={styles.recordButtonIcon} source= {require('./Images/learnicon.png')}/>
-  </TouchableOpacity>
-  <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={toggleBar}>
-    <Image style={styles.recordButtonIcon} source= {require('./Images/startfollow.png')}/>
-  </TouchableOpacity>
-  <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
-    <Image style={styles.recordButtonIcon} source= {require('./Images/addlandmark.png')}/>
-  </TouchableOpacity>
-</View>
+  const recordbarstart =
+    <View style={styles.recordingbarstart}>
+      <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
+        <Image style={styles.recordButtonIcon} source={require('./Images/learnicon.png')} />
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={toggleBar}>
+        <Image style={styles.recordButtonIcon} source={require('./Images/startfollow.png')} />
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
+        <Image style={styles.recordButtonIcon} source={require('./Images/addlandmark.png')} />
+      </TouchableOpacity>
+    </View>
 
-const recordbarend =  
-  <View style={styles.recordingbarstart}>
-  <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
-    <Image style={styles.recordButtonIcon} source= {require('./Images/learnicon.png')}/>
-  </TouchableOpacity>
-  <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
-    <Image style={styles.recordButtonIcon} source= {require('./Images/pauseicon.png')}/>
-  </TouchableOpacity>
-  <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={toggleOverlay}>
-    <Image style={styles.recordButtonIcon} source= {require('./Images/stopicon.png')}/>
+  const recordbarend =
+    <View style={styles.recordingbarstart}>
+      <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
+        <Image style={styles.recordButtonIcon} source={require('./Images/learnicon.png')} />
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
+        <Image style={styles.recordButtonIcon} source={require('./Images/pauseicon.png')} />
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={toggleOverlay}>
+        <Image style={styles.recordButtonIcon} source={require('./Images/stopicon.png')} />
 
-    <Overlay overlayStyle={styles.endtrailconfirm1} isVisible={overlayvisible} onBackdropPress={toggleOverlay}>
-            <View style = {{alignItems:'center'}}>
-            <Text style = {{fontSize: 30, color: '#376171'}}>Save Your Adventure?</Text>
+        <Overlay overlayStyle={styles.endtrailconfirm1} isVisible={overlayvisible} onBackdropPress={toggleOverlay}>
+          <View style={{ alignItems: 'center' }}>
+            <Text style={{ fontSize: 30, color: '#376171' }}>Save Your Adventure?</Text>
             <View style={styles.yesnobar}>
               <TouchableOpacity style={styles.popupButton} onPress={yesbutton}>
-              <Image style={styles.popupButtonIcon} source= {require('./Images/yes.png')}/>
+                <Image style={styles.popupButtonIcon} source={require('./Images/yes.png')} />
               </TouchableOpacity>
               {/* <Button title="Yes" onPress={() =>
                 props.navigation.navigate('Congrats')} /> */}
-                <TouchableOpacity style={styles.popupButton} onPress={() => props.navigation.navigate('Explore')}>
-              <Image style={styles.popupButtonIcon} source= {require('./Images/no.png')}/>
+              <TouchableOpacity style={styles.popupButton} onPress={() => props.navigation.navigate('Explore')}>
+                <Image style={styles.popupButtonIcon} source={require('./Images/no.png')} />
               </TouchableOpacity>
               {/* <Button title="No" onPress={() => props.navigation.navigate('Explore')} /> */}
             </View>
-              </View>
-          </Overlay>
+          </View>
+        </Overlay>
 
 
-  </TouchableOpacity>
-  <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
-    <Image style={styles.recordButtonIcon} source= {require('./Images/addlandmark.png')}/>
-  </TouchableOpacity>
-</View>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
+        <Image style={styles.recordButtonIcon} source={require('./Images/addlandmark.png')} />
+      </TouchableOpacity>
+    </View>
 
-var recordbar;
-if (visible) {
-  recordbar = recordbarend;
-}
-else {
-  recordbar = recordbarstart;
-}
-  
+  var recordbar;
+  if (visible) {
+    recordbar = recordbarend;
+  }
+  else {
+    recordbar = recordbarstart;
+  }
+
   return (
     <View style={styles.container_mapstart}>
       <View style={styles.map}>
         <MapComponent />
       </View>
-        {recordbar}
+      {recordbar}
     </View>
 
   );
 }
 
 function CongratsScreen(props, { navigation }) {
+  const [visible, setVisible] = useState(false);
+
+  const toggleOverlay = () => {
+    setVisible(!visible);
+  };
+
+
+  const sendbutton = () => {
+    setVisible(!visible);
+    props.navigation.navigate('Feed');
+  }
+
   const trailtips = [
     {
       id: "1",
@@ -218,94 +232,114 @@ function CongratsScreen(props, { navigation }) {
     {
       id: "1",
       image: require("./Images/photosfromadventure.png"),
-    },  
+    },
   ]
   const trailfacts = [
     {
       id: "1",
       image: require("./Images/trailfacts.png"),
-    },   
+    },
   ]
   const Pics = ({ image }) => (
 
-      <Image style={{marginLeft: 15, flex:1, height: 350, width: Metrics.screenWidth+200, resizeMode: 'contain'}} source = {image}/>
+    <Image style={{ marginLeft: 15, flex: 1, height: 350, width: Metrics.screenWidth + 200, resizeMode: 'contain' }} source={image} />
 
   );
   const Pic = ({ image }) => (
 
-    <Image style={{marginLeft: 20, flex:1, height: 150, width: Metrics.screenWidth+200, resizeMode: 'contain'}} source = {image}/>
+    <Image style={{ marginLeft: 20, flex: 1, height: 150, width: Metrics.screenWidth + 200, resizeMode: 'contain' }} source={image} />
 
-);
+  );
   const renderItem = ({ item }) => (
     <View>
-    <Pics image={item.image} />
+      <Pics image={item.image} />
     </View>
   );
   const renderItem2 = ({ item }) => (
     <View>
-    <Pic image={item.image} />
+      <Pic image={item.image} />
     </View>
   );
 
   return (
-    <View style = {styles.congratspage}>
-      
-      <ScrollView>
-      <View style = {{justifyContent: 'center', alignItems: 'center', width: Metrics.screenWidth, height: 100, paddingHorizontal:50}}>
-      <Image style = {{resizeMode: 'contain',flex:1, width:'100%'}} source = {require("./Images/congrats.png")}/>
-      </View>
-      <View style = {{justifyContent: 'center', alignItems: 'center', width: Metrics.screenWidth, height: 50, paddingHorizontal:50}}>
-      <Image style = {{resizeMode: 'contain',flex:1, width:'100%'}} source = {require("./Images/completedtext.png")}/>
-      </View>
-      <View style={styles.recordingbarend}>
-          <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={() => props.navigation.navigate('Friends')}>
-            <Image style={styles.recordButtonIcon} source= {require('./Images/sendicon.png')}/>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={() => props.navigation.navigate('Explore')}>
-            <Image style={styles.recordButtonIcon} source= {require('./Images/backtoexplore.png')}/>
-          </TouchableOpacity>
-      </View>
-      <View style = {{justifyContent: 'center', alignItems: 'center', 
-      width: Metrics.screenWidth, height: 100, paddingHorizontal:50, marginTop:10,
-      backgroundColor: '#F5F0EC', borderTopRightRadius: 50, borderTopLeftRadius: 50}}>
-      <Image style = {{resizeMode: 'contain',flex:1, width:'100%'}} source = {require("./Images/advsummary.png")}/>
-      </View>
+    <View style={styles.congratspage}>
 
-      {/* #F5F0EC */}
+      <ScrollView>
+        <View style={{ justifyContent: 'center', alignItems: 'center', width: Metrics.screenWidth, height: 100, paddingHorizontal: 50 }}>
+          <Image style={{ resizeMode: 'contain', flex: 1, width: '100%' }} source={require("./Images/congrats.png")} />
+        </View>
+        <View style={{ justifyContent: 'center', alignItems: 'center', width: Metrics.screenWidth, height: 50, paddingHorizontal: 50 }}>
+          <Image style={{ resizeMode: 'contain', flex: 1, width: '100%' }} source={require("./Images/completedtext.png")} />
+        </View>
+        <View style={styles.recordingbarend}>
+          <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={() => props.navigation.navigate('Friends')}>
+            <Image style={styles.recordButtonIcon} source={require('./Images/sendicon.png')} />
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.recordButton2} activeOpacity={0.5} onPress={toggleOverlay}>
+            <Image style={styles.recordButtonIcon} source={require('./Images/postbutton.png')} />
+            <Overlay overlayStyle={styles.endtrailconfirm} isVisible={visible} onBackdropPress={toggleOverlay}>
+              <View style={{ alignItems: 'center' }}>
+                <Text style={{ fontSize: 40, color: '#376171', fontWeight: 'bold' }}>Posted!</Text>
+                <Text > Go to Feed! </Text>
+                <View style={styles.yesnobar2}>
+                  <TouchableOpacity activeOpacity={0.5} onPress={sendbutton}>
+
+                    <AntDesign name="checkcircleo" size={60} color="#52ADA8" />
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </Overlay>
+
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={() => props.navigation.navigate('Explore')}>
+            <Image style={styles.recordButtonIcon} source={require('./Images/backtoexplore.png')} />
+          </TouchableOpacity>
+        </View>
+        <View style={{
+          justifyContent: 'center', alignItems: 'center',
+          width: Metrics.screenWidth, height: 100, paddingHorizontal: 50, marginTop: 10,
+          backgroundColor: '#F5F0EC', borderTopRightRadius: 50, borderTopLeftRadius: 50
+        }}>
+          <Image style={{ resizeMode: 'contain', flex: 1, width: '100%' }} source={require("./Images/advsummary.png")} />
+        </View>
+
+        {/* #F5F0EC */}
 
         <FlatList
-        style = {styles.horizontalflatlist}
-        horizontal = {true}
-        backgroundColor = {'#F5F0EC'}
-        data={photosfromadventure}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}>
-        </FlatList>    
-
-        {/* <Image style={{resizeMode: 'contain'}} source = {require("./Images/trailtips.png")}/> */}
-      <FlatList
-        style = {styles.horizontalflatlist}
-        backgroundColor = {'#F5F0EC'}
-        horizontal = {true}
-        data={trailfacts}
-        renderItem={renderItem2}
-        keyExtractor={item => item.id}>
+          style={styles.horizontalflatlist}
+          horizontal={true}
+          backgroundColor={'#F5F0EC'}
+          data={photosfromadventure}
+          renderItem={renderItem}
+          keyExtractor={item => item.id}>
         </FlatList>
 
-  
-      <FlatList
-        style = {styles.horizontalflatlist}
-        backgroundColor = {'#F5F0EC'}
-        horizontal = {true}
-        data={trailtips}
-        renderItem={renderItem2}
-        keyExtractor={item => item.id}
-      /> 
-      {/* <Image source = {require("./Images/trailfacts.png")}/> */}
-      <View style = {{justifyContent: 'center', alignItems: 'center', backgroundColor: '#F5F0EC'}}>
-      <Image source = {require("./Images/leavereview.png")}/>
-      </View>
-      
+        {/* <Image style={{resizeMode: 'contain'}} source = {require("./Images/trailtips.png")}/> */}
+        <FlatList
+          style={styles.horizontalflatlist}
+          backgroundColor={'#F5F0EC'}
+          horizontal={true}
+          data={trailfacts}
+          renderItem={renderItem2}
+          keyExtractor={item => item.id}>
+        </FlatList>
+
+
+        <FlatList
+          style={styles.horizontalflatlist}
+          backgroundColor={'#F5F0EC'}
+          horizontal={true}
+          data={trailtips}
+          renderItem={renderItem2}
+          keyExtractor={item => item.id}
+        />
+        {/* <Image source = {require("./Images/trailfacts.png")}/> */}
+        <View style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: '#F5F0EC' }}>
+          <Image source={require("./Images/leavereview.png")} />
+        </View>
+
       </ScrollView>
 
     </View>
@@ -341,13 +375,13 @@ function FriendsListScreen(props) {
       title: 'Dr. Landay!',
     },
   ];
-  
+
 
   const Item = ({ title }) => (
-    <TouchableOpacity 
-    activeOpacity={0.2} 
-    style={
-      styles.item}>
+    <TouchableOpacity
+      activeOpacity={0.2}
+      style={
+        styles.item}>
       <Ionicons name="person-circle-outline" color={"#A6D2AE"} size={60} />
       <Text style={styles.title}>{title}</Text>
     </TouchableOpacity>
@@ -364,10 +398,10 @@ function FriendsListScreen(props) {
   };
 
 
-const sendbutton = () => {
-  setVisible(!visible);
-  props.navigation.navigate('Explore');
-}
+  const sendbutton = () => {
+    setVisible(!visible);
+    props.navigation.navigate('Explore');
+  }
   return (
     <View style={styles.friendscontainer}>
 
@@ -398,17 +432,17 @@ const sendbutton = () => {
 
 
       <View style={styles.friendsbutton}>
-        <TouchableOpacity style={styles.recordButton}  activeOpacity={0.5} onPress={toggleOverlay}>
-            <Image style={styles.recordButtonIcon} source= {require('./Images/sendicon.png')}/>
+        <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={toggleOverlay}>
+          <Image style={styles.recordButtonIcon} source={require('./Images/sendicon.png')} />
           <Overlay overlayStyle={styles.endtrailconfirm} isVisible={visible} onBackdropPress={toggleOverlay}>
-            <View style = {{alignItems:'center'}}>
-            <Text style = {{fontSize: 40, color: '#376171', fontWeight: 'bold'}}>Sent!</Text>
-            <View style={styles.yesnobar2}>
-              <TouchableOpacity activeOpacity={0.5} onPress={sendbutton}>
-                <AntDesign name="checkcircleo" size={60} color="#52ADA8" />
-              </TouchableOpacity>
-            </View>
+            <View style={{ alignItems: 'center' }}>
+              <Text style={{ fontSize: 40, color: '#376171', fontWeight: 'bold' }}>Sent!</Text>
+              <View style={styles.yesnobar2}>
+                <TouchableOpacity activeOpacity={0.5} onPress={sendbutton}>
+                  <AntDesign name="checkcircleo" size={60} color="#52ADA8" />
+                </TouchableOpacity>
               </View>
+            </View>
           </Overlay>
 
         </TouchableOpacity>
@@ -418,13 +452,13 @@ const sendbutton = () => {
 }
 
 function CameraScreen() {
-//   return (
-//     <View style={styles.placeholder}>
-//       <Text>Camera screen</Text>
-//     </View>
-//   );
-// }
-const [hasPermission, setHasPermission] = useState(null);
+  //   return (
+  //     <View style={styles.placeholder}>
+  //       <Text>Camera screen</Text>
+  //     </View>
+  //   );
+  // }
+  const [hasPermission, setHasPermission] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
 
   useEffect(() => {
@@ -442,8 +476,8 @@ const [hasPermission, setHasPermission] = useState(null);
   }
   return (
     <View style={styles.camcontainer}>
-      <View style = {styles.camtitle}> 
-      <Text style = {{fontSize:20}}> Camera View! </Text>
+      <View style={styles.camtitle}>
+        <Text style={{ fontSize: 20 }}> Camera View! </Text>
       </View>
       <Camera style={styles.camera} type={type}>
         <View style={styles.buttonContainer}>
@@ -460,7 +494,7 @@ const [hasPermission, setHasPermission] = useState(null);
           </TouchableOpacity>
         </View>
       </Camera>
-      </View>
+    </View>
   );
 }
 
@@ -468,11 +502,11 @@ function ExploreScreen({ navigation }) {
   const tags = [
     {
       id: "2",
-      image: require("./Images/nearby.png")
+      image: require("./Images/nearby2.png")
     },
     {
       id: "3",
-      image: require("./Images/myfriends.png")
+      image: require("./Images/myfriends2.png")
     },
     {
       id: "4",
@@ -486,9 +520,9 @@ function ExploreScreen({ navigation }) {
   const Pics = ({ image }) => (
     <View >
       <TouchableOpacity activeOpacity={0.5}>
-      <Image style={{height:35, resizeMode: 'contain', width:140}} source = {image}/>
+        <Image style={{ height: 35, resizeMode: 'contain', width: 140 }} source={image} />
       </TouchableOpacity>
-      
+
     </View>
   );
   const renderItem = ({ item }) => (
@@ -496,58 +530,58 @@ function ExploreScreen({ navigation }) {
   );
 
   const Post = ({ image }) => (
-    <View> 
-    <TouchableOpacity 
-          activeOpacity = {0.9} 
-          style={styles.item2}
-          onPress={() => navigation.navigate('Preview')}>
-      <Image style={styles.img1} source = {image}/>
-    </TouchableOpacity>
-    <Text style = {{marginLeft:20, marginBottom:10, color: '#376171'}}> Owl Trail </Text> 
+    <View>
+      <TouchableOpacity
+        activeOpacity={0.9}
+        style={styles.item2}
+        onPress={() => navigation.navigate('Preview')}>
+        <Image style={styles.img1} source={image} />
+      </TouchableOpacity>
+      <Text style={{ marginLeft: 20, marginBottom: 10, color: '#376171' }}> Owl Trail </Text>
     </View>
   );
   return (
-    <View style = {styles.container}>
+    <View style={styles.container}>
       <View style={styles.mapbox}>
-        <MapComponent navigation = {navigation} flag = {true}/>
+        <MapComponent navigation={navigation} flag={true} />
       </View>
-      <View style = {{flex:0.23, marginTop:10,}}>
-      <FlatList
-        horizontal = {true}
-        data={tags}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-      /> 
+      <View style={{ flex: 0.23, marginTop: 10, }}>
+        <FlatList
+          horizontal={true}
+          data={tags}
+          renderItem={renderItem}
+          keyExtractor={item => item.id}
+        />
 
       </View>
-      
+
       <View style={styles.trailpics}>
 
-     
-     
-      <ScrollView style={styles.scroll}>
-        <View style={styles.rowsplit}>
-          <View style={styles.exploreimage}>
-            <Post image={require('./Images/R27.png')} />
-            {/* <Text> Owl Trail </Text> */}
-            <Post image={require('./Images/R29.png')} />
-            {/* <Text> Owl Trail </Text> */}
-            <Post image={require('./Images/R31.png')} />
+
+
+        <ScrollView style={styles.scroll}>
+          <View style={styles.rowsplit}>
+            <View style={styles.exploreimage}>
+              <Post image={require('./Images/R27.png')} />
+              {/* <Text> Owl Trail </Text> */}
+              <Post image={require('./Images/R29.png')} />
+              {/* <Text> Owl Trail </Text> */}
+              <Post image={require('./Images/R31.png')} />
+              {/* <Text> Owl Trail </Text> */}
+            </View>
+            <View style={styles.exploreimage2}>
+              <Post image={require('./Images/R28.png')} />
+              {/* <Text> Owl Trail </Text> */}
+              <Post image={require('./Images/R30.png')} />
+              {/* <Text> Owl Trail </Text> */}
+              <Post image={require('./Images/R32.png')} />
+              {/* <Text> Owl Trail </Text> */}
+            </View>
+            <Post image={require('./Images/R33.png')} />
             {/* <Text> Owl Trail </Text> */}
           </View>
-          <View style={styles.exploreimage2}>
-            <Post image={require('./Images/R28.png')} />
-            {/* <Text> Owl Trail </Text> */}
-            <Post image={require('./Images/R30.png')} />
-            {/* <Text> Owl Trail </Text> */}
-            <Post image={require('./Images/R32.png')} />
-            {/* <Text> Owl Trail </Text> */}
-          </View>
-          <Post image={require('./Images/R33.png')} />
-          {/* <Text> Owl Trail </Text> */}
-        </View>
-        
-      </ScrollView>
+
+        </ScrollView>
       </View>
     </View>
   );
@@ -558,13 +592,13 @@ function FeedScreen({ navigation }) {
     {
       id: "1",
       image: require("./Images/stories2.png"),
-    }, 
+    },
   ]
   const posts = [
     {
       id: "1",
       image: require("./Images/post11.png"),
-    }, 
+    },
     {
       id: "2",
       image: require("./Images/post22.png")
@@ -575,18 +609,18 @@ function FeedScreen({ navigation }) {
     },
   ]
   const Post = ({ image }) => (
-    <TouchableOpacity 
-          activeOpacity = {0.9} 
-          style={styles.item}
-          onPress={() => navigation.navigate('Preview')}>
-      <Image style={{height:550, resizeMode:'contain', width:Metrics.screenWidth - 20}} source = {image}/>
+    <TouchableOpacity
+      activeOpacity={0.9}
+      style={styles.item}
+      onPress={() => navigation.navigate('Preview')}>
+      <Image style={{ height: 550, resizeMode: 'contain', width: Metrics.screenWidth - 20 }} source={image} />
     </TouchableOpacity>
   );
   const Story = ({ image }) => (
-    <View 
-          activeOpacity = {0.9} 
-          >
-      <Image style={{height:100, resizeMode:'contain', width:Metrics.screenWidth + 100}} source = {image}/>
+    <View
+      activeOpacity={0.9}
+    >
+      <Image style={{ height: 100, resizeMode: 'contain', width: Metrics.screenWidth + 100 }} source={image} />
     </View>
   );
   const renderItem = ({ item }) => (
@@ -600,21 +634,21 @@ function FeedScreen({ navigation }) {
   return (
     <View style={styles.container}>
       {/* <Text>Feed screen</Text> */}
-      <View style = {styles.storybox}>
-      <FlatList
-      horizontal = {true}
-        data={stories}
-        renderItem={renderItem2}
-        keyExtractor={item => item.id}
-      />
+      <View style={styles.storybox}>
+        <FlatList
+          horizontal={true}
+          data={stories}
+          renderItem={renderItem2}
+          keyExtractor={item => item.id}
+        />
       </View>
-      <View style = {styles.feedbox}>
-      {/* {type} */}
-      <FlatList
-        data={posts}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-      />
+      <View style={styles.feedbox}>
+        {/* {type} */}
+        <FlatList
+          data={posts}
+          renderItem={renderItem}
+          keyExtractor={item => item.id}
+        />
       </View>
     </View>
   );
@@ -632,49 +666,49 @@ function CreateScreen(props, { navigation }) {
     props.navigation.navigate('Congrats');
   };
 
-  const recordbarstart =  
-  <View style={styles.recordingbarstart}>
-  <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
-    <Image style={styles.recordButtonIcon} source= {require('./Images/learnicon.png')}/>
-  </TouchableOpacity>
-  <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={toggleBar}>
-    <Image style={styles.recordButtonIcon} source= {require('./Images/startfollow.png')}/>
-  </TouchableOpacity>
-  <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
-    <Image style={styles.recordButtonIcon} source= {require('./Images/addlandmark.png')}/>
-  </TouchableOpacity>
-</View>
+  const recordbarstart =
+    <View style={styles.recordingbarstart}>
+      <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
+        <Image style={styles.recordButtonIcon} source={require('./Images/learnicon.png')} />
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={toggleBar}>
+        <Image style={styles.recordButtonIcon} source={require('./Images/startfollow.png')} />
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
+        <Image style={styles.recordButtonIcon} source={require('./Images/addlandmark.png')} />
+      </TouchableOpacity>
+    </View>
 
-const recordbarend =  
-  <View style={styles.recordingbarstart}>
-  <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
-    <Image style={styles.recordButtonIcon} source= {require('./Images/learnicon.png')}/>
-  </TouchableOpacity>
-  <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
-    <Image style={styles.recordButtonIcon} source= {require('./Images/pauseicon.png')}/>
-  </TouchableOpacity>
-  <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={toggleBar2}>
-    <Image style={styles.recordButtonIcon} source= {require('./Images/stopicon.png')}/>
-  </TouchableOpacity>
-  <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
-    <Image style={styles.recordButtonIcon} source= {require('./Images/addlandmark.png')}/>
-  </TouchableOpacity>
-</View>
+  const recordbarend =
+    <View style={styles.recordingbarstart}>
+      <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
+        <Image style={styles.recordButtonIcon} source={require('./Images/learnicon.png')} />
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
+        <Image style={styles.recordButtonIcon} source={require('./Images/pauseicon.png')} />
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={toggleBar2}>
+        <Image style={styles.recordButtonIcon} source={require('./Images/stopicon.png')} />
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
+        <Image style={styles.recordButtonIcon} source={require('./Images/addlandmark.png')} />
+      </TouchableOpacity>
+    </View>
 
-var recordbar;
-if (visible1) {
-  recordbar = recordbarend;
-}
-else {
-  recordbar = recordbarstart;
-}
-  
+  var recordbar;
+  if (visible1) {
+    recordbar = recordbarend;
+  }
+  else {
+    recordbar = recordbarstart;
+  }
+
   return (
     <View style={styles.container_mapstart}>
       <View style={styles.map}>
         <MapComponent />
       </View>
-        {recordbar}
+      {recordbar}
     </View>
 
   );
@@ -683,13 +717,13 @@ else {
 function ProfileScreen({ navigation }) {
   return (
     <View style={styles.placeholder}>
-      <ScrollView 
-      contentContainerStyle={{alignItems: 'center'}}>
-      <View>
-        <Image source = {require('./Images/profile.png')} style = {{width:Metrics.screenWidth, height: Metrics.screenHeight+400}} />
-      </View>
+      <ScrollView
+        contentContainerStyle={{ alignItems: 'center' }}>
+        <View>
+          <Image source={require('./Images/profile.png')} style={{ width: Metrics.screenWidth, height: Metrics.screenHeight + 400 }} />
+        </View>
       </ScrollView>
-     
+
       {/* <Button
         title="Go to Details"
         onPress={() => navigation.navigate('Details')}
@@ -849,7 +883,7 @@ const styles = StyleSheet.create({
   congratspage: {
     display: 'flex',
     flexDirection: 'column',
-    flex:1,
+    flex: 1,
     backgroundColor: 'white',
   },
   trailtips: {
@@ -857,30 +891,40 @@ const styles = StyleSheet.create({
     backgroundColor: 'yellow',
   },
   trailfacts: {
-    flex:0.1,
+    flex: 0.1,
     backgroundColor: 'pink',
   },
-  horizontalflatlist:{
+  horizontalflatlist: {
     //minHeight: 200,
     //display: 'flex',
     //flex:1,
     //flexGrow:0,
     //backgroundColor: 'pink',
   },
-  recordButton:{
+  recordButton: {
     width: 100,
     height: 100,
     display: 'flex',
-    justifyContent:'center',
+    justifyContent: 'center',
     alignItems: 'center',
-    //backgroundColor: 'pink',
+    // backgroundColor: 'pink',
   },
-  recordButtonIcon:{
+  recordButton2: {
+    width: 100,
+    height: 100,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    // backgroundColor: 'green',
+  },
+  recordButtonIcon: {
     flex: 1,
     resizeMode: 'contain',
-    margin:7,
+    width:100,
+    height:100,
+    margin: 7,
   },
-  popupButtonIcon:{
+  popupButtonIcon: {
     flex: 1,
     width: '100%',
     height: '100%',
@@ -892,16 +936,16 @@ const styles = StyleSheet.create({
     height: 90,
     //backgroundColor: 'pink',
     display: 'flex',
-    justifyContent:'center',
+    justifyContent: 'center',
     alignItems: 'center',
   },
   profileimg: {
-    flex:1,
+    flex: 1,
     width: Metrics.screenWidth,
     height: Metrics.screenHeight,
   },
   profilepage: {
-    flex:1,
+    flex: 1,
     width: Metrics.screenWidth,
     // height: Metrics.screenHeight * 2,
     //resizeMode: 'contain',
@@ -919,15 +963,15 @@ const styles = StyleSheet.create({
   },
   previewbutton: {
     backgroundColor: "#52ADA8",
-    width:200,
-    height:50,
+    width: 200,
+    height: 50,
     borderRadius: 50,
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 10,
   },
   trailinfopicbox: {
-    paddingTop:10,
+    paddingTop: 10,
     flex: 0.1,
   },
   trailinfo: {
@@ -942,9 +986,9 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
   },
-  camtitle:{
+  camtitle: {
     // backgroundColor: 'pink',
-    alignItems:'center',
+    alignItems: 'center',
   },
   camera: {
     flex: 0.7,
@@ -964,7 +1008,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: 'white',
   },
-  storybox:{
+  storybox: {
     flex: 0.5,
     paddingTop: 10,
     // backgroundColor: "pink",
@@ -980,14 +1024,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     //backgroundColor: 'pink',
-    margin:10,
+    margin: 10,
   },
   friendscontainer: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
     padding: 10,
-    backgroundColor:'white'
+    backgroundColor: 'white'
   },
   searchSection: {
     margin: 10,
@@ -1057,7 +1101,7 @@ const styles = StyleSheet.create({
     //alignItems: "center",
   },
   trailpics: {
-    flex:2,
+    flex: 2,
     //backgroundColor: "lightblue",
     //alignItems: "center",
   },
