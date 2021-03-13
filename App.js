@@ -665,6 +665,11 @@ function CreateScreen(props, { navigation }) {
   const toggleOver = () => {
     setOverlayVis(!overlayvis);
   };
+  const sendbutton = () => {
+    setOverlayVis(!overlayvis);
+    setVisible(!visible1);
+    props.navigation.navigate('Congrats');
+  }
 
   const toggleBar2 = () => {
     setVisible(!visible1);
@@ -696,20 +701,25 @@ function CreateScreen(props, { navigation }) {
         <Image style={styles.recordButtonIcon} source={require('./Images/stopicon.png')} />
 
         <Overlay overlayStyle={styles.endtrailconfirm1} isVisible={overlayvis} onBackdropPress={toggleOver}>
-                  <View style={styles.endtrailconfirm1}>
-                    <Swiper style={styles.wrapper} showsButtons={true}>
-                      <View style={styles.slide1}>
-                        <Text style={styles.text}>finish</Text>
-                      </View>
-                      <View style={styles.slide2}>
-                        <Text style={styles.text}>the</Text>
-                      </View>
-                      <View style={styles.slide3}>
-                        <Text style={styles.text}>trail</Text>
-                      </View>
-                    </Swiper>
-                  </View>
-              </Overlay>
+          <View style={styles.endtrailconfirm1}>
+            <Swiper style={styles.wrapper} showsButtons={true}>
+              <View style={styles.slide1}>
+                <Text style={styles.text}>finish</Text>
+              </View>
+              <View style={styles.slide2}>
+                <Text style={styles.text}>the</Text>
+              </View>
+              <View style={styles.slide3}>
+                <Text style={styles.text}>trail</Text>
+                <View style={styles.yesnobar2}>
+                  <TouchableOpacity activeOpacity={0.5} onPress={sendbutton}>
+                    <AntDesign name="checkcircleo" size={60} color="#52ADA8" />
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </Swiper>
+          </View>
+        </Overlay>
 
       </TouchableOpacity>
       <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
@@ -942,8 +952,8 @@ const styles = StyleSheet.create({
   recordButtonIcon: {
     flex: 1,
     resizeMode: 'contain',
-    width:100,
-    height:100,
+    width: 100,
+    height: 100,
     margin: 7,
   },
   popupButtonIcon: {
