@@ -26,6 +26,7 @@ import { Metrics } from './Themes/index.js';
 import metrics from './Themes/Metrics.js';
 import { setStatusBarNetworkActivityIndicatorVisible } from 'expo-status-bar';
 import SwitchButton from 'switch-button-react-native';
+import Swiper from 'react-native-swiper'
 //testing commit
 //testing commit 2
 
@@ -656,9 +657,13 @@ function FeedScreen({ navigation }) {
 
 function CreateScreen(props, { navigation }) {
   const [visible1, setVisible] = useState(false);
+  const [overlayvis, setOverlayVis] = useState(false);
 
   const toggleBar = () => {
     setVisible(!visible1);
+  };
+  const toggleOver = () => {
+    setOverlayVis(!overlayvis);
   };
 
   const toggleBar2 = () => {
@@ -687,8 +692,25 @@ function CreateScreen(props, { navigation }) {
       <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
         <Image style={styles.recordButtonIcon} source={require('./Images/pauseicon.png')} />
       </TouchableOpacity>
-      <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={toggleBar2}>
+      <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={toggleOver}>
         <Image style={styles.recordButtonIcon} source={require('./Images/stopicon.png')} />
+
+        <Overlay overlayStyle={styles.endtrailconfirm1} isVisible={overlayvis} onBackdropPress={toggleOver}>
+                  <View style={styles.endtrailconfirm1}>
+                    <Swiper style={styles.wrapper} showsButtons={true}>
+                      <View style={styles.slide1}>
+                        <Text style={styles.text}>finish</Text>
+                      </View>
+                      <View style={styles.slide2}>
+                        <Text style={styles.text}>the</Text>
+                      </View>
+                      <View style={styles.slide3}>
+                        <Text style={styles.text}>trail</Text>
+                      </View>
+                    </Swiper>
+                  </View>
+              </Overlay>
+
       </TouchableOpacity>
       <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
         <Image style={styles.recordButtonIcon} source={require('./Images/addlandmark.png')} />
@@ -1198,5 +1220,36 @@ const styles = StyleSheet.create({
     // borderColor: '#376171',
     // marginVertical: 8,
     // marginHorizontal: 16,
+  },
+  wrap: {
+    width: 200,
+    height: 200,
+    backgroundColor: "#F5F0EC",
+  },
+  wrapper: {
+
+  },
+  slide1: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    //backgroundColor: '#9DD6EB'
+  },
+  slide2: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    //backgroundColor: '#97CAE5'
+  },
+  slide3: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    //backgroundColor: '#92BBD9'
+  },
+  text: {
+    color: '#376171',
+    fontSize: 20,
+    fontWeight: 'bold'
   },
 });
