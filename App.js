@@ -682,7 +682,7 @@ function CreateScreen(props, { navigation }) {
         <Image style={styles.recordButtonIcon} source={require('./Images/learnicon.png')} />
       </TouchableOpacity>
       <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={toggleBar}>
-        <Image style={styles.recordButtonIcon} source={require('./Images/startfollow.png')} />
+        <Image style={styles.recordButtonIcon} source={require('./Images/recordcreate.png')} />
       </TouchableOpacity>
       <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
         <Image style={styles.recordButtonIcon} source={require('./Images/addlandmark.png')} />

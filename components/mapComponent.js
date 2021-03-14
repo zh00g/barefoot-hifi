@@ -118,17 +118,18 @@ class MapComponent extends React.Component {
               activeOpacity = {0.5} 
               onPress={() => this.setState({switch: !this.state.switch})}
               style = {styles.previewbutton}>
-                <Text style = {{fontSize: 18,
+                {/* <Text style = {{fontSize: 18,
                   color: "#fff",
                   fontWeight: "bold",
                   textTransform: "uppercase"}}> 
                   {mode} 
-                </Text>
+                </Text> */}
+                <Image style = {{width:200, height:200, resizeMode: 'contain'}} source={require('../mapmodetoggle.png')} />
               </TouchableOpacity>
             </View>
             <View style={{position: 'absolute', right: '4.5%'}}>
                 <TouchableOpacity title = "" style={styles.smallbutton} onPress={() => this.setState({overlay: !this.state.overlay})}>
-                  <Image source = {require('../Question.png')} style={{resizeMode: 'contain'}} />
+                  <Image source = {require('../Question.png')} style={{resizeMode: 'contain', marginTop:10}} />
                 </TouchableOpacity>
             </View>
 
@@ -164,17 +165,18 @@ class MapComponent extends React.Component {
                   activeOpacity = {0.5} 
                   onPress={() => this.setState({switch: !this.state.switch})}
                   style = {styles.previewbutton}>
-                    <Text style = {{fontSize: 18,
+                    {/* <Text style = {{fontSize: 18,
                       color: "#fff",
                       fontWeight: "bold",
                       textTransform: "uppercase"}}> 
                       {mode} 
-                    </Text>
+                    </Text> */}
+                    <Image style = {{width:200, height:200, resizeMode: 'contain'}} source={require('../learnmodetoggle.png')} />
                 </TouchableOpacity>
               </View>
               <View style={{position: 'absolute',right: '4.5%'}}>
                 <TouchableOpacity style={styles.smallbutton} title = "" style={styles.smallbutton} onPress={() => this.setState({overlay: !this.state.overlay})}>
-                  <Image source = {require('../Question.png')} style={{resizeMode:'contain'}}/>
+                  <Image source = {require('../Question.png')} style={{resizeMode:'contain', marginTop:10}}/>
                 </TouchableOpacity>
               </View>
 
@@ -231,9 +233,9 @@ const styles = StyleSheet.create({
     opacity: 1,
   },
   previewbutton: {
-    backgroundColor: "#52ADA8",
+    //backgroundColor: "#52ADA8",
     width:180,
-    height:50,
+    height:40,
     borderRadius: 50,
     justifyContent: 'center',
     alignItems: 'center',
