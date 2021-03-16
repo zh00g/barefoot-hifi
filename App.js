@@ -783,7 +783,7 @@ function CreateScreen(props, { navigation }) {
                   <TextInput
                     placeholder="Description"
                     multiline
-                    onChangeText={(text) => setText(text)}
+                    //onChangeText={(text) => setText(text)}
                     //onSubmitEditing = {onSubmitEditing}
                     style={styles.textInput}
                   //value={text}
