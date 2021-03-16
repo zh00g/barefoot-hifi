@@ -661,6 +661,7 @@ function CreateScreen(props, { navigation }) {
   const [overlayvis, setOverlayVis] = useState(false);
   const [rating, setRating] = useState(false);
   const [diff, setDiff] = useState(false);
+  const [text, setText] = useState("");
   const toggleRating = () => {
     setRating(!rating);
   };
@@ -668,53 +669,58 @@ function CreateScreen(props, { navigation }) {
     setDiff(!diff);
   };
   const unfilledrating =
-    <TouchableOpacity style={styles.recordButton3} onPress={toggleRating} activeOpacity={0.5}>
+    <TouchableOpacity style={styles.recordButton3} onPress={toggleRating} activeOpacity={0.9}>
       <Image style={styles.recordButtonIcon2} source={require('./rating.png')} />
     </TouchableOpacity>
 
   const unfilleddiff =
-    <TouchableOpacity style={styles.recordButton3} onPress={toggleDiff} activeOpacity={0.5}>
+    <TouchableOpacity style={styles.recordButton3} onPress={toggleDiff} activeOpacity={0.9}>
       <Image style={styles.recordButtonIcon2} source={require('./difficulty.png')} />
     </TouchableOpacity>
 
   const filledrating =
-    <TouchableOpacity style={styles.recordButton3} onPress={toggleRating} activeOpacity={0.5}>
+    <TouchableOpacity style={styles.recordButton3} onPress={toggleRating} activeOpacity={0.9}>
       <Image style={styles.recordButtonIcon2} source={require('./ratingfilled.png')} />
     </TouchableOpacity>
 
   const filleddiff =
-    <TouchableOpacity style={styles.recordButton3} onPress={toggleDiff} activeOpacity={0.5}>
+    <TouchableOpacity style={styles.recordButton3} onPress={toggleDiff} activeOpacity={0.9}>
       <Image style={styles.recordButtonIcon2} source={require('./difficultyfilled.png')} />
     </TouchableOpacity>
 
-var ratingview;
-if (!rating) {
-  ratingview = filledrating;
-}
-else {
-  ratingview = unfilledrating;
-}
-var diffview;
-if (!diff) {
-  diffview = filleddiff;
-}
-else {
-  diffview = unfilleddiff;
-}
+  var ratingview;
+  if (!rating) {
+    ratingview = filledrating;
+  }
+  else {
+    ratingview = unfilledrating;
+  }
+  var diffview;
+  if (!diff) {
+    diffview = filleddiff;
+  }
+  else {
+    diffview = unfilleddiff;
+  }
 
 
-  
+
 
   const toggleBar = () => {
     setVisible(!visible1);
   };
   const toggleOver = () => {
     setOverlayVis(!overlayvis);
+    setRating(true);
+    setDiff(true);
   };
   const sendbutton = () => {
     setOverlayVis(!overlayvis);
     setVisible(!visible1);
-    props.navigation.navigate('CongratsCreate');
+    // props.navigation.navigate('CongratsCreate');
+    props.navigation.navigate('CongratsCreate', {
+      title: text,
+    });
   }
 
   const toggleBar2 = () => {
@@ -763,12 +769,34 @@ else {
                 {diffview}
               </View>
               <View style={styles.slide2}>
-                <Text style={styles.text}>the</Text>
+                <Text style={styles.text1}>Add details</Text>
+                <View style={styles.searchSectionTitle}>
+                  <TextInput
+                    placeholder="Title"
+                    onChangeText={(text) => setText(text)}
+                    //onSubmitEditing = {onSubmitEditing}
+                    style={styles.textInput}
+                    
+                  />
+                </View>
+                <View style={styles.searchSectionDeets}>
+                  <TextInput
+                    placeholder="Description"
+                    multiline
+                    onChangeText={(text) => setText(text)}
+                    //onSubmitEditing = {onSubmitEditing}
+                    style={styles.textInput}
+                  //value={text}
+                  />
+                </View>
               </View>
               <View style={styles.slide3}>
-                <Text style={styles.text}>trail</Text>
+                <Text style={styles.text1}>Add photos</Text>
+                <View style={styles.recordButton4}>
+            <Image style={styles.recordButtonIcon2} source={require('./Images/R32.png')} />
+          </View>
                 <View style={styles.yesnobar2}>
-                  <TouchableOpacity activeOpacity={0.5} onPress={sendbutton}>
+                  <TouchableOpacity style = {{position:'absolute', bottom:-40, right:-30}} activeOpacity={0.5} onPress={sendbutton}>
                     <AntDesign name="checkcircleo" size={60} color="#52ADA8" />
                   </TouchableOpacity>
                 </View>
@@ -802,8 +830,9 @@ else {
   );
 }
 
-function CongratsCreateScreen(props, { navigation }) {
+function CongratsCreateScreen(props) {
   const [visible, setVisible] = useState(false);
+  const {title} = props.route.params;
 
   const toggleOverlay = () => {
     setVisible(!visible);
@@ -862,7 +891,7 @@ function CongratsCreateScreen(props, { navigation }) {
           <Image style={{ resizeMode: 'contain', flex: 1, width: '100%' }} source={require("./Images/congrats.png")} />
         </View>
         <View style={{ justifyContent: 'center', alignItems: 'center', width: Metrics.screenWidth, height: 50, paddingHorizontal: 50 }}>
-          <Image style={{ resizeMode: 'contain', flex: 1, width: '100%' }} source={require("./Images/completedtext.png")} />
+          <Text style = {styles.text3}> You created {title} trail!</Text>
         </View>
         <View style={styles.recordingbarend}>
           <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={() => props.navigation.navigate('Friends')}>
@@ -1105,6 +1134,13 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
+  textInput: {
+    color: '#376171',
+    fontSize: 16,
+    fontWeight: 'normal',
+    fontFamily: 'Raleway',
+    textAlign: 'center',
+  },
   text1: {
     color: '#376171',
     fontSize: 20,
@@ -1115,6 +1151,13 @@ const styles = StyleSheet.create({
   text2: {
     color: '#376171',
     fontSize: 16,
+    fontWeight: 'normal',
+    fontFamily: 'Raleway',
+    textAlign: 'center',
+  },
+  text3: {
+    color: '#376171',
+    fontSize: 20,
     fontWeight: 'normal',
     fontFamily: 'Raleway',
     textAlign: 'center',
@@ -1143,6 +1186,14 @@ const styles = StyleSheet.create({
   recordButton: {
     width: 100,
     height: 100,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    // backgroundColor: 'pink',
+  },
+  recordButton4: {
+    width: 150,
+    height: 150,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -1177,6 +1228,12 @@ const styles = StyleSheet.create({
     width: '100%',
     //height: 100,
     margin: 7,
+  },
+  recordButtonIcon3: {
+    flex: 1,
+    resizeMode: 'contain',
+    width: '50%',
+    //height: 100,
   },
   popupButtonIcon: {
     flex: 1,
@@ -1296,6 +1353,26 @@ const styles = StyleSheet.create({
     backgroundColor: '#E5E5E5',
     borderWidth: 1,
     borderColor: '#ccc',
+    borderRadius: 10,
+  },
+  searchSectionTitle: {
+    margin: 10,
+    width: '70%',
+    flexDirection: 'row',
+    height: '10%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'white',
+    borderRadius: 10,
+  },
+  searchSectionDeets: {
+    margin: 10,
+    width: '70%',
+    flexDirection: 'row',
+    height: '40%',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    backgroundColor: 'white',
     borderRadius: 10,
   },
   searchIcon: {
@@ -1478,7 +1555,7 @@ const styles = StyleSheet.create({
   slide2: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
     //backgroundColor: '#97CAE5'
   },
   slide3: {
