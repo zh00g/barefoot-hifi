@@ -194,7 +194,7 @@ class MapComponent extends React.Component {
                 </TouchableOpacity>
             </View>
 
-                <Overlay isVisible={this.state.overlay} onBackdropPress={() => this.setState({overlay: !this.state.overlay})}>
+                <Overlay overlayStyle={styles.endtrailconfirm} isVisible={this.state.overlay} onBackdropPress={() => this.setState({overlay: !this.state.overlay})}>
                   <View style={styles.wrap}>
                     {overlaysliders}
                   </View>
@@ -231,7 +231,7 @@ class MapComponent extends React.Component {
                 </TouchableOpacity>
               </View>
 
-              <Overlay isVisible={this.state.overlay} onBackdropPress={() => this.setState({overlay: !this.state.overlay})}>
+              <Overlay overlayStyle={styles.endtrailconfirm} isVisible={this.state.overlay} onBackdropPress={() => this.setState({overlay: !this.state.overlay})}>
                   <View style={styles.wrap}>
                     <Swiper style={styles.wrapper} showsButtons={true}>
                       <View style={styles.slide1}>
@@ -304,8 +304,8 @@ const styles = StyleSheet.create({
     height:35,
   },
   wrap: {
-    width: 240,
-    height: 240,
+    // width: 240,
+    // height: 240,
   },
   wrapper: {
 
@@ -314,28 +314,28 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5F0EC',
+    //backgroundColor: '#F5F0EC',
     padding: 25,
   },
   slide2: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5F0EC',
+    //backgroundColor: '#F5F0EC',
     padding: 25,
   },
   slide3: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5F0EC',
+    //backgroundColor: '#F5F0EC',
     padding: 25,
   },
   slide4: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5F0EC',
+    //backgroundColor: '#F5F0EC',
     padding: 25,
   },
   text: {
@@ -355,6 +355,14 @@ const styles = StyleSheet.create({
     fontWeight: 'normal',
     fontFamily: 'Raleway',
     textAlign: 'center',
+  },
+  endtrailconfirm: {
+    backgroundColor: "#F5F0EC",
+    width: 300,
+    height: 250,
+    borderRadius: 50,
+    justifyContent: "center",
+    alignItems: "center",
   },
 
 });
