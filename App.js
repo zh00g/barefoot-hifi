@@ -662,6 +662,7 @@ function CreateScreen(props, { navigation }) {
   const [rating, setRating] = useState(false);
   const [diff, setDiff] = useState(false);
   const [text, setText] = useState("");
+  const [desc, setDesc] = useState("");
   const toggleRating = () => {
     setRating(!rating);
   };
@@ -720,6 +721,7 @@ function CreateScreen(props, { navigation }) {
     // props.navigation.navigate('CongratsCreate');
     props.navigation.navigate('CongratsCreate', {
       title: text,
+      desc: desc,
     });
   }
 
@@ -783,7 +785,7 @@ function CreateScreen(props, { navigation }) {
                   <TextInput
                     placeholder="Description"
                     multiline
-                    //onChangeText={(text) => setText(text)}
+                    onChangeText={(desc) => setDesc(desc)}
                     //onSubmitEditing = {onSubmitEditing}
                     style={styles.textInput}
                   //value={text}
@@ -832,7 +834,7 @@ function CreateScreen(props, { navigation }) {
 
 function CongratsCreateScreen(props) {
   const [visible, setVisible] = useState(false);
-  const {title} = props.route.params;
+  const {title, desc} = props.route.params;
 
   const toggleOverlay = () => {
     setVisible(!visible);
@@ -919,13 +921,24 @@ function CongratsCreateScreen(props) {
             <Image style={styles.recordButtonIcon} source={require('./savebutton.png')} />
           </TouchableOpacity>
         </View>
+       
         <View style={{
           justifyContent: 'center', alignItems: 'center',
           width: Metrics.screenWidth, height: 100, paddingHorizontal: 50, marginTop: 10,
           backgroundColor: '#F5F0EC', borderTopRightRadius: 50, borderTopLeftRadius: 50
         }}>
+          <Image style={{ resizeMode: 'contain', flex: 0.3, width: '30%', marginTop:10 }} source={require("./Images/rect.png")} />
           <Image style={{ resizeMode: 'contain', flex: 1, width: '100%' }} source={require("./Images/advsummary.png")} />
         </View>
+        <View style = {styles.congratsinfobox}>
+          <View style = {styles.congratstitle}>
+          <Text style = {styles.text5}> {title} </Text>
+          </View>
+          <View style = {styles.congratsdesc}>
+          <Text style = {styles.text5}> "{desc}" </Text>
+          </View>
+        </View>
+        
 
         {/* #F5F0EC */}
 
@@ -1134,6 +1147,34 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
+  congratsinfobox: {
+    display: 'flex',
+    justifyContent: 'space-around',
+    flexDirection: 'column',
+    backgroundColor: '#F5F0EC'
+  },
+  congratstitle: {
+    flex:1,
+    padding:10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
+    backgroundColor: 'white',
+    marginBottom: 10,
+    marginHorizontal: 50,
+  },
+  congratsdesc: {
+    flex:3,
+    padding:10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
+    borderRadius: 10,
+    marginVertical: 10,
+    marginHorizontal: 50,
+    height: 100,
+    backgroundColor: 'white'
+  },
   textInput: {
     color: '#376171',
     fontSize: 16,
@@ -1158,6 +1199,13 @@ const styles = StyleSheet.create({
   text3: {
     color: '#376171',
     fontSize: 20,
+    fontWeight: 'normal',
+    fontFamily: 'Raleway',
+    textAlign: 'center',
+  },
+  text5: {
+    color: '#52ADA8',
+    fontSize: 24,
     fontWeight: 'normal',
     fontFamily: 'Raleway',
     textAlign: 'center',
