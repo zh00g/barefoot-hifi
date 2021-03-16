@@ -296,7 +296,7 @@ function CongratsScreen(props, { navigation }) {
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={() => props.navigation.navigate('Explore')}>
-            <Image style={styles.recordButtonIcon} source={require('./Images/backtoexplore.png')} />
+            <Image style={styles.recordButtonIcon} source={require('./Images/backtoexplore2.png')} />
           </TouchableOpacity>
         </View>
         <View style={{
@@ -304,6 +304,7 @@ function CongratsScreen(props, { navigation }) {
           width: Metrics.screenWidth, height: 100, paddingHorizontal: 50, marginTop: 10,
           backgroundColor: '#F5F0EC', borderTopRightRadius: 50, borderTopLeftRadius: 50
         }}>
+          <Image style={{ resizeMode: 'contain', flex: 0.3, width: '30%', marginTop: 10 }} source={require("./Images/rect.png")} />
           <Image style={{ resizeMode: 'contain', flex: 1, width: '100%' }} source={require("./Images/advsummary.png")} />
         </View>
 
@@ -778,7 +779,7 @@ function CreateScreen(props, { navigation }) {
                     onChangeText={(text) => setText(text)}
                     //onSubmitEditing = {onSubmitEditing}
                     style={styles.textInput}
-                    
+
                   />
                 </View>
                 <View style={styles.searchSectionDeets}>
@@ -794,11 +795,11 @@ function CreateScreen(props, { navigation }) {
               </View>
               <View style={styles.slide3}>
                 <Text style={styles.text1}>Add photos</Text>
-                <View style={styles.recordButton4}>
-            <Image style={styles.recordButtonIcon2} source={require('./Images/R32.png')} />
-          </View>
+                <View style={styles.recordButton5}>
+                  <Image style={styles.recordButtonIcon2} source={require('./Images/R32.png')} />
+                </View>
                 <View style={styles.yesnobar2}>
-                  <TouchableOpacity style = {{position:'absolute', bottom:-40, right:-30}} activeOpacity={0.5} onPress={sendbutton}>
+                  <TouchableOpacity style={{ position: 'absolute', bottom: -40, right: -30 }} activeOpacity={0.5} onPress={sendbutton}>
                     <AntDesign name="checkcircleo" size={60} color="#52ADA8" />
                   </TouchableOpacity>
                 </View>
@@ -834,7 +835,7 @@ function CreateScreen(props, { navigation }) {
 
 function CongratsCreateScreen(props) {
   const [visible, setVisible] = useState(false);
-  const {title, desc} = props.route.params;
+  const { title, desc } = props.route.params;
 
   const toggleOverlay = () => {
     setVisible(!visible);
@@ -893,7 +894,7 @@ function CongratsCreateScreen(props) {
           <Image style={{ resizeMode: 'contain', flex: 1, width: '100%' }} source={require("./Images/congrats.png")} />
         </View>
         <View style={{ justifyContent: 'center', alignItems: 'center', width: Metrics.screenWidth, height: 50, paddingHorizontal: 50 }}>
-          <Text style = {styles.text3}> You created {title} trail!</Text>
+          <Text style={styles.text3}> You created {title} trail!</Text>
         </View>
         <View style={styles.recordingbarend}>
           <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={() => props.navigation.navigate('Friends')}>
@@ -921,24 +922,45 @@ function CongratsCreateScreen(props) {
             <Image style={styles.recordButtonIcon} source={require('./savebutton.png')} />
           </TouchableOpacity>
         </View>
-       
+
         <View style={{
           justifyContent: 'center', alignItems: 'center',
           width: Metrics.screenWidth, height: 100, paddingHorizontal: 50, marginTop: 10,
           backgroundColor: '#F5F0EC', borderTopRightRadius: 50, borderTopLeftRadius: 50
         }}>
-          <Image style={{ resizeMode: 'contain', flex: 0.3, width: '30%', marginTop:10 }} source={require("./Images/rect.png")} />
+          <Image style={{ resizeMode: 'contain', flex: 0.3, width: '30%', marginTop: 10 }} source={require("./Images/rect.png")} />
           <Image style={{ resizeMode: 'contain', flex: 1, width: '100%' }} source={require("./Images/advsummary.png")} />
         </View>
-        <View style = {styles.congratsinfobox}>
-          <View style = {styles.congratstitle}>
-          <Text style = {styles.text5}> {title} </Text>
+        <View style={styles.congratsinfobox}>
+          <View style={styles.congratstitle}>
+            <Text style={styles.text5}> {title} </Text>
           </View>
-          <View style = {styles.congratsdesc}>
-          <Text style = {styles.text5}> "{desc}" </Text>
+          <View style={styles.congratsdesc}>
+            <Text style={styles.text5}> "{desc}" </Text>
           </View>
         </View>
+
+            <View style={styles.congratsinfobox2}>
+            <Text style={styles.text5}> Rating: </Text>
+            <TouchableOpacity style={styles.recordButton4} activeOpacity={1}>
+              <Image style={styles.recordButtonIcon2} source={require('./ratingfilled.png')} />
+            </TouchableOpacity>
+            <Text style={styles.text5}> Difficulty: </Text>
+            <TouchableOpacity style={styles.recordButton4} activeOpacity={1}>
+              <Image style={styles.recordButtonIcon2} source={require('./difficultyfilled.png')} />
+            </TouchableOpacity>
+            </View>
+            
         
+
+            
+
+         
+        
+
+
+
+
 
         {/* #F5F0EC */}
 
@@ -972,7 +994,7 @@ function CongratsCreateScreen(props) {
         />
         {/* <Image source = {require("./Images/trailfacts.png")}/> */}
         <View style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: '#F5F0EC' }}>
-          <Image source={require("./Images/leavereview.png")} />
+
         </View>
 
       </ScrollView>
@@ -1149,13 +1171,21 @@ export default function App() {
 const styles = StyleSheet.create({
   congratsinfobox: {
     display: 'flex',
+    height: 300,
     justifyContent: 'space-around',
     flexDirection: 'column',
     backgroundColor: '#F5F0EC'
   },
+  congratsinfobox2: {
+    display: 'flex',
+    height: 150,
+    justifyContent: 'center',
+    backgroundColor: '#F5F0EC',
+    //backgroundColor: 'yellow'
+  },
   congratstitle: {
-    flex:1,
-    padding:10,
+    flex: 0.5,
+    padding: 10,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 10,
@@ -1164,8 +1194,8 @@ const styles = StyleSheet.create({
     marginHorizontal: 50,
   },
   congratsdesc: {
-    flex:3,
-    padding:10,
+    flex: 2,
+    padding: 10,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 10,
@@ -1181,6 +1211,7 @@ const styles = StyleSheet.create({
     fontWeight: 'normal',
     fontFamily: 'Raleway',
     textAlign: 'center',
+    paddingHorizontal: 10,
   },
   text1: {
     color: '#376171',
@@ -1209,7 +1240,9 @@ const styles = StyleSheet.create({
     fontWeight: 'normal',
     fontFamily: 'Raleway',
     textAlign: 'center',
+    marginVertical: 5,
   },
+
   congratspage: {
     display: 'flex',
     flexDirection: 'column',
@@ -1239,7 +1272,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     // backgroundColor: 'pink',
   },
-  recordButton4: {
+  recordButton5: {
     width: 150,
     height: 150,
     display: 'flex',
@@ -1254,6 +1287,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     //backgroundColor: 'pink',
+  },
+  recordButton4: {
+    display: 'flex',
+    width: '40%',
+    height: '20%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    //backgroundColor: 'pink',
+    marginVertical: 5,
+    marginLeft: Metrics.screenWidth/3.5
   },
   recordButton2: {
     width: 100,
