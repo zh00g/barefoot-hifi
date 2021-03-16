@@ -668,12 +668,12 @@ function CreateScreen(props, { navigation }) {
   const sendbutton = () => {
     setOverlayVis(!overlayvis);
     setVisible(!visible1);
-    props.navigation.navigate('Congrats');
+    props.navigation.navigate('CongratsCreate');
   }
 
   const toggleBar2 = () => {
     setVisible(!visible1);
-    props.navigation.navigate('Congrats');
+    props.navigation.navigate('CongratsCreate');
   };
 
   const recordbarstart =
@@ -746,6 +746,143 @@ function CreateScreen(props, { navigation }) {
   );
 }
 
+function CongratsCreateScreen(props, { navigation }) {
+  const [visible, setVisible] = useState(false);
+
+  const toggleOverlay = () => {
+    setVisible(!visible);
+  };
+
+
+  const sendbutton = () => {
+    setVisible(!visible);
+    props.navigation.navigate('Feed');
+  }
+
+  const trailtips = [
+    {
+      id: "1",
+      image: require("./Images/trailtips.png"),
+    },
+  ]
+  const photosfromadventure = [
+    {
+      id: "1",
+      image: require("./Images/photosfromadventure.png"),
+    },
+  ]
+  const trailfacts = [
+    {
+      id: "1",
+      image: require("./Images/trailfacts.png"),
+    },
+  ]
+  const Pics = ({ image }) => (
+
+    <Image style={{ marginLeft: 15, flex: 1, height: 350, width: Metrics.screenWidth + 200, resizeMode: 'contain' }} source={image} />
+
+  );
+  const Pic = ({ image }) => (
+
+    <Image style={{ marginLeft: 20, flex: 1, height: 150, width: Metrics.screenWidth + 200, resizeMode: 'contain' }} source={image} />
+
+  );
+  const renderItem = ({ item }) => (
+    <View>
+      <Pics image={item.image} />
+    </View>
+  );
+  const renderItem2 = ({ item }) => (
+    <View>
+      <Pic image={item.image} />
+    </View>
+  );
+
+  return (
+    <View style={styles.congratspage}>
+
+      <ScrollView>
+        <View style={{ justifyContent: 'center', alignItems: 'center', width: Metrics.screenWidth, height: 100, paddingHorizontal: 50 }}>
+          <Image style={{ resizeMode: 'contain', flex: 1, width: '100%' }} source={require("./Images/congrats.png")} />
+        </View>
+        <View style={{ justifyContent: 'center', alignItems: 'center', width: Metrics.screenWidth, height: 50, paddingHorizontal: 50 }}>
+          <Image style={{ resizeMode: 'contain', flex: 1, width: '100%' }} source={require("./Images/completedtext.png")} />
+        </View>
+        <View style={styles.recordingbarend}>
+          <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={() => props.navigation.navigate('Friends')}>
+            <Image style={styles.recordButtonIcon} source={require('./Images/sendicon.png')} />
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.recordButton2} activeOpacity={0.5} onPress={toggleOverlay}>
+            <Image style={styles.recordButtonIcon} source={require('./Images/postbutton.png')} />
+            <Overlay overlayStyle={styles.endtrailconfirm} isVisible={visible} onBackdropPress={toggleOverlay}>
+              <View style={{ alignItems: 'center' }}>
+                <Text style={{ fontSize: 40, color: '#376171', fontWeight: 'bold' }}>Posted!</Text>
+                <Text > Go to Feed! </Text>
+                <View style={styles.yesnobar2}>
+                  <TouchableOpacity activeOpacity={0.5} onPress={sendbutton}>
+
+                    <AntDesign name="checkcircleo" size={60} color="#52ADA8" />
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </Overlay>
+
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={() => props.navigation.navigate('Explore')}>
+            <Image style={styles.recordButtonIcon} source={require('./savebutton.png')} />
+          </TouchableOpacity>
+        </View>
+        <View style={{
+          justifyContent: 'center', alignItems: 'center',
+          width: Metrics.screenWidth, height: 100, paddingHorizontal: 50, marginTop: 10,
+          backgroundColor: '#F5F0EC', borderTopRightRadius: 50, borderTopLeftRadius: 50
+        }}>
+          <Image style={{ resizeMode: 'contain', flex: 1, width: '100%' }} source={require("./Images/advsummary.png")} />
+        </View>
+
+        {/* #F5F0EC */}
+
+        <FlatList
+          style={styles.horizontalflatlist}
+          horizontal={true}
+          backgroundColor={'#F5F0EC'}
+          data={photosfromadventure}
+          renderItem={renderItem}
+          keyExtractor={item => item.id}>
+        </FlatList>
+
+        {/* <Image style={{resizeMode: 'contain'}} source = {require("./Images/trailtips.png")}/> */}
+        <FlatList
+          style={styles.horizontalflatlist}
+          backgroundColor={'#F5F0EC'}
+          horizontal={true}
+          data={trailfacts}
+          renderItem={renderItem2}
+          keyExtractor={item => item.id}>
+        </FlatList>
+
+
+        <FlatList
+          style={styles.horizontalflatlist}
+          backgroundColor={'#F5F0EC'}
+          horizontal={true}
+          data={trailtips}
+          renderItem={renderItem2}
+          keyExtractor={item => item.id}
+        />
+        {/* <Image source = {require("./Images/trailfacts.png")}/> */}
+        <View style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: '#F5F0EC' }}>
+          <Image source={require("./Images/leavereview.png")} />
+        </View>
+
+      </ScrollView>
+
+    </View>
+
+  );
+}
 function ProfileScreen({ navigation }) {
   return (
     <View style={styles.placeholder}>
@@ -821,7 +958,7 @@ function CreateStackScreen() {
     <CreateStack.Navigator initialRouteName="Create">
       <CreateStack.Screen name="Create" component={CreateScreen} />
       {/* <CreateStack.Screen name="MapStart" component={MapStartScreen} /> */}
-      <CreateStack.Screen name="Congrats" component={CongratsScreen} />
+      <CreateStack.Screen name="CongratsCreate" component={CongratsCreateScreen} />
       <CreateStack.Screen name="Friends" component={FriendsListScreen} />
     </CreateStack.Navigator>
   );
