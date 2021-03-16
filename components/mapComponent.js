@@ -196,6 +196,11 @@ class MapComponent extends React.Component {
 
                 <Overlay overlayStyle={styles.endtrailconfirm} isVisible={this.state.overlay} onBackdropPress={() => this.setState({overlay: !this.state.overlay})}>
                   <View style={styles.wrap}>
+                  <View style={{height: 30, width: 30, left: '3%', top: '4%'}}>
+                      <TouchableOpacity style={styles.exitbutton} onPress={() => this.setState({overlay: !this.state.overlay})}>
+                        <Image source = {require('../Images/exitbutton.png')} style={{width: 20, height: 20, resizeMode:'contain'}}/>
+                      </TouchableOpacity>
+                    </View>
                     {overlaysliders}
                   </View>
                 </Overlay>
@@ -233,6 +238,11 @@ class MapComponent extends React.Component {
 
               <Overlay overlayStyle={styles.endtrailconfirm} isVisible={this.state.overlay} onBackdropPress={() => this.setState({overlay: !this.state.overlay})}>
                   <View style={styles.wrap}>
+                    <View style={{height: 25, width: 25, left: '3%', top: '4%'}}>
+                      <TouchableOpacity style={styles.exitbutton} onPress={() => this.setState({overlay: !this.state.overlay})}>
+                        <Image source = {require('../Images/exitbutton.png')} style={{width: 20, height: 20, resizeMode:'contain'}}/>
+                      </TouchableOpacity>
+                    </View>
                     <Swiper style={styles.wrapper} showsButtons={true}>
                       <View style={styles.slide1}>
                         <Text style={styles.text1}>Let's learn!</Text>
@@ -302,6 +312,11 @@ const styles = StyleSheet.create({
   smallbutton: {
     width: 35 ,
     height:35,
+    
+  },
+  exitbutton: {
+    width: '100%',
+    height: '100%',
   },
   wrap: {
     // width: 240,
