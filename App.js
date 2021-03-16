@@ -147,26 +147,26 @@ function MapStartScreen(props) {
   const recordbarstart =
     <View style={styles.recordingbarstart}>
       <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
-        <Image style={styles.recordButtonIcon} source={require('./Images/learnicon.png')} />
+        <Image style={styles.recordButtonIcon} source={require('./Images/learnicon2.png')} />
       </TouchableOpacity>
       <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={toggleBar}>
         <Image style={styles.recordButtonIcon} source={require('./Images/startfollow.png')} />
       </TouchableOpacity>
       <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
-        <Image style={styles.recordButtonIcon} source={require('./Images/addlandmark.png')} />
+        <Image style={styles.recordButtonIcon} source={require('./Images/addland.png')} />
       </TouchableOpacity>
     </View>
 
   const recordbarend =
     <View style={styles.recordingbarstart}>
       <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
-        <Image style={styles.recordButtonIcon} source={require('./Images/learnicon.png')} />
+        <Image style={styles.recordButtonIcon} source={require('./Images/learnicon2.png')} />
       </TouchableOpacity>
       <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
-        <Image style={styles.recordButtonIcon} source={require('./Images/pauseicon.png')} />
+        <Image style={styles.recordButtonIcon} source={require('./Images/pause2.png')} />
       </TouchableOpacity>
       <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={toggleOverlay}>
-        <Image style={styles.recordButtonIcon} source={require('./Images/stopicon.png')} />
+        <Image style={styles.recordButtonIcon} source={require('./Images/stop2.png')} />
 
         <Overlay overlayStyle={styles.endtrailconfirm1} isVisible={overlayvisible} onBackdropPress={toggleOverlay}>
           <View style={{ alignItems: 'center' }}>
@@ -188,7 +188,7 @@ function MapStartScreen(props) {
 
       </TouchableOpacity>
       <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
-        <Image style={styles.recordButtonIcon} source={require('./Images/addlandmark.png')} />
+        <Image style={styles.recordButtonIcon} source={require('./Images/addland.png')} />
       </TouchableOpacity>
     </View>
 
@@ -731,26 +731,26 @@ function CreateScreen(props, { navigation }) {
   const recordbarstart =
     <View style={styles.recordingbarstart}>
       <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
-        <Image style={styles.recordButtonIcon} source={require('./Images/learnicon.png')} />
+        <Image style={styles.recordButtonIcon} source={require('./Images/learnicon2.png')} />
       </TouchableOpacity>
       <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={toggleBar}>
         <Image style={styles.recordButtonIcon} source={require('./Images/recordcreate.png')} />
       </TouchableOpacity>
       <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
-        <Image style={styles.recordButtonIcon} source={require('./Images/addlandmark.png')} />
+        <Image style={styles.recordButtonIcon} source={require('./Images/addland.png')} />
       </TouchableOpacity>
     </View>
 
   const recordbarend =
     <View style={styles.recordingbarstart}>
       <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
-        <Image style={styles.recordButtonIcon} source={require('./Images/learnicon.png')} />
+        <Image style={styles.recordButtonIcon} source={require('./Images/learnicon2.png')} />
       </TouchableOpacity>
       <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
-        <Image style={styles.recordButtonIcon} source={require('./Images/pauseicon.png')} />
+        <Image style={styles.recordButtonIcon} source={require('./Images/pause2.png')} />
       </TouchableOpacity>
       <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={toggleOver}>
-        <Image style={styles.recordButtonIcon} source={require('./Images/stopicon.png')} />
+        <Image style={styles.recordButtonIcon} source={require('./Images/stop2.png')} />
 
         <Overlay overlayStyle={styles.endtrailconfirm1} isVisible={overlayvis} onBackdropPress={toggleOver}>
           <View style={styles.endtrailconfirm2}>
@@ -807,7 +807,7 @@ function CreateScreen(props, { navigation }) {
 
       </TouchableOpacity>
       <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
-        <Image style={styles.recordButtonIcon} source={require('./Images/addlandmark.png')} />
+        <Image style={styles.recordButtonIcon} source={require('./Images/addland.png')} />
       </TouchableOpacity>
     </View>
 
