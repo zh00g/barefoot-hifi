@@ -202,7 +202,7 @@ function MapStartScreen(props) {
   return (
     <View style={styles.container_mapstart}>
       <View style={styles.map}>
-        <MapComponent />
+        <MapComponent flag = {false} createflag = {false}/>
       </View>
       {recordbar}
     </View>
@@ -353,27 +353,27 @@ function FriendsListScreen(props) {
   const friends = [
     {
       id: '1',
-      title: 'Grace!',
+      title: 'Grace',
     },
     {
       id: '2',
-      title: 'Rachel!',
+      title: 'Rachel',
     },
     {
       id: '3',
-      title: 'Katrina!',
+      title: 'Katrina',
     },
     {
       id: '4',
-      title: 'Anthony!',
+      title: 'Anthony',
     },
     {
       id: '5',
-      title: 'Victoria!',
+      title: 'Victoria',
     },
     {
       id: '6',
-      title: 'Dr. Landay!',
+      title: 'Dr. Landay',
     },
   ];
 
@@ -738,7 +738,7 @@ function CreateScreen(props, { navigation }) {
   return (
     <View style={styles.container_mapstart}>
       <View style={styles.map}>
-        <MapComponent />
+        <MapComponent flag = {false} createflag = {true}/>
       </View>
       {recordbar}
     </View>

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as Font from 'expo-font';
 
 import { Button, Text, View, StyleSheet, TouchableOpacity,Image} from 'react-native';
 import { Overlay } from 'react-native-elements';
@@ -9,13 +10,15 @@ import MapViewDirections from 'react-native-maps-directions';
 import { ToggleButton } from 'react-native-paper';
 import SwitchButton from 'switch-button-react-native';
 import { Metrics } from '../Themes';
-import Swiper from 'react-native-swiper'
+import Swiper from 'react-native-swiper';
+import { useFonts } from 'expo-font';
 
 
 const GOOGLE_API_KEY = 'AIzaSyBBUZTSrNRyshhKeOmNp5W9nWKM4-Irsgg';
 const destination = {latitude: 37.771707, longitude: -122.4053769};
 const origin = {latitude: 37.78825, longitude: -122.4324};
 const place = {latitude: 37.8, longitude: -122.4}
+
 
 
 class MapComponent extends React.Component {
@@ -32,10 +35,25 @@ class MapComponent extends React.Component {
         },
         switch: true,
         overlay: false,
+        fontsLoaded: false,
 
       }
     }
 
+    async loadFonts() {
+      await Font.loadAsync({
+        // Load a font `Montserrat` from a static resource
+        Raleway: require('../assets/fonts/Raleway-Regular.ttf'),
+        RalewayBold:  require('../assets/fonts/Raleway-Bold.ttf'),
+      });
+      this.setState({ fontsLoaded: true });
+    }
+
+    componentDidMount() {
+      this.loadFonts();
+    }
+
+    
 
   
     onRegionChange(region) {
@@ -44,6 +62,49 @@ class MapComponent extends React.Component {
 
   
     render() { 
+      var overlaysliders;
+      if (this.props.createflag) {
+        overlaysliders =                     <Swiper style={styles.wrapper} showsButtons={true}>
+        <View style={styles.slide1}>
+          <Text style={styles.text1}>Ready to begin exploring?</Text>
+          <Text style={styles.text2}>Once you’ve arrived, hit record to begin tracking your stats and route to publish later.</Text>
+        </View>
+        <View style={styles.slide2}>
+          <Text style={styles.text1}>Stumble upon something amazing?</Text>
+          <Text style={styles.text2}>Hit add landmark to document your find!</Text>
+        </View>
+        <View style={styles.slide3}>
+          <Text style={styles.text1}>Taking a break?</Text>
+          <Text style={styles.text2}>Hit pause to pause your recording and resume when you’re ready to begin again!</Text>
+        </View>
+        <View style={styles.slide4}>
+          <Text style={styles.text1}>Finished?</Text>
+          <Text style={styles.text2}>Hit stop and begin filling out the details of your adventure!</Text>
+        </View>
+        </Swiper>
+        
+      }
+      if (!this.props.createflag) {
+        overlaysliders = 
+        <Swiper style={styles.wrapper} showsButtons={true}>
+        <View style={styles.slide1}>
+          <Text style={styles.text1}>Welcome to the Owl Trail!</Text>
+          <Text style={styles.text2}>Before you begin, let’s explore a few tips and tricks you can follow!</Text>
+        </View>
+        <View style={styles.slide2}>
+          <Text style={styles.text1}>Don’t want the distraction of the map?</Text>
+          <Text style={styles.text2}>Open Fact View to hear directions and information instead!</Text>
+        </View>
+        <View style={styles.slide3}>
+          <Text style={styles.text1}>Let’s get moving!</Text>
+          <Text style={styles.text2}>Hit start follow to track your mileage and other stats!</Text>
+        </View>
+        <View style={styles.slide4}>
+          <Text style={styles.text1}>Stumble upon something amazing?</Text>
+          <Text style={styles.text2}>Hit add landmark to document your find!</Text>
+        </View>
+        </Swiper>
+      }
       if (this.props.flag) {
         return (
           <MapView
@@ -135,17 +196,7 @@ class MapComponent extends React.Component {
 
                 <Overlay isVisible={this.state.overlay} onBackdropPress={() => this.setState({overlay: !this.state.overlay})}>
                   <View style={styles.wrap}>
-                    <Swiper style={styles.wrapper} showsButtons={true}>
-                      <View style={styles.slide1}>
-                        <Text style={styles.text}>Follow the trail</Text>
-                      </View>
-                      <View style={styles.slide2}>
-                        <Text style={styles.text}>Look at the map</Text>
-                      </View>
-                      <View style={styles.slide3}>
-                        <Text style={styles.text}>lmao</Text>
-                      </View>
-                    </Swiper>
+                    {overlaysliders}
                   </View>
                 </Overlay>
 
@@ -184,13 +235,16 @@ class MapComponent extends React.Component {
                   <View style={styles.wrap}>
                     <Swiper style={styles.wrapper} showsButtons={true}>
                       <View style={styles.slide1}>
-                        <Text style={styles.text}>Display a fact</Text>
+                        <Text style={styles.text1}>Let's learn!</Text>
+                        <Text style={styles.text2}>New facts based on your trail will be displayed here!</Text>
                       </View>
                       <View style={styles.slide2}>
-                        <Text style={styles.text}>Look at the fact</Text>
+                        <Text style={styles.text1}>Need to see the map? </Text>
+                        <Text style={styles.text2}>Press on map mode! </Text>
                       </View>
                       <View style={styles.slide3}>
-                        <Text style={styles.text}>Dumbass</Text>
+                        <Text style={styles.text1}>Stumble upon something amazing?</Text>
+                        <Text style={styles.text2}>Hit add landmark to document your find!</Text>
                       </View>
                     </Swiper>
                   </View>
@@ -250,8 +304,8 @@ const styles = StyleSheet.create({
     height:35,
   },
   wrap: {
-    width: 200,
-    height: 200,
+    width: 240,
+    height: 240,
   },
   wrapper: {
 
@@ -260,24 +314,47 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#9DD6EB'
+    backgroundColor: '#F5F0EC',
+    padding: 25,
   },
   slide2: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#97CAE5'
+    backgroundColor: '#F5F0EC',
+    padding: 25,
   },
   slide3: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#92BBD9'
+    backgroundColor: '#F5F0EC',
+    padding: 25,
+  },
+  slide4: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5F0EC',
+    padding: 25,
   },
   text: {
     color: '#fff',
     fontSize: 20,
     fontWeight: 'bold'
+  },
+  text1: {
+    color: '#376171',
+    fontSize: 20,
+    fontFamily: 'RalewayBold',
+    textAlign: 'center',
+  },
+  text2: {
+    color: '#376171',
+    fontSize: 16,
+    fontWeight: 'normal',
+    fontFamily: 'Raleway',
+    textAlign: 'center',
   },
 
 });
