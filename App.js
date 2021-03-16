@@ -27,6 +27,7 @@ import metrics from './Themes/Metrics.js';
 import { setStatusBarNetworkActivityIndicatorVisible } from 'expo-status-bar';
 import SwitchButton from 'switch-button-react-native';
 import Swiper from 'react-native-swiper'
+import { useFonts } from 'expo-font';
 //testing commit
 //testing commit 2
 
@@ -202,7 +203,7 @@ function MapStartScreen(props) {
   return (
     <View style={styles.container_mapstart}>
       <View style={styles.map}>
-        <MapComponent flag = {false} createflag = {false}/>
+        <MapComponent flag={false} createflag={false} />
       </View>
       {recordbar}
     </View>
@@ -658,6 +659,51 @@ function FeedScreen({ navigation }) {
 function CreateScreen(props, { navigation }) {
   const [visible1, setVisible] = useState(false);
   const [overlayvis, setOverlayVis] = useState(false);
+  const [rating, setRating] = useState(false);
+  const [diff, setDiff] = useState(false);
+  const toggleRating = () => {
+    setRating(!rating);
+  };
+  const toggleDiff = () => {
+    setDiff(!diff);
+  };
+  const unfilledrating =
+    <TouchableOpacity style={styles.recordButton3} onPress={toggleRating} activeOpacity={0.5}>
+      <Image style={styles.recordButtonIcon2} source={require('./rating.png')} />
+    </TouchableOpacity>
+
+  const unfilleddiff =
+    <TouchableOpacity style={styles.recordButton3} onPress={toggleDiff} activeOpacity={0.5}>
+      <Image style={styles.recordButtonIcon2} source={require('./difficulty.png')} />
+    </TouchableOpacity>
+
+  const filledrating =
+    <TouchableOpacity style={styles.recordButton3} onPress={toggleRating} activeOpacity={0.5}>
+      <Image style={styles.recordButtonIcon2} source={require('./ratingfilled.png')} />
+    </TouchableOpacity>
+
+  const filleddiff =
+    <TouchableOpacity style={styles.recordButton3} onPress={toggleDiff} activeOpacity={0.5}>
+      <Image style={styles.recordButtonIcon2} source={require('./difficultyfilled.png')} />
+    </TouchableOpacity>
+
+var ratingview;
+if (!rating) {
+  ratingview = filledrating;
+}
+else {
+  ratingview = unfilledrating;
+}
+var diffview;
+if (!diff) {
+  diffview = filleddiff;
+}
+else {
+  diffview = unfilleddiff;
+}
+
+
+  
 
   const toggleBar = () => {
     setVisible(!visible1);
@@ -701,10 +747,20 @@ function CreateScreen(props, { navigation }) {
         <Image style={styles.recordButtonIcon} source={require('./Images/stopicon.png')} />
 
         <Overlay overlayStyle={styles.endtrailconfirm1} isVisible={overlayvis} onBackdropPress={toggleOver}>
-          <View style={styles.endtrailconfirm1}>
+          <View style={styles.endtrailconfirm2}>
             <Swiper style={styles.wrapper} showsButtons={true}>
               <View style={styles.slide1}>
-                <Text style={styles.text}>finish</Text>
+                <Text style={styles.text1}>How was your adventure?</Text>
+                <Text style={styles.text2}>Rating</Text>
+                {/* <TouchableOpacity style={styles.recordButton3} onPress={toggleRating} activeOpacity={0.5}>
+                  <Image style={styles.recordButtonIcon2} source={require('./rating.png')} />
+                </TouchableOpacity> */}
+                {ratingview}
+                <Text style={styles.text2}>Difficulty</Text>
+                {/* <TouchableOpacity style={styles.recordButton3} onPress={toggleDiff} activeOpacity={0.5}>
+                  <Image style={styles.recordButtonIcon2} source={require('./difficulty.png')} />
+                </TouchableOpacity> */}
+                {diffview}
               </View>
               <View style={styles.slide2}>
                 <Text style={styles.text}>the</Text>
@@ -738,7 +794,7 @@ function CreateScreen(props, { navigation }) {
   return (
     <View style={styles.container_mapstart}>
       <View style={styles.map}>
-        <MapComponent flag = {false} createflag = {true}/>
+        <MapComponent flag={false} createflag={true} />
       </View>
       {recordbar}
     </View>
@@ -1049,6 +1105,20 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
+  text1: {
+    color: '#376171',
+    fontSize: 20,
+    fontFamily: 'RalewayBold',
+    textAlign: 'center',
+    marginBottom: 20,
+  },
+  text2: {
+    color: '#376171',
+    fontSize: 16,
+    fontWeight: 'normal',
+    fontFamily: 'Raleway',
+    textAlign: 'center',
+  },
   congratspage: {
     display: 'flex',
     flexDirection: 'column',
@@ -1078,6 +1148,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     // backgroundColor: 'pink',
   },
+  recordButton3: {
+    width: '50%',
+    height: '20%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    //backgroundColor: 'pink',
+  },
   recordButton2: {
     width: 100,
     height: 100,
@@ -1091,6 +1169,13 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     width: 100,
     height: 100,
+    margin: 7,
+  },
+  recordButtonIcon2: {
+    flex: 1,
+    resizeMode: 'contain',
+    width: '100%',
+    //height: 100,
     margin: 7,
   },
   popupButtonIcon: {
@@ -1296,6 +1381,14 @@ const styles = StyleSheet.create({
     backgroundColor: "#F5F0EC",
     width: 300,
     height: 200,
+    borderRadius: 50,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  endtrailconfirm2: {
+    backgroundColor: "#F5F0EC",
+    width: 300,
+    height: 300,
     borderRadius: 50,
     justifyContent: "center",
     alignItems: "center",
