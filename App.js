@@ -723,7 +723,7 @@ function FeedScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      {/* <Text>Feed screen</Text> */}
+      <Text style = {styles.text4}>Stories</Text>
       <View style={styles.storybox}>
         <FlatList
           horizontal={true}
@@ -1521,6 +1521,15 @@ const styles = StyleSheet.create({
     fontWeight: 'normal',
     fontFamily: 'Raleway',
     textAlign: 'center',
+  },
+  text4: {
+    color: '#376171',
+    fontSize: 20,
+    fontWeight: 'normal',
+    fontFamily: 'RalewayBold',
+    textAlign: 'left',
+    marginLeft:25,
+    marginTop:10,
   },
   text5: {
     color: '#52ADA8',
