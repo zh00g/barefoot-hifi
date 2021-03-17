@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import * as Font from 'expo-font';
 import {
   Button,
   Text,
@@ -164,24 +165,24 @@ function MapStartScreen(props) {
     setOverlayVisible(!overlayvisible);
     props.navigation.navigate('Congrats');
   };
-  
+
   const startpause = () => {
     setstopwatchStart(!stopwatchStart);
   }
 
 
-  
+
 
 
   const atimer =
-    <View style={{position:'absolute', top: '70%', left: (Metrics.screenWidth / 2 - 90)}} opacity={0.8}>
+    <View style={{position: 'absolute', top: '75%', left: (Metrics.screenWidth / 2 - 90) }} opacity={0.5}>
       <Stopwatch options={options} start={stopwatchStart}
       />
     </View>
 
-  const notimer = 
-  <View style={{position:'absolute'}}>
-  </View>
+  const notimer =
+    <View style={{ position: 'absolute' }}>
+    </View>
 
   const recordbarstart =
     <View style={styles.recordingbarstart}>
@@ -231,40 +232,40 @@ function MapStartScreen(props) {
       </TouchableOpacity>
     </View>
 
-const recordbarend2 =
-<View style={styles.recordingbarstart}>
-  <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
-    <Image style={styles.recordButtonIcon} source={require('./Images/learnicon2.png')} />
-  </TouchableOpacity>
-  <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={startpause}>
-    <Image style={styles.recordButtonIcon} source={require('./Images/play.png')} />
-  </TouchableOpacity>
-  <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={toggleOverlay}>
-    <Image style={styles.recordButtonIcon} source={require('./Images/stop2.png')} />
+  const recordbarend2 =
+    <View style={styles.recordingbarstart}>
+      <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
+        <Image style={styles.recordButtonIcon} source={require('./Images/learnicon2.png')} />
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={startpause}>
+        <Image style={styles.recordButtonIcon} source={require('./Images/play.png')} />
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={toggleOverlay}>
+        <Image style={styles.recordButtonIcon} source={require('./Images/stop2.png')} />
 
-    <Overlay overlayStyle={styles.endtrailconfirm1} isVisible={overlayvisible} onBackdropPress={toggleOverlay}>
-      <View style={{ alignItems: 'center' }}>
-        <Text style={{ fontSize: 30, color: '#376171' }}>Save Your Adventure?</Text>
-        <View style={styles.yesnobar}>
-          <TouchableOpacity style={styles.popupButton} onPress={yesbutton}>
-            <Image style={styles.popupButtonIcon} source={require('./Images/yes.png')} />
-          </TouchableOpacity>
-          {/* <Button title="Yes" onPress={() =>
+        <Overlay overlayStyle={styles.endtrailconfirm1} isVisible={overlayvisible} onBackdropPress={toggleOverlay}>
+          <View style={{ alignItems: 'center' }}>
+            <Text style={{ fontSize: 30, color: '#376171' }}>Save Your Adventure?</Text>
+            <View style={styles.yesnobar}>
+              <TouchableOpacity style={styles.popupButton} onPress={yesbutton}>
+                <Image style={styles.popupButtonIcon} source={require('./Images/yes.png')} />
+              </TouchableOpacity>
+              {/* <Button title="Yes" onPress={() =>
             props.navigation.navigate('Congrats')} /> */}
-          <TouchableOpacity style={styles.popupButton} onPress={() => props.navigation.navigate('Explore')}>
-            <Image style={styles.popupButtonIcon} source={require('./Images/no.png')} />
-          </TouchableOpacity>
-          {/* <Button title="No" onPress={() => props.navigation.navigate('Explore')} /> */}
-        </View>
-      </View>
-    </Overlay>
+              <TouchableOpacity style={styles.popupButton} onPress={() => props.navigation.navigate('Explore')}>
+                <Image style={styles.popupButtonIcon} source={require('./Images/no.png')} />
+              </TouchableOpacity>
+              {/* <Button title="No" onPress={() => props.navigation.navigate('Explore')} /> */}
+            </View>
+          </View>
+        </Overlay>
 
 
-  </TouchableOpacity>
-  <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
-    <Image style={styles.recordButtonIcon} source={require('./Images/addland.png')} />
-  </TouchableOpacity>
-</View>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
+        <Image style={styles.recordButtonIcon} source={require('./Images/addland.png')} />
+      </TouchableOpacity>
+    </View>
 
   var recordbar;
   var thetimer;
@@ -280,14 +281,14 @@ const recordbarend2 =
     recordbar = recordbarstart;
     thetimer = notimer;
   }
-  
+
   return (
     <View style={styles.container_mapstart}>
       <View style={styles.map}>
         <MapComponent flag={false} createflag={false} />
-        
+
       </View>
-      
+
       {recordbar}
       {thetimer}
     </View>
@@ -564,7 +565,7 @@ function CameraScreen() {
   return (
     <View style={styles.camcontainer}>
       <View style={styles.camtitle}>
-        <Text style={{ fontSize: 20 }}> Camera View! </Text>
+        <Text style={styles.text3}> Camera View! </Text>
       </View>
       <Camera style={styles.camera} type={type}>
         <View style={styles.buttonContainer}>
@@ -834,14 +835,14 @@ function CreateScreen(props, { navigation }) {
   };
 
   const atimer =
-  <View style={{position:'absolute', top: '70%', left: (Metrics.screenWidth / 2 - 90)}} opacity={0.8}>
-    <Stopwatch options={options} start={stopwatchStart}
-    />
-  </View>
+    <View style={{ position: 'absolute', top: '75%', left: (Metrics.screenWidth / 2 - 90) }} opacity={0.5}>
+      <Stopwatch options={options} start={stopwatchStart}
+      />
+    </View>
 
-  const notimer = 
-  <View style={{position:'absolute'}}>
-  </View>
+  const notimer =
+    <View style={{ position: 'absolute' }}>
+    </View>
 
   const recordbarstart =
     <View style={styles.recordingbarstart}>
@@ -927,75 +928,75 @@ function CreateScreen(props, { navigation }) {
     </View>
 
 
-const recordbarend2 =
-<View style={styles.recordingbarstart}>
-  <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
-    <Image style={styles.recordButtonIcon} source={require('./Images/learnicon2.png')} />
-  </TouchableOpacity>
-  <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={startpause}>
-    <Image style={styles.recordButtonIcon} source={require('./Images/play.png')} />
-  </TouchableOpacity>
-  <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={toggleOver}>
-    <Image style={styles.recordButtonIcon} source={require('./Images/stop2.png')} />
+  const recordbarend2 =
+    <View style={styles.recordingbarstart}>
+      <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
+        <Image style={styles.recordButtonIcon} source={require('./Images/learnicon2.png')} />
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={startpause}>
+        <Image style={styles.recordButtonIcon} source={require('./Images/play.png')} />
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={toggleOver}>
+        <Image style={styles.recordButtonIcon} source={require('./Images/stop2.png')} />
 
-    <Overlay overlayStyle={styles.endtrailconfirm1} isVisible={overlayvis} onBackdropPress={toggleOver}>
-      <View style={styles.endtrailconfirm2}>
-        <Swiper style={styles.wrapper} showsButtons={true}>
-          <View style={styles.slide1}>
-            <Text style={styles.text1}>How was your adventure?</Text>
-            <Text style={styles.text2}>Rating</Text>
-            {/* <TouchableOpacity style={styles.recordButton3} onPress={toggleRating} activeOpacity={0.5}>
+        <Overlay overlayStyle={styles.endtrailconfirm1} isVisible={overlayvis} onBackdropPress={toggleOver}>
+          <View style={styles.endtrailconfirm2}>
+            <Swiper style={styles.wrapper} showsButtons={true}>
+              <View style={styles.slide1}>
+                <Text style={styles.text1}>How was your adventure?</Text>
+                <Text style={styles.text2}>Rating</Text>
+                {/* <TouchableOpacity style={styles.recordButton3} onPress={toggleRating} activeOpacity={0.5}>
               <Image style={styles.recordButtonIcon2} source={require('./rating.png')} />
             </TouchableOpacity> */}
-            {ratingview}
-            <Text style={styles.text2}>Difficulty</Text>
-            {/* <TouchableOpacity style={styles.recordButton3} onPress={toggleDiff} activeOpacity={0.5}>
+                {ratingview}
+                <Text style={styles.text2}>Difficulty</Text>
+                {/* <TouchableOpacity style={styles.recordButton3} onPress={toggleDiff} activeOpacity={0.5}>
               <Image style={styles.recordButtonIcon2} source={require('./difficulty.png')} />
             </TouchableOpacity> */}
-            {diffview}
-          </View>
-          <View style={styles.slide2}>
-            <Text style={styles.text1}>Add details</Text>
-            <View style={styles.searchSectionTitle}>
-              <TextInput
-                placeholder="Title"
-                onChangeText={(text) => setText(text)}
-                //onSubmitEditing = {onSubmitEditing}
-                style={styles.textInput}
+                {diffview}
+              </View>
+              <View style={styles.slide2}>
+                <Text style={styles.text1}>Add details</Text>
+                <View style={styles.searchSectionTitle}>
+                  <TextInput
+                    placeholder="Title"
+                    onChangeText={(text) => setText(text)}
+                    //onSubmitEditing = {onSubmitEditing}
+                    style={styles.textInput}
 
-              />
-            </View>
-            <View style={styles.searchSectionDeets}>
-              <TextInput
-                placeholder="Description"
-                multiline
-                onChangeText={(desc) => setDesc(desc)}
-                //onSubmitEditing = {onSubmitEditing}
-                style={styles.textInput}
-              //value={text}
-              />
-            </View>
+                  />
+                </View>
+                <View style={styles.searchSectionDeets}>
+                  <TextInput
+                    placeholder="Description"
+                    multiline
+                    onChangeText={(desc) => setDesc(desc)}
+                    //onSubmitEditing = {onSubmitEditing}
+                    style={styles.textInput}
+                  //value={text}
+                  />
+                </View>
+              </View>
+              <View style={styles.slide3}>
+                <Text style={styles.text1}>Add photos</Text>
+                <View style={styles.recordButton5}>
+                  <Image style={styles.recordButtonIcon2} source={require('./Images/R32.png')} />
+                </View>
+                <View style={styles.yesnobar2}>
+                  <TouchableOpacity style={{ position: 'absolute', bottom: -40, right: -30 }} activeOpacity={0.5} onPress={sendbutton}>
+                    <AntDesign name="checkcircleo" size={60} color="#52ADA8" />
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </Swiper>
           </View>
-          <View style={styles.slide3}>
-            <Text style={styles.text1}>Add photos</Text>
-            <View style={styles.recordButton5}>
-              <Image style={styles.recordButtonIcon2} source={require('./Images/R32.png')} />
-            </View>
-            <View style={styles.yesnobar2}>
-              <TouchableOpacity style={{ position: 'absolute', bottom: -40, right: -30 }} activeOpacity={0.5} onPress={sendbutton}>
-                <AntDesign name="checkcircleo" size={60} color="#52ADA8" />
-              </TouchableOpacity>
-            </View>
-          </View>
-        </Swiper>
-      </View>
-    </Overlay>
+        </Overlay>
 
-  </TouchableOpacity>
-  <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
-    <Image style={styles.recordButtonIcon} source={require('./Images/addland.png')} />
-  </TouchableOpacity>
-</View>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
+        <Image style={styles.recordButtonIcon} source={require('./Images/addland.png')} />
+      </TouchableOpacity>
+    </View>
 
   var recordbar;
   var thetimer;
@@ -1017,7 +1018,7 @@ const recordbarend2 =
   return (
     <View style={styles.container_mapstart}>
       <View style={styles.map}>
-        <MapComponent flag={false} createflag={true} bflag={bflag}/>
+        <MapComponent flag={false} createflag={true} bflag={bflag} />
       </View>
       {recordbar}
       {thetimer}
@@ -1127,20 +1128,20 @@ function CongratsCreateScreen(props) {
             <Image style={styles.recordButtonIcon} source={require('./savebutton.png')} />
             <Overlay overlayStyle={styles.endtrailconfirm1} isVisible={saveVis} onBackdropPress={saveCheck}>
               <View style={{ alignItems: 'center' }}>
-            <Text style={{ fontSize: 30, color: '#376171' }}>Save Your Trail?</Text>
-            <View style={styles.yesnobar}>
-              <TouchableOpacity style={styles.popupButton} onPress={fullsave}>
-                <Image style={styles.popupButtonIcon} source={require('./Images/yes.png')} />
-              </TouchableOpacity>
-              {/* <Button title="Yes" onPress={() =>
+                <Text style={{ fontSize: 30, color: '#376171' }}>Save Your Trail?</Text>
+                <View style={styles.yesnobar}>
+                  <TouchableOpacity style={styles.popupButton} onPress={fullsave}>
+                    <Image style={styles.popupButtonIcon} source={require('./Images/yes.png')} />
+                  </TouchableOpacity>
+                  {/* <Button title="Yes" onPress={() =>
                 props.navigation.navigate('Congrats')} /> */}
-              <TouchableOpacity style={styles.popupButton} onPress={saveCheck}>
-                <Image style={styles.popupButtonIcon} source={require('./Images/no.png')} />
-              </TouchableOpacity>
-              {/* <Button title="No" onPress={() => props.navigation.navigate('Explore')} /> */}
-            </View>
-          </View>
-        </Overlay>
+                  <TouchableOpacity style={styles.popupButton} onPress={saveCheck}>
+                    <Image style={styles.popupButtonIcon} source={require('./Images/no.png')} />
+                  </TouchableOpacity>
+                  {/* <Button title="No" onPress={() => props.navigation.navigate('Explore')} /> */}
+                </View>
+              </View>
+            </Overlay>
           </TouchableOpacity>
 
 
@@ -1163,23 +1164,23 @@ function CongratsCreateScreen(props) {
           </View>
         </View>
 
-            <View style={styles.congratsinfobox2}>
-            <Text style={styles.text5}> Rating: </Text>
-            <TouchableOpacity style={styles.recordButton4} activeOpacity={1}>
-              <Image style={styles.recordButtonIcon2} source={require('./ratingfilled.png')} />
-            </TouchableOpacity>
-            <Text style={styles.text5}> Difficulty: </Text>
-            <TouchableOpacity style={styles.recordButton4} activeOpacity={1}>
-              <Image style={styles.recordButtonIcon2} source={require('./difficultyfilled.png')} />
-            </TouchableOpacity>
-            </View>
-            
-        
+        <View style={styles.congratsinfobox2}>
+          <Text style={styles.text5}> Rating: </Text>
+          <TouchableOpacity style={styles.recordButton4} activeOpacity={1}>
+            <Image style={styles.recordButtonIcon2} source={require('./ratingfilled.png')} />
+          </TouchableOpacity>
+          <Text style={styles.text5}> Difficulty: </Text>
+          <TouchableOpacity style={styles.recordButton4} activeOpacity={1}>
+            <Image style={styles.recordButtonIcon2} source={require('./difficultyfilled.png')} />
+          </TouchableOpacity>
+        </View>
 
-            
 
-         
-        
+
+
+
+
+
 
 
 
@@ -1248,20 +1249,19 @@ const ExploreStack = createStackNavigator();
 
 function ExploreStackScreen() {
   return (
-    <ExploreStack.Navigator 
-    screenOptions={{
-      //headerShown: false
-      headerStyle: {
-            backgroundColor: 'white',
-          },
-          headerTintColor: '#376171',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-            fontSize: 24,
-            fontFamily: 'Raleway'
-          },
-    }}>
-      
+    <ExploreStack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: 'white',
+        },
+        headerTintColor: '#376171',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+          fontSize: 24,
+          fontFamily: 'Raleway'
+        },
+      }}>
+
       <ExploreStack.Screen name="Explore" component={ExploreScreen} />
       <ExploreStack.Screen name="Preview" component={TrailPreviewScreen} />
       <ExploreStack.Screen name="MapStart" component={MapStartScreen} />
@@ -1287,7 +1287,19 @@ const FeedStack = createStackNavigator();
 
 function FeedStackScreen() {
   return (
-    <FeedStack.Navigator>
+    <FeedStack.Navigator
+      screenOptions={{
+        //headerShown: false
+        headerStyle: {
+          backgroundColor: 'white',
+        },
+        headerTintColor: '#376171',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+          fontSize: 24,
+          fontFamily: 'Raleway'
+        },
+      }}>
       <FeedStack.Screen name="Feed" component={FeedScreen} />
       {/* <FeedStack.Screen name="Preview" component={TrailPreviewScreen} /> */}
       {/* <FeedStack.Screen name="MapStart" component={MapStartScreen} />
@@ -1301,7 +1313,19 @@ const ProfileStack = createStackNavigator();
 
 function ProfileStackScreen() {
   return (
-    <ProfileStack.Navigator>
+    <ProfileStack.Navigator
+      screenOptions={{
+        //headerShown: false
+        headerStyle: {
+          backgroundColor: 'white',
+        },
+        headerTintColor: '#376171',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+          fontSize: 24,
+          fontFamily: 'Raleway'
+        },
+      }}>
       <ProfileStack.Screen name="Profile" component={ProfileScreen} />
     </ProfileStack.Navigator>
   );
@@ -1311,7 +1335,19 @@ const CreateStack = createStackNavigator();
 
 function CreateStackScreen() {
   return (
-    <CreateStack.Navigator initialRouteName="Create">
+    <CreateStack.Navigator initialRouteName="Create"
+      screenOptions={{
+        //headerShown: false
+        headerStyle: {
+          backgroundColor: 'white',
+        },
+        headerTintColor: '#376171',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+          fontSize: 24,
+          fontFamily: 'Raleway'
+        },
+      }}>
       <CreateStack.Screen name="Create" component={CreateScreen} />
       {/* <CreateStack.Screen name="MapStart" component={MapStartScreen} /> */}
       <CreateStack.Screen name="CongratsCreate" component={CongratsCreateScreen} />
@@ -1390,6 +1426,21 @@ function MyTabs() {
   );
 }
 export default function App() {
+  const [fontsLoaded, setFonts] = useState(false);
+
+  const loadFonts = async () => {
+    await Font.loadAsync({
+      // Load a font `Montserrat` from a static resource
+      Raleway: require('./assets/fonts/Raleway-Regular.ttf'),
+      RalewayBold: require('./assets/fonts/Raleway-Bold.ttf'),
+    });
+    setFonts(true);
+  }
+
+  useEffect(() => {
+    loadFonts();
+  },[])
+
   return (
     <NavigationContainer>
       <MyTabs />
@@ -1532,7 +1583,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     //backgroundColor: 'pink',
     marginVertical: 5,
-    marginLeft: Metrics.screenWidth/3.5
+    marginLeft: Metrics.screenWidth / 3.5
   },
   recordButton2: {
     width: 100,
@@ -1798,7 +1849,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   recordingbarstart: {
-    flex: 0.16,
+    flex: 0.2,
     flexDirection: 'row',
     justifyContent: "space-evenly",
     alignItems: "center",
