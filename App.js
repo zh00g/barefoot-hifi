@@ -33,6 +33,7 @@ import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
 import { LogBox } from 'react-native';
 //testing commit
 //testing commit 2
+// 3/17/2021 1:50 PM test push
 
 
 function TrailPreviewScreen(props, { navigation }) {
