@@ -28,6 +28,7 @@ import { setStatusBarNetworkActivityIndicatorVisible } from 'expo-status-bar';
 import SwitchButton from 'switch-button-react-native';
 import Swiper from 'react-native-swiper'
 import { useFonts } from 'expo-font';
+import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
 //testing commit
 //testing commit 2
 
@@ -126,11 +127,32 @@ function TrailPreviewScreen(props, { navigation }) {
 }
 
 function MapStartScreen(props) {
+
+  const options = {
+    container: {
+      backgroundColor: '#000',
+      padding: 5,
+      borderRadius: 5,
+      width: 180,
+      alignItems: 'center',
+    },
+    text: {
+      fontSize: 30,
+      color: '#FFF',
+      marginLeft: 7,
+    }
+  };
+
   const [overlayvisible, setOverlayVisible] = useState(false);
   const [visible, setVisible] = useState(false);
+  const [stopwatchStart, setstopwatchStart] = useState(true);
+
+
+
 
   const toggleOverlay = () => {
     setOverlayVisible(!overlayvisible);
+    setstopwatchStart(!stopwatchStart);
   };
 
 
@@ -142,7 +164,24 @@ function MapStartScreen(props) {
     setOverlayVisible(!overlayvisible);
     props.navigation.navigate('Congrats');
   };
+  
+  const startpause = () => {
+    setstopwatchStart(!stopwatchStart);
+  }
 
+
+  
+
+
+  const atimer =
+    <View style={{position:'absolute', top: '70%', left: (Metrics.screenWidth / 2 - 90)}} opacity={0.8}>
+      <Stopwatch options={options} start={stopwatchStart}
+      />
+    </View>
+
+  const notimer = 
+  <View style={{position:'absolute'}}>
+  </View>
 
   const recordbarstart =
     <View style={styles.recordingbarstart}>
@@ -162,7 +201,7 @@ function MapStartScreen(props) {
       <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
         <Image style={styles.recordButtonIcon} source={require('./Images/learnicon2.png')} />
       </TouchableOpacity>
-      <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
+      <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={startpause}>
         <Image style={styles.recordButtonIcon} source={require('./Images/pause2.png')} />
       </TouchableOpacity>
       <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={toggleOverlay}>
@@ -192,20 +231,65 @@ function MapStartScreen(props) {
       </TouchableOpacity>
     </View>
 
+const recordbarend2 =
+<View style={styles.recordingbarstart}>
+  <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
+    <Image style={styles.recordButtonIcon} source={require('./Images/learnicon2.png')} />
+  </TouchableOpacity>
+  <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={startpause}>
+    <Image style={styles.recordButtonIcon} source={require('./Images/play.png')} />
+  </TouchableOpacity>
+  <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={toggleOverlay}>
+    <Image style={styles.recordButtonIcon} source={require('./Images/stop2.png')} />
+
+    <Overlay overlayStyle={styles.endtrailconfirm1} isVisible={overlayvisible} onBackdropPress={toggleOverlay}>
+      <View style={{ alignItems: 'center' }}>
+        <Text style={{ fontSize: 30, color: '#376171' }}>Save Your Adventure?</Text>
+        <View style={styles.yesnobar}>
+          <TouchableOpacity style={styles.popupButton} onPress={yesbutton}>
+            <Image style={styles.popupButtonIcon} source={require('./Images/yes.png')} />
+          </TouchableOpacity>
+          {/* <Button title="Yes" onPress={() =>
+            props.navigation.navigate('Congrats')} /> */}
+          <TouchableOpacity style={styles.popupButton} onPress={() => props.navigation.navigate('Explore')}>
+            <Image style={styles.popupButtonIcon} source={require('./Images/no.png')} />
+          </TouchableOpacity>
+          {/* <Button title="No" onPress={() => props.navigation.navigate('Explore')} /> */}
+        </View>
+      </View>
+    </Overlay>
+
+
+  </TouchableOpacity>
+  <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
+    <Image style={styles.recordButtonIcon} source={require('./Images/addland.png')} />
+  </TouchableOpacity>
+</View>
+
   var recordbar;
+  var thetimer;
   if (visible) {
     recordbar = recordbarend;
-  }
-  else {
-    recordbar = recordbarstart;
-  }
+    thetimer = atimer;
 
+  }
+  if (visible && !stopwatchStart && !overlayvisible) {
+    recordbar = recordbarend2;
+  }
+  if (!visible) {
+    recordbar = recordbarstart;
+    thetimer = notimer;
+  }
+  
   return (
     <View style={styles.container_mapstart}>
       <View style={styles.map}>
         <MapComponent flag={false} createflag={false} />
+        
       </View>
+      
       {recordbar}
+      {thetimer}
     </View>
 
   );
@@ -658,6 +742,22 @@ function FeedScreen({ navigation }) {
 }
 
 function CreateScreen(props, { navigation }) {
+  const options = {
+    container: {
+      backgroundColor: '#000',
+      padding: 5,
+      borderRadius: 5,
+      width: 180,
+      alignItems: 'center',
+    },
+    text: {
+      fontSize: 30,
+      color: '#FFF',
+      marginLeft: 7,
+    }
+  };
+
+  const [stopwatchStart, setstopwatchStart] = useState(true);
   const [visible1, setVisible] = useState(false);
   const [overlayvis, setOverlayVis] = useState(false);
   const [rating, setRating] = useState(false);
@@ -706,7 +806,9 @@ function CreateScreen(props, { navigation }) {
   }
 
 
-
+  const startpause = () => {
+    setstopwatchStart(!stopwatchStart);
+  }
 
   const toggleBar = () => {
     setVisible(!visible1);
@@ -731,6 +833,16 @@ function CreateScreen(props, { navigation }) {
     props.navigation.navigate('CongratsCreate');
   };
 
+  const atimer =
+  <View style={{position:'absolute', top: '70%', left: (Metrics.screenWidth / 2 - 90)}} opacity={0.8}>
+    <Stopwatch options={options} start={stopwatchStart}
+    />
+  </View>
+
+  const notimer = 
+  <View style={{position:'absolute'}}>
+  </View>
+
   const recordbarstart =
     <View style={styles.recordingbarstart}>
       <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
@@ -749,7 +861,7 @@ function CreateScreen(props, { navigation }) {
       <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
         <Image style={styles.recordButtonIcon} source={require('./Images/learnicon2.png')} />
       </TouchableOpacity>
-      <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
+      <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={startpause}>
         <Image style={styles.recordButtonIcon} source={require('./Images/pause2.png')} />
       </TouchableOpacity>
       <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={toggleOver}>
@@ -814,20 +926,101 @@ function CreateScreen(props, { navigation }) {
       </TouchableOpacity>
     </View>
 
+
+const recordbarend2 =
+<View style={styles.recordingbarstart}>
+  <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
+    <Image style={styles.recordButtonIcon} source={require('./Images/learnicon2.png')} />
+  </TouchableOpacity>
+  <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={startpause}>
+    <Image style={styles.recordButtonIcon} source={require('./Images/play.png')} />
+  </TouchableOpacity>
+  <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={toggleOver}>
+    <Image style={styles.recordButtonIcon} source={require('./Images/stop2.png')} />
+
+    <Overlay overlayStyle={styles.endtrailconfirm1} isVisible={overlayvis} onBackdropPress={toggleOver}>
+      <View style={styles.endtrailconfirm2}>
+        <Swiper style={styles.wrapper} showsButtons={true}>
+          <View style={styles.slide1}>
+            <Text style={styles.text1}>How was your adventure?</Text>
+            <Text style={styles.text2}>Rating</Text>
+            {/* <TouchableOpacity style={styles.recordButton3} onPress={toggleRating} activeOpacity={0.5}>
+              <Image style={styles.recordButtonIcon2} source={require('./rating.png')} />
+            </TouchableOpacity> */}
+            {ratingview}
+            <Text style={styles.text2}>Difficulty</Text>
+            {/* <TouchableOpacity style={styles.recordButton3} onPress={toggleDiff} activeOpacity={0.5}>
+              <Image style={styles.recordButtonIcon2} source={require('./difficulty.png')} />
+            </TouchableOpacity> */}
+            {diffview}
+          </View>
+          <View style={styles.slide2}>
+            <Text style={styles.text1}>Add details</Text>
+            <View style={styles.searchSectionTitle}>
+              <TextInput
+                placeholder="Title"
+                onChangeText={(text) => setText(text)}
+                //onSubmitEditing = {onSubmitEditing}
+                style={styles.textInput}
+
+              />
+            </View>
+            <View style={styles.searchSectionDeets}>
+              <TextInput
+                placeholder="Description"
+                multiline
+                onChangeText={(desc) => setDesc(desc)}
+                //onSubmitEditing = {onSubmitEditing}
+                style={styles.textInput}
+              //value={text}
+              />
+            </View>
+          </View>
+          <View style={styles.slide3}>
+            <Text style={styles.text1}>Add photos</Text>
+            <View style={styles.recordButton5}>
+              <Image style={styles.recordButtonIcon2} source={require('./Images/R32.png')} />
+            </View>
+            <View style={styles.yesnobar2}>
+              <TouchableOpacity style={{ position: 'absolute', bottom: -40, right: -30 }} activeOpacity={0.5} onPress={sendbutton}>
+                <AntDesign name="checkcircleo" size={60} color="#52ADA8" />
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Swiper>
+      </View>
+    </Overlay>
+
+  </TouchableOpacity>
+  <TouchableOpacity style={styles.recordButton} activeOpacity={0.5}>
+    <Image style={styles.recordButtonIcon} source={require('./Images/addland.png')} />
+  </TouchableOpacity>
+</View>
+
   var recordbar;
+  var thetimer;
+  var bflag;
   if (visible1) {
     recordbar = recordbarend;
+    thetimer = atimer;
+    bflag = true;
   }
-  else {
+  if (visible1 && !stopwatchStart && !overlayvis) {
+    recordbar = recordbarend2;
+  }
+  if (!visible1) {
     recordbar = recordbarstart;
+    thetimer = notimer;
+    bflag = false;
   }
 
   return (
     <View style={styles.container_mapstart}>
       <View style={styles.map}>
-        <MapComponent flag={false} createflag={true} />
+        <MapComponent flag={false} createflag={true} bflag={bflag}/>
       </View>
       {recordbar}
+      {thetimer}
     </View>
 
   );
@@ -836,6 +1029,7 @@ function CreateScreen(props, { navigation }) {
 function CongratsCreateScreen(props) {
   const [visible, setVisible] = useState(false);
   const { title, desc } = props.route.params;
+  const [saveVis, setSaveVis] = useState(false);
 
   const toggleOverlay = () => {
     setVisible(!visible);
@@ -846,6 +1040,17 @@ function CongratsCreateScreen(props) {
     setVisible(!visible);
     props.navigation.navigate('Feed');
   }
+
+  const saveCheck = () => {
+    setSaveVis(!saveVis);
+  }
+
+  const fullsave = () => {
+    setSaveVis(!saveVis);
+    props.navigation.navigate('Explore');
+  }
+
+
 
   const trailtips = [
     {
@@ -918,9 +1123,27 @@ function CongratsCreateScreen(props) {
 
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={() => props.navigation.navigate('Explore')}>
+          <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={saveCheck}>
             <Image style={styles.recordButtonIcon} source={require('./savebutton.png')} />
+            <Overlay overlayStyle={styles.endtrailconfirm1} isVisible={saveVis} onBackdropPress={saveCheck}>
+              <View style={{ alignItems: 'center' }}>
+            <Text style={{ fontSize: 30, color: '#376171' }}>Save Your Trail?</Text>
+            <View style={styles.yesnobar}>
+              <TouchableOpacity style={styles.popupButton} onPress={fullsave}>
+                <Image style={styles.popupButtonIcon} source={require('./Images/yes.png')} />
+              </TouchableOpacity>
+              {/* <Button title="Yes" onPress={() =>
+                props.navigation.navigate('Congrats')} /> */}
+              <TouchableOpacity style={styles.popupButton} onPress={saveCheck}>
+                <Image style={styles.popupButtonIcon} source={require('./Images/no.png')} />
+              </TouchableOpacity>
+              {/* <Button title="No" onPress={() => props.navigation.navigate('Explore')} /> */}
+            </View>
+          </View>
+        </Overlay>
           </TouchableOpacity>
+
+
         </View>
 
         <View style={{

@@ -16,8 +16,10 @@
     "@react-navigation/stack": "^5.14.3",
     "expo": "~40.0.0",
     "expo-camera": "^9.1.1",
+    "expo-font": "~8.4.0",
     "expo-status-bar": "~1.0.3",
     "react": "16.13.1",
+    "react-compound-timer": "^1.2.0",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz",
     "react-native-elements": "^3.2.0",
@@ -29,11 +31,11 @@
     "react-native-reanimated": "^1.13.2",
     "react-native-safe-area-context": "3.1.9",
     "react-native-screens": "^2.18.0",
+    "react-native-stopwatch-timer": "0.0.21",
     "react-native-swiper": "^1.6.0",
     "react-native-tab-view": "^2.15.1",
     "react-native-web": "~0.13.12",
-    "switch-button-react-native": "^1.0.3",
-    "expo-font": "~8.4.0"
+    "switch-button-react-native": "^1.0.3"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0"

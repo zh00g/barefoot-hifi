@@ -147,66 +147,120 @@ class MapComponent extends React.Component {
         var mode;
         if (this.state.switch) {
           mode = 'LEARN MODE';
-          return (
-          <View style = {styles.map}>
-            <MapView
-            style = {styles.map}
-            onRegionChange={this.onRegionChange}
-            initialRegion = {{           
-                latitude: origin.latitude,
-                longitude: origin.longitude,
-                latitudeDelta: 0.0922,
-                longitudeDelta: 0.0421,
-            }}
-            animatetoRegion = {this.state.region}>
-  
+          if (this.props.bflag) {
+            return (
+            <View style = {styles.map}>
+              <MapView
+              style = {styles.map}
+              onRegionChange={this.onRegionChange}
+              initialRegion = {{           
+                  latitude: origin.latitude,
+                  longitude: origin.longitude,
+                  latitudeDelta: 0.0922,
+                  longitudeDelta: 0.0421,
+              }}
+              animatetoRegion = {this.state.region}>
+    
 
-  
-              <MapView.Marker key = 'key' title = 'Start' image = {require("../Images/origin.png")} coordinate = {origin} />
-              <MapView.Marker key = 'key2' title = 'End' coordinate = {destination}/>
-              <MapViewDirections
-                origin = {origin}
-                destination = {destination}
-                apikey = {GOOGLE_API_KEY}
-                strokeWidth = {3}
-              />
-              
-  
-            </MapView>
+    
+                <MapView.Marker key = 'key' title = 'Start' image = {require("../Images/origin.png")} coordinate = {origin} />
+                <MapView.Marker key = 'key2' title = 'End' coordinate = {destination}/>
+                <MapViewDirections
+                  origin = {origin}
+                  destination = {destination}
+                  apikey = {GOOGLE_API_KEY}
+                  strokeWidth = {3}
+                />
+                
+    
+              </MapView>
 
-            <View style = {styles.switch}> 
-              <TouchableOpacity  
-              activeOpacity = {0.5} 
-              onPress={() => this.setState({switch: !this.state.switch})}
-              style = {styles.previewbutton}>
-                {/* <Text style = {{fontSize: 18,
-                  color: "#fff",
-                  fontWeight: "bold",
-                  textTransform: "uppercase"}}> 
-                  {mode} 
-                </Text> */}
-                <Image style = {{width:200, height:200, resizeMode: 'contain'}} source={require('../mapmodetoggle.png')} />
-              </TouchableOpacity>
-            </View>
-            <View style={{position: 'absolute', right: '4.5%'}}>
-                <TouchableOpacity title = "" style={styles.smallbutton} onPress={() => this.setState({overlay: !this.state.overlay})}>
-                  <Image source = {require('../Question.png')} style={{resizeMode: 'contain', marginTop:10}} />
+              <View style = {styles.switch}> 
+                <TouchableOpacity  
+                activeOpacity = {0.5} 
+                onPress={() => this.setState({switch: !this.state.switch})}
+                style = {styles.previewbutton}>
+                  {/* <Text style = {{fontSize: 18,
+                    color: "#fff",
+                    fontWeight: "bold",
+                    textTransform: "uppercase"}}> 
+                    {mode} 
+                  </Text> */}
+                  <Image style = {{width:200, height:200, resizeMode: 'contain'}} source={require('../mapmodetoggle.png')} />
                 </TouchableOpacity>
-            </View>
+              </View>
+              <View style={{position: 'absolute', right: '4.5%'}}>
+                  <TouchableOpacity title = "" style={styles.smallbutton} onPress={() => this.setState({overlay: !this.state.overlay})}>
+                    <Image source = {require('../Question.png')} style={{resizeMode: 'contain', marginTop:10}} />
+                  </TouchableOpacity>
+              </View>
 
-                <Overlay overlayStyle={styles.endtrailconfirm} isVisible={this.state.overlay} onBackdropPress={() => this.setState({overlay: !this.state.overlay})}>
-                  <View style={styles.wrap}>
-                  <View style={{height: 30, width: 30, left: '3%', top: '4%'}}>
-                      <TouchableOpacity style={styles.exitbutton} onPress={() => this.setState({overlay: !this.state.overlay})}>
-                        <Image source = {require('../Images/exitbutton.png')} style={{width: 20, height: 20, resizeMode:'contain'}}/>
-                      </TouchableOpacity>
+                  <Overlay overlayStyle={styles.endtrailconfirm} isVisible={this.state.overlay} onBackdropPress={() => this.setState({overlay: !this.state.overlay})}>
+                    <View style={styles.wrap}>
+                    <View style={{height: 30, width: 30, left: '3%', top: '4%'}}>
+                        <TouchableOpacity style={styles.exitbutton} onPress={() => this.setState({overlay: !this.state.overlay})}>
+                          <Image source = {require('../Images/exitbutton.png')} style={{width: 20, height: 20, resizeMode:'contain'}}/>
+                        </TouchableOpacity>
+                      </View>
+                      {overlaysliders}
                     </View>
-                    {overlaysliders}
-                  </View>
-                </Overlay>
+                  </Overlay>
 
-          </View>  
-          );
+            </View>  
+            );
+          }
+          else {
+            return(
+              <View style = {styles.map}>
+              <MapView
+              style = {styles.map}
+              onRegionChange={this.onRegionChange}
+              initialRegion = {{           
+                  latitude: origin.latitude,
+                  longitude: origin.longitude,
+                  latitudeDelta: 0.0922,
+                  longitudeDelta: 0.0421,
+              }}
+              animatetoRegion = {this.state.region}>
+  
+                
+    
+              </MapView>
+
+              <View style = {styles.switch}> 
+                <TouchableOpacity  
+                activeOpacity = {0.5} 
+                onPress={() => this.setState({switch: !this.state.switch})}
+                style = {styles.previewbutton}>
+                  {/* <Text style = {{fontSize: 18,
+                    color: "#fff",
+                    fontWeight: "bold",
+                    textTransform: "uppercase"}}> 
+                    {mode} 
+                  </Text> */}
+                  <Image style = {{width:200, height:200, resizeMode: 'contain'}} source={require('../mapmodetoggle.png')} />
+                </TouchableOpacity>
+              </View>
+              <View style={{position: 'absolute', right: '4.5%'}}>
+                  <TouchableOpacity title = "" style={styles.smallbutton} onPress={() => this.setState({overlay: !this.state.overlay})}>
+                    <Image source = {require('../Question.png')} style={{resizeMode: 'contain', marginTop:10}} />
+                  </TouchableOpacity>
+              </View>
+
+                  <Overlay overlayStyle={styles.endtrailconfirm} isVisible={this.state.overlay} onBackdropPress={() => this.setState({overlay: !this.state.overlay})}>
+                    <View style={styles.wrap}>
+                    <View style={{height: 30, width: 30, left: '3%', top: '4%'}}>
+                        <TouchableOpacity style={styles.exitbutton} onPress={() => this.setState({overlay: !this.state.overlay})}>
+                          <Image source = {require('../Images/exitbutton.png')} style={{width: 20, height: 20, resizeMode:'contain'}}/>
+                        </TouchableOpacity>
+                      </View>
+                      {overlaysliders}
+                    </View>
+                  </Overlay>
+
+            </View>
+            );
+          }
           
         }
         else {
