@@ -1260,9 +1260,8 @@ function ExploreStackScreen() {
         },
         headerTintColor: '#376171',
         headerTitleStyle: {
-          fontWeight: 'bold',
           fontSize: 24,
-          fontFamily: 'Raleway'
+          //fontFamily: 'Raleway'
         },
       }}>
 
@@ -1299,9 +1298,8 @@ function FeedStackScreen() {
         },
         headerTintColor: '#376171',
         headerTitleStyle: {
-          fontWeight: 'bold',
           fontSize: 24,
-          fontFamily: 'Raleway'
+          //fontFamily: 'Raleway'
         },
       }}>
       <FeedStack.Screen name="Feed" component={FeedScreen} />
@@ -1325,9 +1323,8 @@ function ProfileStackScreen() {
         },
         headerTintColor: '#376171',
         headerTitleStyle: {
-          fontWeight: 'bold',
           fontSize: 24,
-          fontFamily: 'Raleway'
+          //fontFamily: 'Raleway'
         },
       }}>
       <ProfileStack.Screen name="Profile" component={ProfileScreen} />
@@ -1347,9 +1344,8 @@ function CreateStackScreen() {
         },
         headerTintColor: '#376171',
         headerTitleStyle: {
-          fontWeight: 'bold',
           fontSize: 24,
-          fontFamily: 'Raleway'
+          //fontFamily: 'Raleway'
         },
       }}>
       <CreateStack.Screen name="Create" component={CreateScreen} />
