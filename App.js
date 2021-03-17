@@ -133,12 +133,13 @@ function MapStartScreen(props) {
     container: {
       backgroundColor: '#000',
       padding: 5,
-      borderRadius: 5,
+      borderRadius: 15,
       width: 180,
       alignItems: 'center',
     },
     text: {
       fontSize: 30,
+      fontFamily: 'Raleway',
       color: '#FFF',
       marginLeft: 7,
     }
@@ -175,7 +176,7 @@ function MapStartScreen(props) {
 
 
   const atimer =
-    <View style={{position: 'absolute', top: '75%', left: (Metrics.screenWidth / 2 - 90) }} opacity={0.5}>
+    <View style={{position: 'absolute', top: '76%', left: (Metrics.screenWidth / 2 - 90) }} opacity={0.5}>
       <Stopwatch options={options} start={stopwatchStart}
       />
     </View>
@@ -747,12 +748,13 @@ function CreateScreen(props, { navigation }) {
     container: {
       backgroundColor: '#000',
       padding: 5,
-      borderRadius: 5,
+      borderRadius: 15,
       width: 180,
       alignItems: 'center',
     },
     text: {
       fontSize: 30,
+      fontFamily: 'Raleway',
       color: '#FFF',
       marginLeft: 7,
     }
@@ -835,7 +837,7 @@ function CreateScreen(props, { navigation }) {
   };
 
   const atimer =
-    <View style={{ position: 'absolute', top: '75%', left: (Metrics.screenWidth / 2 - 90) }} opacity={0.5}>
+    <View style={{ position: 'absolute', top: '76%', left: (Metrics.screenWidth / 2 - 90) }} opacity={0.5}>
       <Stopwatch options={options} start={stopwatchStart}
       />
     </View>
@@ -1849,7 +1851,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   recordingbarstart: {
-    flex: 0.2,
+    flex: 0.19,
     flexDirection: 'row',
     justifyContent: "space-evenly",
     alignItems: "center",
