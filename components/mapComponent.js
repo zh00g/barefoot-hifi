@@ -11,7 +11,6 @@ import { ToggleButton } from 'react-native-paper';
 import SwitchButton from 'switch-button-react-native';
 import { Metrics } from '../Themes';
 import Swiper from 'react-native-swiper';
-import { useFonts } from 'expo-font';
 
 
 const GOOGLE_API_KEY = 'AIzaSyBBUZTSrNRyshhKeOmNp5W9nWKM4-Irsgg';
