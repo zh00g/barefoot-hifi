@@ -457,14 +457,7 @@ function FriendsListScreen(props) {
       id: '4',
       title: 'Anthony',
     },
-    {
-      id: '5',
-      title: 'Victoria',
-    },
-    {
-      id: '6',
-      title: 'Dr. Landay',
-    },
+
   ];
 
 
@@ -474,7 +467,7 @@ function FriendsListScreen(props) {
       style={
         styles.item}>
       <Ionicons name="person-circle-outline" color={"#A6D2AE"} size={60} />
-      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.text2}>{title}</Text>
     </TouchableOpacity>
   );
 
@@ -497,7 +490,7 @@ function FriendsListScreen(props) {
     <View style={styles.friendscontainer}>
 
       <View style={{ justifyContent: "center", alignItems: "center" }}>
-        <Text style={styles.friendslistpageheader}> Send </Text>
+        <Text style={styles.text1}> Send </Text>
       </View>
 
 
@@ -527,7 +520,7 @@ function FriendsListScreen(props) {
           <Image style={styles.recordButtonIcon} source={require('./Images/sendicon.png')} />
           <Overlay overlayStyle={styles.endtrailconfirm} isVisible={visible} onBackdropPress={toggleOverlay}>
             <View style={{ alignItems: 'center' }}>
-              <Text style={{ fontSize: 40, color: '#376171', fontWeight: 'bold' }}>Sent!</Text>
+              <Text style={{ fontSize: 40, color: '#376171', fontFamily: 'Raleway' }}>Sent!</Text>
               <View style={styles.yesnobar2}>
                 <TouchableOpacity activeOpacity={0.5} onPress={sendbutton}>
                   <AntDesign name="checkcircleo" size={60} color="#52ADA8" />
@@ -628,7 +621,7 @@ function ExploreScreen({ navigation }) {
         onPress={() => navigation.navigate('Preview')}>
         <Image style={styles.img1} source={image} />
       </TouchableOpacity>
-      <Text style={{ marginLeft: 20, marginBottom: 10, color: '#376171' }}> Owl Trail </Text>
+      <Text style={{ marginLeft: 20, marginBottom: 10, color: '#376171', fontFamily: 'Raleway' }}> Owl Trail </Text>
     </View>
   );
   return (
@@ -678,32 +671,49 @@ function ExploreScreen({ navigation }) {
   );
 }
 
-function FeedScreen({ navigation }) {
+function FeedScreen(props) {
   const stories = [
     {
       id: "1",
       image: require("./Images/stories2.png"),
     },
   ]
-  const posts = [
-    {
-      id: "1",
-      image: require("./Images/post11.png"),
-    },
-    {
-      id: "2",
-      image: require("./Images/post22.png")
-    },
-    {
-      id: "3",
-      image: require("./Images/post3.png")
-    },
-  ]
+  // const {afterpost } = props.route.params;
+  const {afterpost } = false;
+  var posts = [];
+  if (!afterpost) {
+    posts = [
+      {
+        id: "1",
+        image: require("./Images/post11.png"),
+      },
+      {
+        id: "2",
+        image: require("./Images/post22.png")
+      },
+      {
+        id: "3",
+        image: require("./Images/post3.png")
+      },
+    ]
+  }
+  else {
+    posts = [
+      {
+        id: "1",
+        image: require("./Images/post11.png"),
+      },
+      {
+        id: "2",
+        image: require("./Images/post22.png")
+      },
+    ]
+  }
   const Post = ({ image }) => (
     <TouchableOpacity
       activeOpacity={0.9}
       style={styles.item}
-      onPress={() => navigation.navigate('Preview')}>
+      onPress={() => props.navigation.navigate('Preview')}>
       <Image style={{ height: 550, resizeMode: 'contain', width: Metrics.screenWidth - 20 }} source={image} />
     </TouchableOpacity>
   );
@@ -1036,7 +1046,7 @@ function CongratsCreateScreen(props) {
   const [visible, setVisible] = useState(false);
   const { title, desc } = props.route.params;
   const [saveVis, setSaveVis] = useState(false);
-
+  const [afterpost, setAfter] = useState(false);
   const toggleOverlay = () => {
     setVisible(!visible);
   };
@@ -1044,8 +1054,34 @@ function CongratsCreateScreen(props) {
 
   const sendbutton = () => {
     setVisible(!visible);
-    props.navigation.navigate('Feed');
+    setAfter(true);
+    // setPosts([
+    //   {
+    //     id: "1",
+    //     image: require("./Images/post11.png"),
+    //   },
+    //   {
+    //     id: "2",
+    //     image: require("./Images/post22.png")
+    //   },
+    //   {
+    //     id: "3",
+    //     image: require("./Images/post3.png")
+    //   },
+    // ]);
+    props.navigation.navigate('Feed', {
+      afterpost: afterpost,
+    });
   }
+  // const sendbutton = () => {
+  //   setOverlayVis(!overlayvis);
+  //   setVisible(!visible1);
+  //   // props.navigation.navigate('CongratsCreate');
+  //   props.navigation.navigate('CongratsCreate', {
+  //     title: text,
+  //     desc: desc,
+  //   });
+  // }
 
   const saveCheck = () => {
     setSaveVis(!saveVis);
@@ -1117,7 +1153,7 @@ function CongratsCreateScreen(props) {
             <Overlay overlayStyle={styles.endtrailconfirm} isVisible={visible} onBackdropPress={toggleOverlay}>
               <View style={{ alignItems: 'center' }}>
                 <Text style={{ fontSize: 40, color: '#376171', fontWeight: 'bold' }}>Posted!</Text>
-                <Text > Go to Feed! </Text>
+                {/* <Text > Go to Feed! </Text> */}
                 <View style={styles.yesnobar2}>
                   <TouchableOpacity activeOpacity={0.5} onPress={sendbutton}>
 
@@ -1442,7 +1478,7 @@ export default function App() {
     loadFonts();
   },[])
 
-  // LogBox.ignoreAllLogs();
+  LogBox.ignoreAllLogs();
   return (
     <NavigationContainer>
       <MyTabs />
@@ -1709,7 +1745,7 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   storybox: {
-    flex: 0.5,
+    flex: 0.7,
     paddingTop: 10,
     // backgroundColor: "pink",
   },
@@ -1723,14 +1759,14 @@ const styles = StyleSheet.create({
   friendsbutton: {
     justifyContent: 'center',
     alignItems: 'center',
-    //backgroundColor: 'pink',
+    //backgroundColor: 'white',
     margin: 10,
   },
   friendscontainer: {
     display: "flex",
+    flex:1,
     flexDirection: "column",
     justifyContent: "space-between",
-    padding: 10,
     backgroundColor: 'white'
   },
   searchSection: {
@@ -1836,7 +1872,8 @@ const styles = StyleSheet.create({
     //backgroundColor: "pink",
   },
   endtrailconfirm: {
-    backgroundColor: "#A6D2AE",
+    //backgroundColor: "#A6D2AE",
+    backgroundColor: "#F5F0EC",
     width: 200,
     height: 200,
     borderRadius: 50,
