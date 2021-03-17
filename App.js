@@ -11,6 +11,7 @@ import {
   FlatList,
   Image,
   ScrollView,
+  LogBox
 } from 'react-native';
 import { Camera, requestPermissionsAsync } from 'expo-camera';
 import { Overlay } from 'react-native-elements';
@@ -31,6 +32,8 @@ import { useFonts } from 'expo-font';
 import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
 //testing commit
 //testing commit 2
+
+
 
 
 function TrailPreviewScreen(props, { navigation }) {
@@ -815,6 +818,7 @@ function CreateScreen(props, { navigation }) {
   };
   const toggleOver = () => {
     setOverlayVis(!overlayvis);
+    setstopwatchStart(!stopwatchStart);
     setRating(true);
     setDiff(true);
   };
@@ -1390,6 +1394,7 @@ function MyTabs() {
   );
 }
 export default function App() {
+  LogBox.ignoreAllLogs();
   return (
     <NavigationContainer>
       <MyTabs />
