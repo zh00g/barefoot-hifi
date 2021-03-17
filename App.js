@@ -1025,7 +1025,20 @@ const ExploreStack = createStackNavigator();
 
 function ExploreStackScreen() {
   return (
-    <ExploreStack.Navigator>
+    <ExploreStack.Navigator 
+    screenOptions={{
+      //headerShown: false
+      headerStyle: {
+            backgroundColor: 'white',
+          },
+          headerTintColor: '#376171',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+            fontSize: 24,
+            fontFamily: 'Raleway'
+          },
+    }}>
+      
       <ExploreStack.Screen name="Explore" component={ExploreScreen} />
       <ExploreStack.Screen name="Preview" component={TrailPreviewScreen} />
       <ExploreStack.Screen name="MapStart" component={MapStartScreen} />
