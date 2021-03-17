@@ -288,7 +288,7 @@ function MapStartScreen(props) {
   return (
     <View style={styles.container_mapstart}>
       <View style={styles.map}>
-        <MapComponent flag={false} createflag={false} />
+        <MapComponent flag={false} createflag={false} bflag={true} />
 
       </View>
 
