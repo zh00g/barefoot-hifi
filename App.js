@@ -1441,7 +1441,7 @@ export default function App() {
     loadFonts();
   },[])
 
-  LogBox.ignoreAllLogs();
+  // LogBox.ignoreAllLogs();
   return (
     <NavigationContainer>
       <MyTabs />
