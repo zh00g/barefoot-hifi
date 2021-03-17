@@ -30,6 +30,7 @@ import SwitchButton from 'switch-button-react-native';
 import Swiper from 'react-native-swiper'
 import { useFonts } from 'expo-font';
 import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
+import { LogBox } from 'react-native';
 //testing commit
 //testing commit 2
 
@@ -818,6 +819,7 @@ function CreateScreen(props, { navigation }) {
   };
   const toggleOver = () => {
     setOverlayVis(!overlayvis);
+    setstopwatchStart(!stopwatchStart);
     setRating(true);
     setDiff(true);
   };
@@ -1443,6 +1445,7 @@ export default function App() {
     loadFonts();
   },[])
 
+  LogBox.ignoreAllLogs();
   return (
     <NavigationContainer>
       <MyTabs />
