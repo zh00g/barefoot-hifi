@@ -92,7 +92,7 @@ class MapComponent extends React.Component {
         </View>
         <View style={styles.slide2}>
           <Text style={styles.text1}>Don’t want the distraction of the map?</Text>
-          <Text style={styles.text2}>Open Fact View to hear directions and information instead!</Text>
+          <Text style={styles.text2}>Open Learn Mode to hear directions and information instead!</Text>
         </View>
         <View style={styles.slide3}>
           <Text style={styles.text1}>Let’s get moving!</Text>
