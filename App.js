@@ -212,18 +212,25 @@ function MapStartScreen(props) {
         <Image style={styles.recordButtonIcon} source={require('./Images/stop2.png')} />
 
         <Overlay overlayStyle={styles.endtrailconfirm1} isVisible={overlayvisible} onBackdropPress={toggleOverlay}>
-          <View style={{ alignItems: 'center' }}>
-            <Text style={{ fontSize: 30, color: '#376171' }}>Save Your Adventure?</Text>
-            <View style={styles.yesnobar}>
-              <TouchableOpacity style={styles.popupButton} onPress={yesbutton}>
-                <Image style={styles.popupButtonIcon} source={require('./Images/yes.png')} />
-              </TouchableOpacity>
-              {/* <Button title="Yes" onPress={() =>
-                props.navigation.navigate('Congrats')} /> */}
-              <TouchableOpacity style={styles.popupButton} onPress={() => props.navigation.navigate('Explore')}>
-                <Image style={styles.popupButtonIcon} source={require('./Images/no.png')} />
-              </TouchableOpacity>
-              {/* <Button title="No" onPress={() => props.navigation.navigate('Explore')} /> */}
+          <View style={{width: '100%', height: '100%'}}>  
+            <View style={{height: 25, width: 25, left: '3%', top: '4%'}}>
+                        <TouchableOpacity style={styles.exitbutton} onPress={toggleOverlay}>
+                          <Image source = {require('./Images/exitbutton.png')} style={{width: 20, height: 20, resizeMode:'contain'}}/>
+                        </TouchableOpacity>
+            </View>
+            <View style={{ alignItems: 'center' }}>
+              <Text style={{ fontSize: 30, color: '#376171' }}>Save Your Adventure?</Text>
+              <View style={styles.yesnobar}>
+                <TouchableOpacity style={styles.popupButton} onPress={yesbutton}>
+                  <Image style={styles.popupButtonIcon} source={require('./Images/yes.png')} />
+                </TouchableOpacity>
+                {/* <Button title="Yes" onPress={() =>
+                  props.navigation.navigate('Congrats')} /> */}
+                <TouchableOpacity style={styles.popupButton} onPress={() => props.navigation.navigate('Explore')}>
+                  <Image style={styles.popupButtonIcon} source={require('./Images/no.png')} />
+                </TouchableOpacity>
+                {/* <Button title="No" onPress={() => props.navigation.navigate('Explore')} /> */}
+              </View>
             </View>
           </View>
         </Overlay>
@@ -1168,7 +1175,13 @@ function CongratsCreateScreen(props) {
           <TouchableOpacity style={styles.recordButton} activeOpacity={0.5} onPress={saveCheck}>
             <Image style={styles.recordButtonIcon} source={require('./savebutton.png')} />
             <Overlay overlayStyle={styles.endtrailconfirm1} isVisible={saveVis} onBackdropPress={saveCheck}>
-              <View style={{ alignItems: 'center' }}>
+              <View style={{width: '100%', height: '100%'}}>
+                <View style={{height: 25, width: 25, left: '3%', top: '4%'}}>
+                      <TouchableOpacity style={styles.exitbutton} onPress={saveCheck}>
+                        <Image source = {require('./Images/exitbutton.png')} style={{width: 20, height: 20, resizeMode:'contain'}}/>
+                      </TouchableOpacity>
+                </View>
+              <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                 <Text style={{ fontSize: 30, color: '#376171' }}>Save Your Trail?</Text>
                 <View style={styles.yesnobar}>
                   <TouchableOpacity style={styles.popupButton} onPress={fullsave}>
@@ -1181,6 +1194,7 @@ function CongratsCreateScreen(props) {
                   </TouchableOpacity>
                   {/* <Button title="No" onPress={() => props.navigation.navigate('Explore')} /> */}
                 </View>
+              </View>
               </View>
             </Overlay>
           </TouchableOpacity>
@@ -1494,6 +1508,10 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
+  exitbutton: {
+    width: '100%',
+    height: '100%',
+  },
   congratsinfobox: {
     display: 'flex',
     height: 300,
