@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "barefoot_hifi",
-    "slug": "barefoot_hifi",
+    "name": "barefoot147wi",
+    "slug": "barefoot147wi",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -17,7 +17,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.zh00g.barefoot147wi"
     },
     "android": {
       "adaptiveIcon": {
@@ -27,6 +28,8 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "High-fi prototype for CS147 Winter 2021",
+    "githubUrl": "https://github.com/zh00g/barefoot-hifi/"
   }
 }
